@@ -1,0 +1,139 @@
+run:
+BenytBilletautomat version 3
+
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 0 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+1
+Skriv beløb: 40
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 40 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+3
+Du får 40 kr retur
+Du fik 40 retur retur
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 0 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+1
+Skriv beløb: 40
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 40 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+2
+##########B##T#########
+# BlueJ Trafikselskab #
+#                     #
+#        Billet       #
+#        10 kr.       #
+#                     #
+##########B##T#########
+# Du har 30 kr til gode       #
+##########B##T#########
+
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 30 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+2
+##########B##T#########
+# BlueJ Trafikselskab #
+#                     #
+#        Billet       #
+#        10 kr.       #
+#                     #
+##########B##T#########
+# Du har 20 kr til gode       #
+##########B##T#########
+
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 20 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+3
+Du får 20 kr retur
+Du fik 20 retur retur
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 0 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+10
+Skriv kode: 1234
+Montørtilstand aktiveret
+Du kan nu angive billetpris
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 0 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+Tast 11 for at se status (montør)
+Tast 12 for at nulstille (montør)
+Tast 13 for at sætte billetpris (montør)
+Tast 14 for at printe log på skærmen
+Tast 15 for at logge ud af montørtilstand
+14
+Her kommer alle logs:
+
+** Der er blevet indsat 40 kr.    Wed Feb 21 15:14:54 CET 2018
+** Der er returneret 40 kr.       Wed Feb 21 15:14:56 CET 2018
+** Der er blevet indsat 40 kr.    Wed Feb 21 15:15:01 CET 2018
+** Der er blevet printet 1 billet Wed Feb 21 15:15:02 CET 2018
+** Der er blevet printet 1 billet Wed Feb 21 15:15:02 CET 2018
+** Der er returneret 20 kr.       Wed Feb 21 15:15:03 CET 2018
+-----------------------------------------------
+En billet koster 10 kroner
+Balancen er på 0 kroner
+
+Tast 1 for at indbetale penge
+Tast 2 for at udskrive din billet
+Tast 3 for at få returpengene
+
+Tast 10 for at logge ind som montør
+Tast 11 for at se status (montør)
+Tast 12 for at nulstille (montør)
+Tast 13 for at sætte billetpris (montør)
+Tast 14 for at printe log på skærmen
+Tast 15 for at logge ud af montørtilstand
