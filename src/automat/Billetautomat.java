@@ -1,6 +1,7 @@
 package automat;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Model af en simpel billetautomat til enkeltbilletter med én fast pris.
@@ -12,6 +13,8 @@ public class Billetautomat {
     private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
     private boolean montørtilstand;
+    private Date netopNu;
+    ArrayList<String> transaktionslog = new ArrayList<>();
     
     
     
@@ -41,6 +44,9 @@ public class Billetautomat {
      */
     public void indsætPenge(int beløb) {
         balance = balance + beløb;
+        netopNu = new Date();
+        transaktionslog.add(("** Der er blevet indsat " + beløb + " kr.    " + netopNu.toString()));
+        
     }
 
     /**
@@ -73,6 +79,8 @@ public class Billetautomat {
             System.out.println();
 
             antalBilletterSolgt = antalBilletterSolgt + 1;
+            netopNu = new Date();
+            transaktionslog.add(("** Der er blevet printet 1 billet " + netopNu.toString()));
         }
     }
 
@@ -85,6 +93,8 @@ public class Billetautomat {
         int returbeløb = balance;
         balance = 0;
         System.out.println("Du får " + returbeløb + " kr retur");
+        netopNu = new Date();
+        transaktionslog.add(("** Der er returneret " + returbeløb + " kr.       " + netopNu.toString()));
         return returbeløb;
     }
 
@@ -168,12 +178,16 @@ public class Billetautomat {
 
     public void montørLog() {
         if(montørtilstand) {
-            
+            System.out.println("Her kommer alle logs:");
+            System.out.println("");
+            transaktionslog.forEach((element) -> {
+                System.out.println(element);
+            });
         } else {
             System.out.println("Afvist - log ind først.");
         }
     }
-    
+      
     /**
      * erMontør Checker om tilstanden er montør.
      *

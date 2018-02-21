@@ -1,6 +1,6 @@
 package automat;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Kundens brugergrænseflade for køb og udskivning a billetter.
@@ -9,9 +9,8 @@ public class BenytBilletautomat {
 
     public static void main(String[] arg) {
         Billetautomat automat = new Billetautomat();
-        java.util.Scanner tastatur = new java.util.Scanner(System.in);  // forbered
-        ArrayList<String> transaktionslog = new ArrayList<>();
-
+        Scanner tastatur = new java.util.Scanner(System.in);  // forbered
+        
         System.out.println("BenytBilletautomat version 3");
         System.out.println();
 
@@ -30,7 +29,8 @@ public class BenytBilletautomat {
                 System.out.println("Tast 11 for at se status (montør)");
                 System.out.println("Tast 12 for at nulstille (montør)");
                 System.out.println("Tast 13 for at sætte billetpris (montør)");
-                System.out.println("Tast 14 for at logge ud af montørtilstand");
+                System.out.println("Tast 14 for at printe log på skærmen");
+                System.out.println("Tast 15 for at logge ud af montørtilstand");
             }
 
             int valg = tastatur.nextInt();
@@ -81,7 +81,7 @@ public class BenytBilletautomat {
                 }
                 case 14: {
                     // Her logger man ud fra montør tilstand
-                    //automat.montørLog(();
+                    automat.montørLog();
                     break;
                 }
                 case 15: {
