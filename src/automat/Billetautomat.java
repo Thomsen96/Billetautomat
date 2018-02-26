@@ -13,8 +13,9 @@ public class Billetautomat {
     private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
     private boolean montørtilstand;
+    private int zonePlacering;
     private Date netopNu;
-    ArrayList<String> transaktionslog = new ArrayList<>();
+    ArrayList<Transaktioner> transaktionslog = new ArrayList<>();
     
     
     
@@ -45,8 +46,8 @@ public class Billetautomat {
     public void indsætPenge(int beløb) {
         balance = balance + beløb;
         netopNu = new Date();
-        transaktionslog.add(("** Der er blevet indsat " + beløb + " kr.    " + netopNu.toString()));
-        
+        transaktionslog.add(new Transaktioner(beløb, 2, 0, 0, zonePlacering, 0, 0, 0 ));
+        //("** Der er blevet indsat " + beløb + " kr.    " + netopNu.toString())
     }
 
     /**

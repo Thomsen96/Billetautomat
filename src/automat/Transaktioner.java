@@ -17,10 +17,11 @@ public class Transaktioner {
     private int zoneAntal;
     private int billetType;  //1: Voksen, 2: Barn, 3: To voksne, 4: To børn, 5: Voksen og barn
     private int ID;
+    private boolean retur;
     
     
 
-    public Transaktioner(double beløb, int gyldighed, String fra, String til, int zoneStart, int zoneAntal, int billetType, int ID ) {
+    public Transaktioner(double beløb, int gyldighed, String fra, String til, int zoneStart, int zoneAntal, int billetType, boolean retur ) {
         udDato          = new Date();
         this.gyldighed  = gyldighed;
         this.beløb      = beløb;
@@ -29,9 +30,9 @@ public class Transaktioner {
         this.zoneStart  = zoneStart;
         this.zoneAntal  = zoneAntal;
         this.billetType = billetType;
-        this.ID         = ID;
-        
-        
+        double random = Math.random() * 400;
+        ID              = (gyldighed + zoneStart + zoneAntal + billetType) * (int)random ;
+        this.retur      = retur;
     }
     
 }
