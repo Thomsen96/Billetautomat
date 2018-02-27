@@ -7,7 +7,7 @@ public class Event {
     private Date Dato;
     private String event;
     private double var;
-    public String tekst;
+    private String tekst;
     private int valg;
     
     public Event(String event, double var) {
