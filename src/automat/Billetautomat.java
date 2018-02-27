@@ -62,7 +62,7 @@ public class Billetautomat {
      * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
      */
     public void udskrivBillet() {
-        if (balance < 10) {
+        if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
             balance = balance - billetpris; // Billetter koster 10 kroner
