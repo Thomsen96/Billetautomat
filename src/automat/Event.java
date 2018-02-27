@@ -46,6 +46,10 @@ public class Event {
                 valg = 8;
                 tekst = Dato.toString() + "Billetpris er sat til" + var + " kr.";
                 break;
+            } case "manglende tilladelse": {
+                valg = 8;
+                tekst = Dato.toString() + "Der er frsøgt at tilgå montrør funktion ID:" + var;
+                break;
             } default: {
                 valg = 0;
                 tekst = Dato.toString() + "Fejl i LOG!!";

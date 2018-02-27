@@ -1,9 +1,8 @@
-# Fil typer der ignoreres
 *.xml
 *.properties
 *.mf
+*.class
 
-#Mapper der ignorers
 /nbproject/
 /build/
 
