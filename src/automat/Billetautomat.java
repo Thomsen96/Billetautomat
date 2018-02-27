@@ -199,7 +199,7 @@ public class Billetautomat {
             System.out.println("Her kommer alle logs:");
             System.out.println("");
             eventLog.forEach((Event) -> {
-                System.out.println(Event.tekst);
+                Event.printLog();
             });
         } else {
             System.out.println("Afvist - log ind først.");
