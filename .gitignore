@@ -5,7 +5,10 @@
 
 /nbproject/
 /build/
-
+build/
+/test/
+\build\
+\build\
 nbproject/private/private.properties
 build/classes/automat/Billetautomat.class
 /dist/
