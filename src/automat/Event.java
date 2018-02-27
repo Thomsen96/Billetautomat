@@ -1,4 +1,4 @@
-
+//Log filer
 package automat;
 
 import java.util.Date;
