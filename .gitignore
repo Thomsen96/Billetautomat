@@ -4,3 +4,5 @@
 
 *.mf
 /build/
+*.properties
+nbproject/private/private.properties
