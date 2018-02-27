@@ -45,8 +45,7 @@ public class Billetautomat {
      */
     public void indsætPenge(int beløb) {
         balance = balance + beløb;
-        netopNu = new Date();
-        eventLog.add(new Transaktioner(beløb, 2, 0, 0, zonePlacering, 0, 0, 0 ));
+        eventLog.add(new Event("indsæt penge" , beløb));
         //("** Der er blevet indsat " + beløb + " kr.    " + netopNu.toString())
     }
 
@@ -80,8 +79,7 @@ public class Billetautomat {
             System.out.println();
 
             antalBilletterSolgt = antalBilletterSolgt + 1;
-            netopNu = new Date();
-            eventLog.add(("** Der er blevet printet 1 billet " + netopNu.toString()));
+            eventLog.add(new Event("print billet" , billetpris));
         }
     }
 
@@ -94,8 +92,7 @@ public class Billetautomat {
         int returbeløb = balance;
         balance = 0;
         System.out.println("Du får " + returbeløb + " kr retur");
-        netopNu = new Date();
-        eventLog.add(("** Der er returneret " + returbeløb + " kr.       " + netopNu.toString()));
+        eventLog.add(new Event("penge retur" , returbeløb));
         return returbeløb;
     }
 
@@ -106,12 +103,21 @@ public class Billetautomat {
      */
     void montørLogin(String adgangskode) {
         if ("1234".equals(adgangskode)) {
+            eventLog.add(new Event("admin login" , 0));
             montørtilstand = true;
             System.out.println("Montørtilstand aktiveret");
             System.out.println("Du kan nu angive billetpris");
+            
         } else {
-            montørtilstand = false;
-            System.out.println("Montørtilstand deaktiveret");
+            if(montørtilstand == true) {
+                eventLog.add(new Event("admin logud" , 0));
+                montørtilstand = false;
+                System.out.println("Montørtilstand deaktiveret");
+            } else {
+                eventLog.add(new Event("admin forsøg" , 0));
+                montørtilstand = false;
+                System.out.println("Forkert adgangskode");
+            }
         }
     }
 
@@ -150,6 +156,7 @@ public class Billetautomat {
      */
     public void setBilletpris(int billetpris) {
         this.billetpris = billetpris;
+        eventLog.add(new Event("billetpris sat" , billetpris));
     }
 
     /**
@@ -158,6 +165,7 @@ public class Billetautomat {
     public void nulstil() {
         if (montørtilstand) {
             antalBilletterSolgt = 0;
+            eventLog.add(new Event("reset" , 0));
         } else {
             System.out.println("Afvist - log ind først");
         }
