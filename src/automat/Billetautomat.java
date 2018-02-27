@@ -15,6 +15,7 @@ public class Billetautomat {
     private boolean montørtilstand;
     private int zonePlacering;
     private Date netopNu;
+    private int tæller = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
     
     
@@ -206,6 +207,65 @@ public class Billetautomat {
             eventLog.add(new Event("manglende tilladelse", 14));
         }
     }
+    
+    public void montørFindUUID(String søg) {
+        if(montørtilstand) {
+            System.out.println("Her loggen med UUID: " + søg);
+            eventLog.forEach((Event) -> {
+                if(Event.sammenlignUUID(søg)) {
+                    Event.printLog();
+                    
+                }
+            });
+            System.out.println("Der var ikke noget UUID med " + søg);
+            
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14));
+        }
+    }
+    
+    public void montørFindTilbageBetalinger(double over) {
+        if (montørtilstand) {
+            tæller = 0;
+            System.out.println("Her alle tilbage betalinger over " + over + " kr.");
+            eventLog.forEach((Event) -> {
+                if (Event.sammenlignVar(over) && Event.valg() == 2) {
+                    Event.printLog();
+                    tæller += 1;
+
+                }
+            });
+            if (tæller == 0) {
+                System.out.println("Der var ingen tilbagebetalinger over " + over + " kr.");
+            }
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14));
+        }
+    }
+    
+    public void montørFindIndsattePenge(double over) {
+        if (montørtilstand) {
+            tæller = 0;
+            System.out.println("Her alle ind betalinger over " + over + " kr.");
+            eventLog.forEach((Event) -> {
+                if (Event.sammenlignVar(over) && Event.valg() == 1) {
+                    Event.printLog();
+                    tæller += 1;
+
+                }
+            });
+            if (tæller == 0) {
+                System.out.println("Der var ingen indbagebetalinger over " + over + " kr.");
+            }
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14));
+        }
+    }
+    
+    
       
     /**
      * erMontør Checker om tilstanden er montør.

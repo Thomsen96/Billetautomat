@@ -88,10 +88,32 @@ public class BenytBilletautomat {
                 case 14: {
                     // Her printer man loggen
                     if (automat.erMontør()) {
-                        System.out.println("Tryk 1 for at printe alle. Tryk 2 for at søge.");
+                        System.out.println( "Tryk 1 for at printe alle\n"
+                                          + "Tast 2 for at søge på UUID.\n"
+                                          + "Tast 3 for at søge på tilbagebetalinger.\n"
+                                          + "Tast 4 for at søge på indsatte penge");
                         int tast = tastatur.nextInt();
-        
-                        automat.montørLog(tast);
+                        switch(tast) {
+                            case 1: {
+                                automat.montørLog();
+                                break;
+                            } case 2: {
+                                System.out.println("Indtast UUID: ");
+                                String søg = tastatur.next();
+                                automat.montørFindUUID(søg);
+                                break;
+                            } case 3: {
+                                System.out.println("Søg efter tilbagebetalinger over: ");
+                                double over = tastatur.nextDouble();
+                                automat.montørFindTilbageBetalinger(over);
+                                break;
+                            } case 4: {
+                                System.out.println("Søg efter indbetalinger over: ");
+                                double over = tastatur.nextDouble();
+                                automat.montørFindIndsattePenge(over);
+                                break;
+                            }
+                        }
                     } else {
                         System.out.println("Afvist - log ind først.");
                     }

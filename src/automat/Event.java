@@ -23,7 +23,7 @@ public class Event {
                 break;
             } case "penge retur": {
                 valg = 2;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er returneret" + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er returneret " + var + " kr.";
                 break;
             } case "print billet": {
                 valg = 3;
@@ -63,9 +63,21 @@ public class Event {
     }
     
     public void printLog() {
-        
         System.out.println(tekst);
-        
     }
+    
+    public boolean sammenlignUUID (String søg) {
+        return uuid.toString().equals(søg);
+    }
+    
+    public boolean sammenlignVar(double over) {
+        return over > var;
+    }
+    
+    public int valg() {
+        return valg;
+    }
+    
+    
     
 }
