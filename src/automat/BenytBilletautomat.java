@@ -62,12 +62,16 @@ public class BenytBilletautomat {
                     if (automat.erMontør()) {
                         System.out.println("Antal billetter solgt: " + automat.getAntalBilletterSolgt());
                         System.out.println("Total indkomst: " + automat.getTotal() + " kr");
+                    } else {
+                        System.out.println("Afvist - log ind først.");
                     }
                     break;
                 }
                 case 12: {
                     if (automat.erMontør()) {
                         automat.nulstil();
+                    } else {
+                        System.out.println("Afvist - log ind først.");
                     }
                     break;
                 }
@@ -76,12 +80,19 @@ public class BenytBilletautomat {
                         System.out.print("Skriv beløb: ");
                         int beløb = tastatur.nextInt();
                         automat.setBilletpris(beløb);
+                    } else {
+                        System.out.println("Afvist - log ind først.");
                     }
                     break;
                 }
                 case 14: {
                     // Her printer man loggen
-                    automat.montørLog();
+                    if (automat.erMontør()) {
+                        automat.montørLog();
+                    } else {
+                        System.out.println("Afvist - log ind først.");
+                    }
+                    
                     break;
                 }
                 case 15: {

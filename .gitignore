@@ -8,3 +8,5 @@
 
 nbproject/private/private.properties
 build/classes/automat/Billetautomat.class
+/dist/
+*.class
