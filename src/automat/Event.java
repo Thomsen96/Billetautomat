@@ -58,4 +58,11 @@ public class Event {
             
         }
     }
+    
+    public void printLog() {
+        
+        System.out.println(tekst);
+        
+    }
+    
 }

@@ -198,8 +198,8 @@ public class Billetautomat {
         if(montørtilstand) {
             System.out.println("Her kommer alle logs:");
             System.out.println("");
-            eventLog.forEach((element) -> {
-                System.out.println(element);
+            eventLog.forEach((Event) -> {
+                Event.printLog();
             });
         } else {
             System.out.println("Afvist - log ind først.");
