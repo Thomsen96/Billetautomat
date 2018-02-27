@@ -128,7 +128,9 @@ public class Billetautomat {
      */
     public int getTotal() {
         if (montørtilstand) {
+            eventLog.add(new Event("manglende tilladelse", 11));
             return billetpris * antalBilletterSolgt;
+            
         } else {
             System.out.println("Afvist - log ind først");
             return 0;
@@ -142,6 +144,7 @@ public class Billetautomat {
      */
     public int getAntalBilletterSolgt() {
         if (montørtilstand) {
+            eventLog.add(new Event("manglende tilladelse", 11));
             return antalBilletterSolgt;
         } else {
             System.out.println("Afvist - log ind først");
@@ -155,8 +158,13 @@ public class Billetautomat {
      * @param billetpris
      */
     public void setBilletpris(int billetpris) {
-        this.billetpris = billetpris;
-        eventLog.add(new Event("billetpris sat" , billetpris));
+        if(montørtilstand) {
+            this.billetpris = billetpris;
+            eventLog.add(new Event("billetpris sat" , billetpris));
+        } else {
+            eventLog.add(new Event("manglende tilladelse", 13));
+        }
+        
     }
 
     /**
@@ -168,6 +176,7 @@ public class Billetautomat {
             eventLog.add(new Event("reset" , 0));
         } else {
             System.out.println("Afvist - log ind først");
+            eventLog.add(new Event("manglende tilladelse", 12));
         }
     }
 
@@ -194,6 +203,7 @@ public class Billetautomat {
             });
         } else {
             System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14));
         }
     }
       

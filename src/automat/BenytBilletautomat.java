@@ -80,7 +80,7 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 14: {
-                    // Her logger man ud fra montør tilstand
+                    // Her printer man loggen
                     automat.montørLog();
                     break;
                 }
