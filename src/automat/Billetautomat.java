@@ -15,7 +15,7 @@ public class Billetautomat {
     private boolean montørtilstand;
     private int zonePlacering;
     private Date netopNu;
-    ArrayList<Transaktioner> transaktionslog = new ArrayList<>();
+    ArrayList<Event> eventLog = new ArrayList<>();
     
     
     
@@ -46,7 +46,7 @@ public class Billetautomat {
     public void indsætPenge(int beløb) {
         balance = balance + beløb;
         netopNu = new Date();
-        transaktionslog.add(new Transaktioner(beløb, 2, 0, 0, zonePlacering, 0, 0, 0 ));
+        eventLog.add(new Transaktioner(beløb, 2, 0, 0, zonePlacering, 0, 0, 0 ));
         //("** Der er blevet indsat " + beløb + " kr.    " + netopNu.toString())
     }
 
@@ -81,7 +81,7 @@ public class Billetautomat {
 
             antalBilletterSolgt = antalBilletterSolgt + 1;
             netopNu = new Date();
-            transaktionslog.add(("** Der er blevet printet 1 billet " + netopNu.toString()));
+            eventLog.add(("** Der er blevet printet 1 billet " + netopNu.toString()));
         }
     }
 
@@ -95,7 +95,7 @@ public class Billetautomat {
         balance = 0;
         System.out.println("Du får " + returbeløb + " kr retur");
         netopNu = new Date();
-        transaktionslog.add(("** Der er returneret " + returbeløb + " kr.       " + netopNu.toString()));
+        eventLog.add(("** Der er returneret " + returbeløb + " kr.       " + netopNu.toString()));
         return returbeløb;
     }
 
@@ -181,7 +181,7 @@ public class Billetautomat {
         if(montørtilstand) {
             System.out.println("Her kommer alle logs:");
             System.out.println("");
-            transaktionslog.forEach((element) -> {
+            eventLog.forEach((element) -> {
                 System.out.println(element);
             });
         } else {
