@@ -88,7 +88,10 @@ public class BenytBilletautomat {
                 case 14: {
                     // Her printer man loggen
                     if (automat.erMontør()) {
-                        automat.montørLog();
+                        System.out.println("Tryk 1 for at printe alle. Tryk 2 for at søge.");
+                        int tast = tastatur.nextInt();
+        
+                        automat.montørLog(tast);
                     } else {
                         System.out.println("Afvist - log ind først.");
                     }
