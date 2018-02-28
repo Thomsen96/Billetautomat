@@ -88,10 +88,10 @@ public class BenytBilletautomat {
                 case 14: {
                     // Her printer man loggen
                     if (automat.erMontør()) {
-                        System.out.println( "Tryk 1 for at printe alle\n"
+                        System.out.println( "Tryk 1 for at printe alle.\n"
                                           + "Tast 2 for at søge på UUID.\n"
                                           + "Tast 3 for at søge på tilbagebetalinger.\n"
-                                          + "Tast 4 for at søge på indsatte penge");
+                                          + "Tast 4 for at søge på indsatte penge.");
                         int tast = tastatur.nextInt();
                         switch(tast) {
                             case 1: {
