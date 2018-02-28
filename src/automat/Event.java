@@ -70,11 +70,11 @@ public class Event {
         return uuid.toString().equals(søg);
     }
     
-    public boolean sammenlignVar(double over) {
-        return over > var;
+    public double getVar() {
+        return var;
     }
     
-    public int valg() {
+    public int getValg() {
         return valg;
     }
     

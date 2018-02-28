@@ -98,18 +98,19 @@ public class BenytBilletautomat {
                                 automat.montørLog();
                                 break;
                             } case 2: {
-                                System.out.println("Indtast UUID: ");
+                                System.out.print("Indtast UUID: ");
                                 String søg = tastatur.next();
                                 automat.montørFindUUID(søg);
                                 break;
                             } case 3: {
-                                System.out.println("Søg efter tilbagebetalinger over: ");
+                                System.out.print("Søg efter tilbagebetalinger over: ");
                                 double over = tastatur.nextDouble();
                                 automat.montørFindTilbageBetalinger(over);
                                 break;
                             } case 4: {
-                                System.out.println("Søg efter indbetalinger over: ");
+                                System.out.print("Søg efter indbetalinger over: ");
                                 double over = tastatur.nextDouble();
+                                System.err.println(over);
                                 automat.montørFindIndsattePenge(over);
                                 break;
                             }

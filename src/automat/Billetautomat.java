@@ -1,5 +1,6 @@
 package automat;
 
+import static java.lang.Double.compare;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -230,7 +231,7 @@ public class Billetautomat {
             tæller = 0;
             System.out.println("Her alle tilbage betalinger over " + over + " kr.");
             eventLog.forEach((Event) -> {
-                if (Event.sammenlignVar(over) && Event.valg() == 2) {
+                if (Event.getVar() > over && Event.getValg() == 2) {
                     Event.printLog();
                     tæller += 1;
 
@@ -248,12 +249,16 @@ public class Billetautomat {
     public void montørFindIndsattePenge(double over) {
         if (montørtilstand) {
             tæller = 0;
-            System.out.println("Her alle ind betalinger over " + over + " kr.");
+            System.out.println("Der ledes efter indbetalinger over: " + over + " kr.");
             eventLog.forEach((Event) -> {
-                if (Event.sammenlignVar(over) && Event.valg() == 1) {
+                    if (Event.getVar() >= over && Event.getValg() == 1) {
+                    System.out.println("Denne er OVER");
                     Event.printLog();
                     tæller += 1;
 
+                } else if (Event.getValg() == 1){
+                    System.out.println("Denne er UNDER");
+                    Event.printLog();
                 }
             });
             if (tæller == 0) {
