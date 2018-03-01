@@ -16,6 +16,7 @@ public class Event {
     
     public Event(String event, double var) {
         this.event = event;
+        this.var = var;
         switch(event) {
             case "indsæt penge" : {
                 valg = 1;
