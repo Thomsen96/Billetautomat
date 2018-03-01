@@ -1,8 +1,6 @@
 package automat;
 
-import static java.lang.Double.compare;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Model af en simpel billetautomat til enkeltbilletter med én fast pris.
@@ -14,10 +12,9 @@ public class Billetautomat {
     private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
     private boolean montørtilstand;
-    private int zonePlacering;
-    private Date netopNu;
     private int tæller = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
+    ArrayList<Billettype> billeter = new ArrayList<>();
     
     
     
