@@ -211,15 +211,19 @@ public class Billetautomat {
     
     public void montørFindUUID(String søg) {
         if(montørtilstand) {
+            tæller = 0;
             System.out.println("Her loggen med UUID: " + søg);
             eventLog.forEach((Event) -> {
                 if(Event.sammenlignUUID(søg)) {
                     Event.printLog();
+                    tæller += 1;
                     
                 }
             });
-            System.out.println("Der var ikke noget UUID med " + søg);
-            
+            if (tæller == 0) {
+                System.out.println("Der var ikke noget UUID med " + søg);
+            }
+                        
         } else {
             System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14));
