@@ -59,6 +59,7 @@ public class Billetautomat {
 
     /**
      * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
+     * @param zoner søger efter billeter med det antal zoner
      */
     public void udskrivBillet(int zoner) {
         søgBilletTyper(zoner);
@@ -297,11 +298,13 @@ public class Billetautomat {
     }
     
     public boolean søgBilletTyper(int zoner){
+        tæller = 0;
         billeter.forEach((Billet) -> {
             if(Billet.getZoner() == zoner){
-            return true;
+                 tæller = 1;
             }
         });
-        return false;
+        
+        return tæller == 1;
     }
 }
