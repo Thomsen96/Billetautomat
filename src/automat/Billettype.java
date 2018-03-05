@@ -2,15 +2,15 @@ package automat;
 
     public class Billettype {
         private double pris;    
-        private String navn;
+        private int zoner;
         
         
         public double getBilletpris() {
             return pris;
         }
         
-        public String getNavn(){
-            return navn;
+        public int getZoner(){
+            return zoner;
         }
         
         public void PrintBillet(int antal){
