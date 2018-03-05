@@ -309,7 +309,7 @@ public class Billetautomat {
     
     public void udskrivBilletTyper() {
         for( int i = 0; i < billeter.size(); i++) {
-            System.out.println(i + ". for en " + billeter.get(i).getType() + " koster " + billeter.get(i).getBilletpris() + " kroner.");
+            System.out.println((i+1) + ". for en " + billeter.get(i).getType() + " koster " + billeter.get(i).getBilletpris() + " kroner.");
         }
     }
     
