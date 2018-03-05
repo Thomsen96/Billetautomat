@@ -17,7 +17,7 @@ public class BenytBilletautomat {
         while (true) {
             System.out.println("-----------------------------------------------");
             automat.udskrivBilletTyper();
-            System.out.println("Balancen er på " + automat.getBalance() + " kroner");
+            System.out.println("\nBalancen er på " + automat.getBalance() + " kroner");
             System.out.println();
             System.out.println("Tast 1 for at indbetale penge");
             System.out.println("Tast 2 for at udskrive din billet");
@@ -33,9 +33,11 @@ public class BenytBilletautomat {
                 System.out.println("Tast 14 for at printe log på skærmen");
                 System.out.println("Tast 15 for at logge ud af montørtilstand");
             }
-
+            
+            System.out.println("-----------------------------------------------");
+            
+            System.out.println("Menu valg: ");
             int valg = tastatur.nextInt();
-            tastatur.nextLine();
             switch (valg) {
                 case 1: {
                     System.out.print("Skriv beløb: ");
