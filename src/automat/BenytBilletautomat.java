@@ -46,10 +46,10 @@ public class BenytBilletautomat {
                 case 2: {                                                       // Der skal printes en liste af forskellige billet typer.
                     automat.udskrivBilletTyper();
                     System.out.print("Indtast hvilken type billet du ønsker: ");
-                    int type = tastatur.nextInt();
-                    System.out.print("\nIndtast zoneantal: ");
+                    int type = tastatur.nextInt() - 1;
+                    System.out.print("\nIndtast ønskede zoneantal: ");
                     int zoner = tastatur.nextInt();
-                    automat.udskrivBillet(zoner);
+                    automat.udskrivBillet(type, zoner);
                     break;
                 }
                 case 3: {
@@ -87,11 +87,11 @@ public class BenytBilletautomat {
                 }
                 case 13: {
                     if (automat.erMontør()) {
-                        System.out.print("Hvilken zone skal ændres? ");
-                        int zone = tastatur.nextInt();
-                        System.out.print("\nSkriv beløb: ");
-                        double beløb = tastatur.nextDouble();
-                        automat.setBilletpris(beløb, zone);
+                        System.out.print("Hvilken billet skal ændres? ");
+                        String inType = tastatur.next();
+                        System.out.print("\nhvad skal en zone koste? ");
+                        double inBeløb = tastatur.nextDouble();
+                        automat.setBilletpris(inType, inBeløb);
                     } else {
                         System.out.println("Afvist - Log ind først.");
                     }

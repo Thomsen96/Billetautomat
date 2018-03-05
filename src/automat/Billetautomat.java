@@ -71,8 +71,8 @@ public class Billetautomat {
      * @param inType
      * @param zoner søger efter billeter med det antal zoner
      */
-    public void udskrivBillet(String inType, int zoner) {
-        double billetpris = getBilletpris(inType, zoner);
+    public void udskrivBillet(int inType, int zoner) {
+        double billetpris = getBilletpris(billeter.get(inType).getType(), zoner);
         if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
@@ -308,9 +308,9 @@ public class Billetautomat {
     }
     
     public void udskrivBilletTyper() {
-        billeter.forEach((Billet) -> {
-            Billet.PrintBilletpris();
-        });
+        for( int i = 0; i < billeter.size(); i++) {
+            System.out.println(i + ". for en " + billeter.get(i).getType() + " koster " + billeter.get(i).getBilletpris() + " kroner.");
+        }
     }
     
     public int søgBilletTyper(String søgType){
