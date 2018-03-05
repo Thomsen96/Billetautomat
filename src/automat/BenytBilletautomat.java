@@ -103,9 +103,13 @@ public class BenytBilletautomat {
                                 automat.montørFindUUID(søg);
                                 break;
                             } case 3: {
-                                System.out.print("Søg efter tilbagebetalinger over: ");
-                                double over = tastatur.nextDouble();
-                                automat.montørFindTilbageBetalinger(over);
+                                 System.out.print("Søg efter tilbagebetalinger.");
+                                System.out.print("Tryk O hvis du vil søge over beløbet og U hvis du vil søge under.");
+                                String underOver = tastatur.next();
+                                System.out.print("Indtast det beløb du vil søge efter.");
+                                double beløb = tastatur.nextDouble();
+                                System.err.println(beløb);
+                                automat.montørFindTilbageBetalinger(beløb);
                                 break;
                             } case 4: {
                                 System.out.print("Søg efter indbetalinger.");
