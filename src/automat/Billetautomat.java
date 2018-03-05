@@ -78,18 +78,20 @@ public class Billetautomat {
         } else {
             balance = balance - billetpris; // Billetter koster 10 kroner
 
+            eventLog.add(new Event("print billet", billetpris, "" , 0));
+            
             System.out.println("##########B##T#########");
             System.out.println("# BlueJ Trafikselskab #");
             System.out.println("#                     #");
-            System.out.println("#        Billet       #");
+            System.out.println("#  " + billeter.get(inType).getType() + "billet      #");
             System.out.println("#        " + billetpris + " kr.       #");
             System.out.println("#                     #");
-            System.out.println("##########B##T#########");
-            System.out.println("# Du har " + (balance) + " kr til gode       #");
+            System.out.println("#        " + eventLog.get(eventLog.size()-1).getDato() + "             #");
+            System.out.println("#  " + eventLog.get(eventLog.size()-1).getUUID() + "  #");
             System.out.println("##########B##T#########");
             System.out.println();
 
-            eventLog.add(new Event("print billet", billetpris, "" , 0));
+            
         }
     }
 
