@@ -19,7 +19,7 @@ public class Billetautomat {
      * Opret en billetautomat der sælger billetter til 10 kr.
      */
     public Billetautomat() {
-        BilletType(10,1);
+        billeter.add(new Billettype(10.0,1));
         balance = 0;
         antalBilletterSolgt = 0;
     }
