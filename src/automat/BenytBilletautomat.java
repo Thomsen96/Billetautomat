@@ -113,7 +113,7 @@ public class BenytBilletautomat {
                                 break;
                             } case 3: {
                                  System.out.println("Søg efter tilbagebetalinger.");
-                                System.out.print("Tryk O hvis du vil søge over beløbet og U hvis du vil søge under: ");
+                                System.out.print("Tryk O hvis du vil søge over eller lig med beløbet, og U hvis du vil søge under eller lig med: ");
                                 String underOver = tastatur.next();
                                 System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beløb = tastatur.nextDouble();
@@ -121,7 +121,7 @@ public class BenytBilletautomat {
                                 break;
                             } case 4: {
                                 System.out.println("Søg efter indbetalinger.");
-                                System.out.print("Tryk O hvis du vil søge over beløbet og U hvis du vil søge under: ");
+                                System.out.print("Tryk O hvis du vil søge over eller lig med beløbet, og U hvis du vil søge under eller lig med: ");
                                 String underOver = tastatur.next();
                                 System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beløb = tastatur.nextDouble();
