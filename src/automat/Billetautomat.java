@@ -7,7 +7,6 @@ import java.util.ArrayList;
  */
 public class Billetautomat {
 
-    
     private int billetpris;    // Prisen for én billet.
     private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
@@ -15,9 +14,7 @@ public class Billetautomat {
     private int tæller = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
     ArrayList<Billettype> billeter = new ArrayList<>();
-    
-    
-    
+
     /**
      * Opret en billetautomat der sælger billetter til 10 kr.
      */
@@ -45,7 +42,7 @@ public class Billetautomat {
     public void indsætPenge(int beløb) {
         if (beløb > 0) {
             balance = balance + beløb;
-            eventLog.add(new Event("indsæt penge" , beløb));
+            eventLog.add(new Event("indsæt penge", beløb));
         } else {
             System.err.println("Man kan ikke indsætte et negative beløb.");
         }
@@ -81,7 +78,7 @@ public class Billetautomat {
             System.out.println();
 
             antalBilletterSolgt = antalBilletterSolgt + 1;
-            eventLog.add(new Event("print billet" , billetpris));
+            eventLog.add(new Event("print billet", billetpris));
         }
     }
 
@@ -94,7 +91,7 @@ public class Billetautomat {
         int returbeløb = balance;
         balance = 0;
         System.out.println("Du får " + returbeløb + " kr retur");
-        eventLog.add(new Event("penge retur" , returbeløb));
+        eventLog.add(new Event("penge retur", returbeløb));
         return returbeløb;
     }
 
@@ -105,18 +102,18 @@ public class Billetautomat {
      */
     void montørLogin(String adgangskode) {
         if ("1234".equals(adgangskode)) {
-            eventLog.add(new Event("admin login" , 0));
+            eventLog.add(new Event("admin login", 0));
             montørtilstand = true;
             System.out.println("Montørtilstand aktiveret");
             System.out.println("Du kan nu angive billetpris");
-            
+
         } else {
-            if(montørtilstand == true) {
-                eventLog.add(new Event("admin logud" , 0));
+            if (montørtilstand == true) {
+                eventLog.add(new Event("admin logud", 0));
                 montørtilstand = false;
                 System.out.println("Montørtilstand deaktiveret");
             } else {
-                eventLog.add(new Event("admin forsøg" , 0));
+                eventLog.add(new Event("admin forsøg", 0));
                 montørtilstand = false;
                 System.out.println("Forkert adgangskode");
             }
@@ -132,7 +129,7 @@ public class Billetautomat {
         if (montørtilstand) {
             eventLog.add(new Event("manglende tilladelse", 11));
             return billetpris * antalBilletterSolgt;
-            
+
         } else {
             System.out.println("Afvist - log ind først");
             return 0;
@@ -160,13 +157,13 @@ public class Billetautomat {
      * @param billetpris
      */
     public void setBilletpris(int billetpris) {
-        if(montørtilstand) {
+        if (montørtilstand) {
             this.billetpris = billetpris;
-            eventLog.add(new Event("billetpris sat" , billetpris));
+            eventLog.add(new Event("billetpris sat", billetpris));
         } else {
             eventLog.add(new Event("manglende tilladelse", 13));
         }
-        
+
     }
 
     /**
@@ -175,7 +172,7 @@ public class Billetautomat {
     public void nulstil() {
         if (montørtilstand) {
             antalBilletterSolgt = 0;
-            eventLog.add(new Event("reset" , 0));
+            eventLog.add(new Event("reset", 0));
         } else {
             System.out.println("Afvist - log ind først");
             eventLog.add(new Event("manglende tilladelse", 12));
@@ -195,9 +192,8 @@ public class Billetautomat {
         }
     }
 
-
     public void montørLog() {
-        if(montørtilstand) {
+        if (montørtilstand) {
             System.out.println("Her kommer alle logs:");
             System.out.println("");
             eventLog.forEach((Event) -> {
@@ -208,58 +204,64 @@ public class Billetautomat {
             eventLog.add(new Event("manglende tilladelse", 14));
         }
     }
-    
+
     public void montørFindUUID(String søg) {
-        if(montørtilstand) {
+        if (montørtilstand) {
             tæller = 0;
             System.out.println("Her loggen med UUID: " + søg);
             eventLog.forEach((Event) -> {
-                if(Event.sammenlignUUID(søg)) {
+                if (Event.sammenlignUUID(søg)) {
                     Event.printLog();
                     tæller += 1;
-                    
+
                 }
             });
             if (tæller == 0) {
                 System.out.println("Der var ikke noget UUID med " + søg);
             }
-                        
+
         } else {
             System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14));
         }
     }
-    
-    public void montørFindTilbageBetalinger(double over) {
+
+    public void montørFindTilbageBetalinger(double over, String underOver) {
         if (montørtilstand) {
             tæller = 0;
-            System.out.println("Her alle tilbage betalinger over " + over + " kr.");
+            System.out.println("Der ledes efter tilbetalinger " + underOver + " " + over + " kr.");
             eventLog.forEach((Event) -> {
-                if (Event.getVar() > over && Event.getValg() == 2) {
+                if (Event.getVar() >= over && Event.getValg() == 2 && underOver.equals("o") || underOver.equals("O")) {
                     Event.printLog();
                     tæller += 1;
 
+                } else if (Event.getVar() <= over && Event.getValg() == 2 && underOver.equals("u") || underOver.equals("U")) {
+                    Event.printLog();
+                    tæller += 1;
                 }
             });
-            if (tæller == 0) {
+            if (tæller == 0 && underOver.equals("o") || underOver.equals("O")) {
                 System.out.println("Der var ingen tilbagebetalinger over " + over + " kr.");
+            }
+            if (tæller == 0 && underOver.equals("u") || underOver.equals("U")) {
+                System.out.println("Der var ingen tilbagebetalinger under " + over + " kr.");
             }
         } else {
             System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14));
         }
     }
-    
+
     public void montørFindIndsattePenge(double over, String underOver) {
         if (montørtilstand) {
             tæller = 0;
-            System.out.println("Der ledes efter indbetalinger over: " + over + " kr.");
+            System.out.println("Der ledes efter indbetalinger " + underOver + " " + over + " kr.");
             eventLog.forEach((Event) -> {
-                    if (Event.getVar() >= over && Event.getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
+                if (Event.getVar() >= over && Event.getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
                     Event.printLog();
                     tæller += 1;
 
-                } else if (Event.getValg() == 1 && underOver.equals("u") || underOver.equals("U")){
+                } else if (Event.getVar() <= over && Event.getValg() == 1 && underOver.equals("u") || underOver.equals("U")) {
                     Event.printLog();
                     tæller += 1;
                 }
@@ -269,15 +271,14 @@ public class Billetautomat {
             }
             if (tæller == 0 && underOver.equals("u") || underOver.equals("U")) {
                 System.out.println("Der var ingen indbagebetalinger under " + over + " kr.");
-            } else {
-                System.out.println("Afvist - log ind først.");
-                eventLog.add(new Event("manglende tilladelse", 14));
             }
+            
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14));
         }
     }
-    
-    
-      
+
     /**
      * erMontør Checker om tilstanden er montør.
      *

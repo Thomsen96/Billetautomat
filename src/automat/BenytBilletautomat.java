@@ -109,7 +109,7 @@ public class BenytBilletautomat {
                                 System.out.print("Indtast det beløb du vil søge efter.");
                                 double beløb = tastatur.nextDouble();
                                 System.err.println(beløb);
-                                automat.montørFindTilbageBetalinger(beløb);
+                                automat.montørFindTilbageBetalinger(beløb, underOver);
                                 break;
                             } case 4: {
                                 System.out.print("Søg efter indbetalinger.");
