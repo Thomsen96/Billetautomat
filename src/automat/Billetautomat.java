@@ -269,9 +269,10 @@ public class Billetautomat {
             }
             if (tæller == 0 && underOver.equals("u") || underOver.equals("U")) {
                 System.out.println("Der var ingen indbagebetalinger under " + over + " kr.");
-        } else {
-            System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14));
+            } else {
+                System.out.println("Afvist - log ind først.");
+                eventLog.add(new Event("manglende tilladelse", 14));
+            }
         }
     }
     
