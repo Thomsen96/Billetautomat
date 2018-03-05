@@ -21,7 +21,7 @@ public class Billetautomat {
     public Billetautomat() {
         billeter.add(new Billettype(10.0,1));
         balance = 0;
-        antalBilletterSolgt = 0;
+        antalBilletterSolgt =w 0;
     }
 
     /**
@@ -286,5 +286,11 @@ public class Billetautomat {
      */
     public boolean erMontør() {
         return montørtilstand;
+    }
+    
+    public void udskrivBilletTyper() {
+        billeter.forEach((Billet) -> {
+            System.out.println(Billet);            
+        });
     }
 }
