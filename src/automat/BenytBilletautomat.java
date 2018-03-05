@@ -108,10 +108,13 @@ public class BenytBilletautomat {
                                 automat.montørFindTilbageBetalinger(over);
                                 break;
                             } case 4: {
-                                System.out.print("Søg efter indbetalinger over: ");
-                                double over = tastatur.nextDouble();
-                                System.err.println(over);
-                                automat.montørFindIndsattePenge(over);
+                                System.out.print("Søg efter indbetalinger.");
+                                System.out.print("Tryk O hvis du vil søge over beløbet og U hvis du vil søge under.");
+                                String underOver = tastatur.next();
+                                System.out.print("Indtast det beløb du vil søge efter.");
+                                double beløb = tastatur.nextDouble();
+                                System.err.println(beløb);
+                                automat.montørFindIndsattePenge(beløb, underOver);
                                 break;
                             }
                         }
