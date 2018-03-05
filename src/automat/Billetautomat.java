@@ -250,24 +250,25 @@ public class Billetautomat {
         }
     }
     
-    public void montørFindIndsattePenge(double over) {
+    public void montørFindIndsattePenge(double over, String underOver) {
         if (montørtilstand) {
             tæller = 0;
             System.out.println("Der ledes efter indbetalinger over: " + over + " kr.");
             eventLog.forEach((Event) -> {
-                    if (Event.getVar() >= over && Event.getValg() == 1) {
-                    System.out.println("Denne er OVER");
+                    if (Event.getVar() >= over && Event.getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
                     Event.printLog();
                     tæller += 1;
 
-                } else if (Event.getValg() == 1){
-                    System.out.println("Denne er UNDER");
+                } else if (Event.getValg() == 1 && underOver.equals("u") || underOver.equals("U")){
                     Event.printLog();
+                    tæller += 1;
                 }
             });
-            if (tæller == 0) {
+            if (tæller == 0 && underOver.equals("o") || underOver.equals("O")) {
                 System.out.println("Der var ingen indbagebetalinger over " + over + " kr.");
             }
+            if (tæller == 0 && underOver.equals("u") || underOver.equals("U")) {
+                System.out.println("Der var ingen indbagebetalinger under " + over + " kr.");
         } else {
             System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14));
