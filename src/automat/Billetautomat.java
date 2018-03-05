@@ -7,9 +7,7 @@ import java.util.ArrayList;
  */
 public class Billetautomat {
 
-    private int billetpris;    // Prisen for én billet.
-    private int balance; // Hvor mange penge kunden p.t. har puttet i automaten
-    private int antalBilletterSolgt; // Antal billetter automaten i alt har solgt
+    private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private boolean montørtilstand;
     private int tæller = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
@@ -21,16 +19,16 @@ public class Billetautomat {
     public Billetautomat() {
         billeter.add(new Billettype(10.0,1));
         balance = 0;
-        antalBilletterSolgt = 0;
     }
 
     /**
      * Giver prisen for en billet.
      *
-     * @return pris på billet
+     * @param zoner
+     * @return pris på billet med zoner
      */
-    public int getBilletpris() {
-        int resultat = billetpris;
+    public double getBilletpris(int zoner) {
+        double resultat = billeter.get(søgBilletTyper(zoner)).getBilletpris();
         return resultat;
     }
 
@@ -42,7 +40,7 @@ public class Billetautomat {
     public void indsætPenge(int beløb) {
         if (beløb > 0) {
             balance = balance + beløb;
-            eventLog.add(new Event("indsæt penge", beløb));
+            eventLog.add(new Event("indsæt penge", beløb, 0));
         } else {
             System.err.println("Man kan ikke indsætte et negative beløb.");
         }
@@ -53,7 +51,7 @@ public class Billetautomat {
      *
      * @return Nuværende balance
      */
-    public int getBalance() {
+    public double getBalance() {
         return balance;
     }
 
@@ -62,8 +60,7 @@ public class Billetautomat {
      * @param zoner søger efter billeter med det antal zoner
      */
     public void udskrivBillet(int zoner) {
-        søgBilletTyper(zoner);
-        
+        double billetpris = getBilletpris(zoner);
         if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
@@ -80,8 +77,7 @@ public class Billetautomat {
             System.out.println("##########B##T#########");
             System.out.println();
 
-            antalBilletterSolgt = antalBilletterSolgt + 1;
-            eventLog.add(new Event("print billet", billetpris));
+            eventLog.add(new Event("print billet", billetpris, 0));
         }
     }
 
@@ -90,11 +86,11 @@ public class Billetautomat {
      *
      * @return beregner hvor mange penge man skal have retur
      */
-    public int returpenge() {
-        int returbeløb = balance;
+    public double returpenge() {
+        double returbeløb = balance;
         balance = 0;
         System.out.println("Du får " + returbeløb + " kr retur");
-        eventLog.add(new Event("penge retur", returbeløb));
+        eventLog.add(new Event("penge retur", returbeløb, 0));
         return returbeløb;
     }
 
@@ -105,18 +101,18 @@ public class Billetautomat {
      */
     void montørLogin(String adgangskode) {
         if ("1234".equals(adgangskode)) {
-            eventLog.add(new Event("admin login", 0));
+            eventLog.add(new Event("admin login", 0, 0));
             montørtilstand = true;
             System.out.println("Montørtilstand aktiveret");
             System.out.println("Du kan nu angive billetpris");
 
         } else {
             if (montørtilstand == true) {
-                eventLog.add(new Event("admin logud", 0));
+                eventLog.add(new Event("admin logud", 0, 0));
                 montørtilstand = false;
                 System.out.println("Montørtilstand deaktiveret");
             } else {
-                eventLog.add(new Event("admin forsøg", 0));
+                eventLog.add(new Event("admin forsøg", 0, 0));
                 montørtilstand = false;
                 System.out.println("Forkert adgangskode");
             }
@@ -128,12 +124,18 @@ public class Billetautomat {
      *
      * @return penge tjent.
      */
-    public int getTotal() {
+    public double getTotal() {
         if (montørtilstand) {
-            eventLog.add(new Event("manglende tilladelse", 11));
-            return billetpris * antalBilletterSolgt;
+            double total = 0;
+            for(int i = 0; i < eventLog.size(); i++) {
+                if (eventLog.get(i).getValg() == 3) {
+                    total += eventLog.get(i).getVar();
+                }
+            }
+            return total;
 
         } else {
+            eventLog.add(new Event("manglende tilladelse", 11, 0));
             System.out.println("Afvist - log ind først");
             return 0;
         }
@@ -146,9 +148,15 @@ public class Billetautomat {
      */
     public int getAntalBilletterSolgt() {
         if (montørtilstand) {
-            eventLog.add(new Event("manglende tilladelse", 11));
-            return antalBilletterSolgt;
+            int total = 0;
+            for(int i = 0; i < eventLog.size(); i++) {
+                if (eventLog.get(i).getValg() == 3) {
+                    total += 1;
+                }
+            }
+            return total;
         } else {
+            eventLog.add(new Event("manglende tilladelse", 11, 0));
             System.out.println("Afvist - log ind først");
             return 0;
         }
@@ -158,13 +166,21 @@ public class Billetautomat {
      * setBilletpris Setter en ny billet pris
      *
      * @param billetpris
+     * @param zone
      */
-    public void setBilletpris(int billetpris) {
+    public void setBilletpris(double billetpris, int zone) {
         if (montørtilstand) {
-            this.billetpris = billetpris;
-            eventLog.add(new Event("billetpris sat", billetpris));
+            for(int i = 0; i < billeter.size(); i++) {
+                if (billeter.get(i).getZoner() == zone) {
+                    billeter.get(i).setBilletpris(billetpris);
+                    eventLog.add(new Event("billetpris sat", billetpris, zone));
+                    return;
+                }
+            }
+            billeter.add(new Billettype(billetpris, zone));
+            eventLog.add(new Event("billetpris sat", billetpris, zone));
         } else {
-            eventLog.add(new Event("manglende tilladelse", 13));
+            eventLog.add(new Event("manglende tilladelse", 13, 0));
         }
 
     }
@@ -174,26 +190,14 @@ public class Billetautomat {
      */
     public void nulstil() {
         if (montørtilstand) {
-            antalBilletterSolgt = 0;
-            eventLog.add(new Event("reset", 0));
+            balance = 0;
+            eventLog.add(new Event("reset", 0, 0));
         } else {
             System.out.println("Afvist - log ind først");
-            eventLog.add(new Event("manglende tilladelse", 12));
+            eventLog.add(new Event("manglende tilladelse", 12, 0));
         }
     }
 
-    /**
-     * setAntalBilleterSolgt Ændre total antal billeter solgt.
-     *
-     * @param antalBilletterSolgt
-     */
-    public void setAntalBilletterSolgt(int antalBilletterSolgt) {
-        if (montørtilstand) {
-            this.antalBilletterSolgt = antalBilletterSolgt;
-        } else {
-            System.out.println("Afvist - log ind først.");
-        }
-    }
 
     public void montørLog() {
         if (montørtilstand) {
@@ -204,7 +208,7 @@ public class Billetautomat {
             });
         } else {
             System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14));
+            eventLog.add(new Event("manglende tilladelse", 14, 0));
         }
     }
 
@@ -225,7 +229,7 @@ public class Billetautomat {
 
         } else {
             System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14));
+            eventLog.add(new Event("manglende tilladelse", 14, 0));
         }
     }
 
@@ -251,7 +255,7 @@ public class Billetautomat {
             }
         } else {
             System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14));
+            eventLog.add(new Event("manglende tilladelse", 14, 0));
         }
     }
 
@@ -278,7 +282,7 @@ public class Billetautomat {
             
         } else {
             System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14));
+            eventLog.add(new Event("manglende tilladelse", 14, 0));
         }
     }
 
@@ -293,18 +297,16 @@ public class Billetautomat {
     
     public void udskrivBilletTyper() {
         billeter.forEach((Billet) -> {
-            System.out.println(Billet);            
+            Billet.PrintBilletpris();
         });
     }
     
-    public boolean søgBilletTyper(int zoner){
-        tæller = 0;
-        billeter.forEach((Billet) -> {
-            if(Billet.getZoner() == zoner){
-                 tæller = 1;
+    public int søgBilletTyper(int zoner){
+        for (int i = 0; i < billeter.size() ; i++ ) {
+            if (billeter.get(i).getZoner() == zoner) {
+                return i; // returnere det index som der har det antal zoner.
             }
-        });
-        
-        return tæller == 1;
+        }
+        return -1; //Hvis der ikke findes en billet med det antal zoner.
     }
 }

@@ -25,10 +25,7 @@ package automat;
             return zoner;
         }
         
-        public void PrintBillet(int antal){
-            for(int i = 0; i < antal; i++) {
-                System.out.println("PRINT BILLETER??");
-            }
+        public void PrintBilletpris(){
+            System.out.println(zoner + " zoner koster " + pris + " kr.");
         }
-    }
-
+}

@@ -16,7 +16,7 @@ public class BenytBilletautomat {
 
         while (true) {
             System.out.println("-----------------------------------------------");
-            System.out.println("En billet koster " + automat.getBilletpris() + " kroner");
+            automat.udskrivBilletTyper();
             System.out.println("Balancen er på " + automat.getBalance() + " kroner");
             System.out.println();
             System.out.println("Tast 1 for at indbetale penge");
@@ -50,7 +50,7 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 3: {
-                    int beløb = automat.returpenge();
+                    double beløb = automat.returpenge();
                     System.out.println("Du fik " + beløb + " retur retur");
                     break;
                 }
@@ -84,9 +84,11 @@ public class BenytBilletautomat {
                 }
                 case 13: {
                     if (automat.erMontør()) {
-                        System.out.print("Skriv beløb: ");
-                        int beløb = tastatur.nextInt();
-                        automat.setBilletpris(beløb);
+                        System.out.print("Hvilken zone skal ændres? ");
+                        int zone = tastatur.nextInt();
+                        System.out.print("\nSkriv beløb: ");
+                        double beløb = tastatur.nextDouble();
+                        automat.setBilletpris(beløb, zone);
                     } else {
                         System.out.println("Afvist - Log ind først.");
                     }

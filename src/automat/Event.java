@@ -8,15 +8,17 @@ public class Event {
     private Date Dato = new Date();
     private UUID uuid = UUID.randomUUID();
     private String event;
-    private double var;
+    private double var1;
+    private int var2;
     private String tekst;
     private int valg;
     
     
     
-    public Event(String event, double var) {
+    public Event(String event, double var, int intVar) {
         this.event = event;
-        this.var = var;
+        this.var1 = var;
+        this.var2 = intVar;
         switch(event) {
             case "indsæt penge" : {
                 valg = 1;
@@ -28,7 +30,7 @@ public class Event {
                 break;
             } case "print billet": {
                 valg = 3;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en billet til " + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en billet til " + var + " kr. med " + intVar + " zoner.";
                 break;
             } case "admin login": {
                 valg = 4;
@@ -48,7 +50,7 @@ public class Event {
                 break;
             } case "billetpris sat": {
                 valg = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Billetpris er sat til" + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Billet med " + intVar + " zoner er sat til" + var + " kr.";
                 break;
             } case "manglende tilladelse": {
                 valg = 8;
@@ -72,7 +74,7 @@ public class Event {
     }
     
     public double getVar() {
-        return var;
+        return var1;
     }
     
     public int getValg() {
