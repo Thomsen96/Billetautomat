@@ -22,6 +22,7 @@ public class BenytBilletautomat {
             System.out.println("Tast 1 for at indbetale penge");
             System.out.println("Tast 2 for at udskrive din billet");
             System.out.println("Tast 3 for at få returpengene");
+            System.out.println("Tast 4 for at se alle  billettyper");
             System.out.println();
             System.out.println("Tast 10 for at logge ind som montør");
 
@@ -43,12 +44,18 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 2: {
-                    automat.udskrivBillet();
+                    System.out.print("Indtast zoneantal: ");
+                    int zoner = tastatur.nextInt();
+                    automat.udskrivBillet(zoner);
                     break;
                 }
                 case 3: {
                     int beløb = automat.returpenge();
                     System.out.println("Du fik " + beløb + " retur retur");
+                    break;
+                }
+                case 4: {
+                    automat.udskrivBilletTyper();
                     break;
                 }
                 case 10: {

@@ -21,7 +21,7 @@ public class Billetautomat {
     public Billetautomat() {
         billeter.add(new Billettype(10.0,1));
         balance = 0;
-        antalBilletterSolgt =w 0;
+        antalBilletterSolgt = 0;
     }
 
     /**
@@ -60,7 +60,9 @@ public class Billetautomat {
     /**
      * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
      */
-    public void udskrivBillet() {
+    public void udskrivBillet(int zoner) {
+        søgBilletTyper(zoner);
+        
         if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
@@ -292,5 +294,14 @@ public class Billetautomat {
         billeter.forEach((Billet) -> {
             System.out.println(Billet);            
         });
+    }
+    
+    public boolean søgBilletTyper(int zoner){
+        billeter.forEach((Billet) -> {
+            if(Billet.getZoner() == zoner){
+            return true;
+            }
+        });
+        return false;
     }
 }
