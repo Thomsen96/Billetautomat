@@ -43,8 +43,11 @@ public class BenytBilletautomat {
                     automat.indsætPenge(beløb);
                     break;
                 }
-                case 2: {
-                    System.out.print("Indtast zoneantal: ");
+                case 2: {                                                       // Der skal printes en liste af forskellige billet typer.
+                    automat.udskrivBilletTyper();
+                    System.out.print("Indtast hvilken type billet du ønsker: ");
+                    int type = tastatur.nextInt();
+                    System.out.print("\nIndtast zoneantal: ");
                     int zoner = tastatur.nextInt();
                     automat.udskrivBillet(zoner);
                     break;

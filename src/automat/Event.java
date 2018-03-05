@@ -9,16 +9,19 @@ public class Event {
     private UUID uuid = UUID.randomUUID();
     private String event;
     private double var1;
-    private int var2;
+    private String var2;
+    private int zoner;
     private String tekst;
     private int eventType;
     
     
     
-    public Event(String event, double var, int intVar) {
+    public Event(String event, double var, String inString, int zoner) {
         this.event = event;
         this.var1 = var;
-        this.var2 = intVar;
+        this.var2 = inString;
+        this.zoner = zoner;
+        
         switch(event) {
             case "indsæt penge" : {
                 eventType = 1;
@@ -30,7 +33,7 @@ public class Event {
                 break;
             } case "print billet": {
                 eventType = 3;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en billet til " + var + " kr. med " + intVar + " zoner.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en" + inString + " billet til " + var + " kr. med " + zoner + " zoner.";
                 break;
             } case "admin login": {
                 eventType = 4;
@@ -50,7 +53,7 @@ public class Event {
                 break;
             } case "billetpris sat": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Billet med " + intVar + " zoner er sat til" + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er oprettet en ny type billet: " + inString + "en zone er sat til" + var + " kr.";
                 break;
             } case "manglende tilladelse": {
                 eventType = 8;

@@ -1,31 +1,31 @@
 package automat;
 
     public class Billettype {
+        private String type;
         private double pris;    
-        private int zoner;
 
-        public Billettype(double inPris, int inZoner) {
+        public Billettype(String inType, double inPris) {
+            type = inType;
             pris = inPris;
-            zoner = inZoner;
         }
         
         public void setBilletpris(double nyPris) {
             pris = nyPris;
         }
         
-        public void setZoner(int nyZoner) {
-            zoner = nyZoner;
+        public void setType(String nyType) {
+            type = nyType;
         }       
         
         public double getBilletpris() {
             return pris;
         }
         
-        public int getZoner(){
-            return zoner;
+        public String getType(){
+            return type;
         }
         
         public void PrintBilletpris(){
-            System.out.println(zoner + " zoner koster " + pris + " kr.");
+            System.out.println(type + " koster " + pris + " kroner.");
         }
 }
