@@ -3,7 +3,7 @@ package automat;
     public class Billettype {
         private double pris;    
         private int zoner;
-        
+
         public Billettype(double inPris, int inZoner) {
             pris = inPris;
             zoner = inZoner;
