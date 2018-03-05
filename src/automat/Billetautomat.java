@@ -229,7 +229,7 @@ public class Billetautomat {
     public void montørFindTilbageBetalinger(double over, String underOver) {
         if (montørtilstand) {
             tæller = 0;
-            System.out.println("Der ledes efter tilbetalinger " + underOver + " " + over + " kr.");
+            System.out.println("Der ledes efter tilbetalinger " + underOver + " " + over + " kr.\n");
             eventLog.forEach((Event) -> {
                 if (Event.getVar() >= over && Event.getValg() == 2 && underOver.equals("o") || underOver.equals("O")) {
                     Event.printLog();
@@ -255,7 +255,7 @@ public class Billetautomat {
     public void montørFindIndsattePenge(double over, String underOver) {
         if (montørtilstand) {
             tæller = 0;
-            System.out.println("Der ledes efter indbetalinger " + underOver + " " + over + " kr.");
+            System.out.println("Der ledes efter indbetalinger " + underOver + " " + over + " kr.\n");
             eventLog.forEach((Event) -> {
                 if (Event.getVar() >= over && Event.getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
                     Event.printLog();
