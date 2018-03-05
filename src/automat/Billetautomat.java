@@ -208,7 +208,7 @@ public class Billetautomat {
     public void montørFindUUID(String søg) {
         if (montørtilstand) {
             tæller = 0;
-            System.out.println("Her loggen med UUID: " + søg);
+            System.out.println("Der søges efter loggen med UUID: " + søg);
             eventLog.forEach((Event) -> {
                 if (Event.sammenlignUUID(søg)) {
                     Event.printLog();
