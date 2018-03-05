@@ -63,7 +63,7 @@ public class BenytBilletautomat {
                         System.out.println("Antal billetter solgt: " + automat.getAntalBilletterSolgt());
                         System.out.println("Total indkomst: " + automat.getTotal() + " kr");
                     } else {
-                        System.out.println("Afvist - log ind først.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     break;
                 }
@@ -71,7 +71,7 @@ public class BenytBilletautomat {
                     if (automat.erMontør()) {
                         automat.nulstil();
                     } else {
-                        System.out.println("Afvist - log ind først.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     break;
                 }
@@ -81,7 +81,7 @@ public class BenytBilletautomat {
                         int beløb = tastatur.nextInt();
                         automat.setBilletpris(beløb);
                     } else {
-                        System.out.println("Afvist - log ind først.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     break;
                 }
@@ -106,24 +106,22 @@ public class BenytBilletautomat {
                                  System.out.println("Søg efter tilbagebetalinger.");
                                 System.out.print("Tryk O hvis du vil søge over beløbet og U hvis du vil søge under: ");
                                 String underOver = tastatur.next();
-                                System.out.print("Indtast det beløb du vil søge efter.");
+                                System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beløb = tastatur.nextDouble();
-                                System.err.println(beløb);
                                 automat.montørFindTilbageBetalinger(beløb, underOver);
                                 break;
                             } case 4: {
                                 System.out.println("Søg efter indbetalinger.");
                                 System.out.print("Tryk O hvis du vil søge over beløbet og U hvis du vil søge under: ");
                                 String underOver = tastatur.next();
-                                System.out.print("Indtast det beløb du vil søge efter.");
+                                System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beløb = tastatur.nextDouble();
-                                System.err.println(beløb);
                                 automat.montørFindIndsattePenge(beløb, underOver);
                                 break;
                             }
                         }
                     } else {
-                        System.out.println("Afvist - log ind først.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     
                     break;
