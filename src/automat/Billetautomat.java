@@ -43,9 +43,12 @@ public class Billetautomat {
      * @param beløb
      */
     public void indsætPenge(int beløb) {
-        balance = balance + beløb;
-        eventLog.add(new Event("indsæt penge" , beløb));
-        //("** Der er blevet indsat " + beløb + " kr.    " + netopNu.toString())
+        if (beløb > 0) {
+            balance = balance + beløb;
+            eventLog.add(new Event("indsæt penge" , beløb));
+        } else {
+            System.err.println("Man kan ikke indsætte et negative beløb.");
+        }
     }
 
     /**
