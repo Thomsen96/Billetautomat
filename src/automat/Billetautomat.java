@@ -49,7 +49,7 @@ public class Billetautomat {
      * @param beløb
      */
     public void indsætPenge(double beløb) {
-        if (beløb > 0) {
+        if (beløb >= 0) {
             balance = balance + beløb;
             eventLog.add(new Event("indsæt penge", beløb, "" , 0));
         } else {
