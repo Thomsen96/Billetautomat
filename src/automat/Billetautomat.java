@@ -19,13 +19,13 @@ public class Billetautomat {
     public Billetautomat() {
         
         // opretter billeterne.
-        billeter.add(new Billettype("Voksen", 20));
-        billeter.add(new Billettype("Barn (0-14 år)", 10));
-        billeter.add(new Billettype("Cykel", 25));
-        billeter.add(new Billettype("Pensionist", 15));
-        billeter.add(new Billettype("Blå skokker", 5));
-        billeter.add(new Billettype("Weekend", 50));
-        billeter.add(new Billettype("24-Timer (voksen)", 30));
+        billeter.add(new Billettype("Voksen", 12));
+        billeter.add(new Billettype("Barn (0-14 år)", 6));
+        billeter.add(new Billettype("Cykel", 14));
+        billeter.add(new Billettype("Pensionist", 8));
+        billeter.add(new Billettype("Blå sokker", 4));
+        billeter.add(new Billettype("Weekend", 30));
+        billeter.add(new Billettype("24-Timer (voksen)", 20));
         
         // sætter balancen
         balance = 0;
@@ -48,7 +48,7 @@ public class Billetautomat {
      *
      * @param beløb
      */
-    public void indsætPenge(int beløb) {
+    public void indsætPenge(double beløb) {
         if (beløb > 0) {
             balance = balance + beløb;
             eventLog.add(new Event("indsæt penge", beløb, "" , 0));

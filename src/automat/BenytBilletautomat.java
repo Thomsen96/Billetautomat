@@ -41,7 +41,7 @@ public class BenytBilletautomat {
             switch (valg) {
                 case 1: {
                     System.out.print("Skriv beløb: ");
-                    int beløb = tastatur.nextInt();
+                    double beløb = tastatur.nextDouble();
                     automat.indsætPenge(beløb);
                     break;
                 }
