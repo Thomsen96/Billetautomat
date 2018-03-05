@@ -78,7 +78,7 @@ public class Billetautomat {
         } else {
             balance = balance - billetpris; // Billetter koster 10 kroner
 
-            eventLog.add(new Event("print billet", billetpris, "" , 0));
+            eventLog.add(new Event("print billet", billetpris, "" , zoner));
             
             System.out.println("##########B##T#########");
             System.out.println("# BlueJ Trafikselskab #");

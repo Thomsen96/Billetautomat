@@ -53,11 +53,11 @@ public class Event {
                 break;
             } case "billetpris sat": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er oprettet en ny type billet: " + inString + "en zone er sat til" + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er oprettet en ny type billet: " + inString + " en zone er sat til " + var + " kr.";
                 break;
             } case "manglende tilladelse": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er frsøgt at tilgå montrør funktion ID:" + var;
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsøgt at tilgå montør funktion ID: " + var;
                 break;
             } default: {
                 eventType = 0;
