@@ -51,7 +51,12 @@ public class BenytBilletautomat {
                     int type = tastatur.nextInt() - 1;
                     System.out.print("\nIndtast ønskede zoneantal: ");
                     int zoner = tastatur.nextInt();
-                    automat.udskrivBillet(type, zoner);
+                    if(zoner>0 && zoner<10){
+                        automat.udskrivBillet(type, zoner);
+                    }
+                    else{
+                        System.out.println("En billet skal have et antal zoner mellem 0 og 10.");
+                    }
                     break;
                 }
                 case 3: {
@@ -93,7 +98,12 @@ public class BenytBilletautomat {
                         String inType = tastatur.next();
                         System.out.print("\nhvad skal en zone koste? ");
                         double inBeløb = tastatur.nextDouble();
+                        if(inBeløb>=0){
                         automat.setBilletpris(inType, inBeløb);
+                        }
+                        else{
+                            System.out.println("En billet kan ikke have negativ pris.");
+                        }
                     } else {
                         System.out.println("Afvist - Log ind først.");
                     }
