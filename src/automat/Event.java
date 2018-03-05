@@ -84,6 +84,12 @@ public class Event {
         return eventType;
     }
     
+    public UUID getUUID() {
+        return uuid;
+    }
     
+    public Date getDato() {
+        return Dato;
+    }
     
 }
