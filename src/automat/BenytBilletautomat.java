@@ -98,8 +98,8 @@ public class BenytBilletautomat {
                         String inType = tastatur.next();
                         System.out.print("\nhvad skal en zone koste? ");
                         double inBeløb = tastatur.nextDouble();
-                        if(inBeløb>=0){
-                        automat.setBilletpris(inType, inBeløb);
+                        if(inBeløb >= 0){
+                            automat.setBilletpris(inType, inBeløb);
                         }
                         else{
                             System.out.println("En billet kan ikke have negativ pris.");
