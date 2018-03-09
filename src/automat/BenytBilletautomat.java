@@ -107,8 +107,8 @@ public class BenytBilletautomat {
                 }
                 case 11: {
                     if (automat.erMontoer()) {
-                        System.out.println("Antal billetter solgt: " + automat.getAntalBilletterSolgt());
-                        System.out.println("Total indkomst: " + automat.getTotal() + " kr");
+                        System.out.println("Antal billetter solgt: " + automat.montoerGetAntalBilletterSolgt());
+                        System.out.println("Total indkomst: " + automat.montoerGetTotal() + " kr");
                     } else {
                         System.out.println("Afvist - Log ind først.");
                     }
@@ -116,7 +116,7 @@ public class BenytBilletautomat {
                 }
                 case 12: {
                     if (automat.erMontoer()) {
-                        automat.nulstil();
+                        automat.montoerNulstil();
                     } else {
                         System.out.println("Afvist - Log ind først.");
                     }
@@ -141,7 +141,7 @@ public class BenytBilletautomat {
                             tastatur.nextLine();
                         }
                         if(inBeloeb >= 0){
-                            automat.setBilletpris(inType, inBeloeb);
+                            automat.montoerSetBilletpris(inType, inBeloeb);
                         }
                         else{
                             System.out.println("En billet kan ikke have negativ pris.");

@@ -139,7 +139,7 @@ public class Billetautomat {
      *
      * @return penge tjent.
      */
-    public double getTotal() {
+    public double montoerGetTotal() {
         if (montoertilstand) {
             double total = 0;
             for(int i = 0; i < eventLog.size(); i++) {
@@ -161,7 +161,7 @@ public class Billetautomat {
      *
      * @return antal billeter solgt.
      */
-    public int getAntalBilletterSolgt() {
+    public int montoerGetAntalBilletterSolgt() {
         if (montoertilstand) {
             int total = 0;
             for(int i = 0; i < eventLog.size(); i++) {
@@ -180,10 +180,10 @@ public class Billetautomat {
     /**
      * setBilletpris Setter en ny billet pris
      *
-     * @param billetpris
-     * @param zone
+     * @param inType
+     * @param inPris
      */
-    public void setBilletpris(String inType, double inPris) {
+    public void montoerSetBilletpris(String inType, double inPris) {
         if (montoertilstand) {
             for(int i = 0; i < billeter.size(); i++) {
                 if (billeter.get(i).getType().equals(inType)) {
@@ -203,7 +203,7 @@ public class Billetautomat {
     /**
      * nulstil Nulstiller antal billeter solgt
      */
-    public void nulstil() {
+    public void montoerNulstil() {
         if (montoertilstand) {
             balance = 0;
             eventLog.add(new Event("reset", 0, "" , 0));
