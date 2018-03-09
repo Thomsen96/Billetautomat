@@ -149,15 +149,73 @@ public class BilletautomatTest {
         
         
     }
+    
     @Test
     public void test_Brug1() {
         // Test på køb af billeter.
         Billetautomat auto = new Billetautomat();
         
-        auto.indsaetPenge(20);
-        
+        auto.indsaetPenge(50);
         auto.udskrivBilletTyper();
+        auto.udskrivBillet(0, 4);
+        assertEquals(50 - (12 + ((12 * (4 - 1)) * 0.8)), auto.getBalance(), 0.0001);
+        assertEquals(50 - (12 + ((12 * (4 - 1)) * 0.8)), auto.returpenge(), 0.0001);
+    }
+    
+    @Test
+    public void test_Brug2() {
+        // Test på køb af billeter.
+        Billetautomat auto = new Billetautomat();
         
+        auto.indsaetPenge(100);
+        auto.udskrivBilletTyper();
+        auto.udskrivBillet(3, 5);
+        assertEquals(100 - (8 + ((8 * (5 - 1)) * 0.8)), auto.getBalance(), 0.0001);
+        assertEquals(100 - (8 + ((8 * (5 - 1)) * 0.8)), auto.returpenge(), 0.0001);
+        assertEquals(0, auto.returpenge(), 0.0001);
+    }
+    
+    @Test
+    public void test_Brug3() {
+        // Test på køb af billeter.
+        Billetautomat auto = new Billetautomat();
+        
+        auto.indsaetPenge(100);
+        auto.udskrivBilletTyper();
+        auto.udskrivBillet(3, 5);
+        assertEquals(100 - (8 + ((8 * (5 - 1)) * 0.8)), auto.getBalance(), 0.0001);
+        assertEquals(100 - (8 + ((8 * (5 - 1)) * 0.8)), auto.returpenge(), 0.0001);
+        assertEquals(0, auto.returpenge(), 0.0001);
+    }
+    
+    @Test
+    public void test_tilgaaMontoerUdenTilladelse() {
+        // Test på køb af billeter.
+        Billetautomat auto = new Billetautomat();
+        
+        assertEquals(false, auto.erMontoer());
+        
+        auto.montoerSetBilletpris("Voksen", 1);
+        
+        auto.indsaetPenge(1);
+        
+        auto.udskrivBillet(0, 1);
+        
+        assertEquals(1, auto.getBalance(), 0.0001);
+    }
+    
+        @Test
+    public void test_tilgaaMontoerMedTilladelse() {
+        // Test på køb af billeter.
+        Billetautomat auto = new Billetautomat();
+        
+        assertEquals(false, auto.erMontoer());
+        auto.montoerLogin("1234");
+        assertEquals(true, auto.erMontoer());
+        auto.montoerSetBilletpris("Voksen", 1);
+        auto.indsaetPenge(1);
+        auto.udskrivBillet(0, 1);
+        assertEquals(0, auto.getBalance(), 0.0001);
     }
         
 }
