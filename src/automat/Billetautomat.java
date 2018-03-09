@@ -20,7 +20,7 @@ public class Billetautomat {
         
         // opretter billeterne.
         billeter.add(new Billettype("Voksen", 12));
-        billeter.add(new Billettype("Barn (0-14 aar)", 6));
+        billeter.add(new Billettype("Barn (0-14 år)", 6));
         billeter.add(new Billettype("Cykel", 14));
         billeter.add(new Billettype("Pensionist", 8));
         billeter.add(new Billettype("Blå sokker", 4));
@@ -40,7 +40,9 @@ public class Billetautomat {
      */
     public double getBilletpris(String inType, int zoner) {
         double resultat = billeter.get(soegBilletTyper(inType)).getBilletpris();
-        return resultat + resultat * (zoner - 1) * 0.8;
+        resultat += (resultat * (zoner - 1) * 0.8);
+        resultat = Math.round(resultat * 10.0) / 10.0;
+        return resultat;
     }
 
     /**
@@ -76,7 +78,7 @@ public class Billetautomat {
         if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
-            balance = balance - billetpris; // Billetter koster 10 kroner
+            balance -= billetpris; // Billetter koster 10 kroner
 
             eventLog.add(new Event("print billet", billetpris, "" , zoner));
             
@@ -84,7 +86,7 @@ public class Billetautomat {
             System.out.println("# BlueJ Trafikselskab #");
             System.out.println("#                     #");
             System.out.println("#  " + billeter.get(inType).getType() + "billet      #");
-            System.out.println("#        " + billetpris + " kr.       #");
+            System.out.println("#        " + billetpris + "0 kr.       #");
             System.out.println("#                     #");
             System.out.println("#        " + eventLog.get(eventLog.size()-1).getDato() + "             #");
             System.out.println("#  " + eventLog.get(eventLog.size()-1).getUUID() + "  #");

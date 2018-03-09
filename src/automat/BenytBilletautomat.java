@@ -55,7 +55,7 @@ public class BenytBilletautomat {
                         automat.udskrivBillet(type, zoner);
                     }
                     else{
-                        System.out.println("En billet skal have et antal zoner mellem 0 og 10.");
+                        System.out.println("En billet skal have et antal zoner mellem 1 og 9.");
                     }
                     break;
                 }
