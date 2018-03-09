@@ -3,7 +3,7 @@ package automat;
 import java.util.Scanner;
 
 /**
- * Kundens brugergrænseflade for køb og udskivning a billetter.
+ * Kundens brugergraenseflade for koeb og udskivning a billetter.
  */
 public class BenytBilletautomat {
 
@@ -17,21 +17,21 @@ public class BenytBilletautomat {
         while (true) {
             System.out.println("-----------------------------------------------");
             automat.udskrivBilletTyper();
-            System.out.println("\nBalancen er på " + automat.getBalance() + " kroner");
+            System.out.println("\nBalancen er paa " + automat.getBalance() + " kroner");
             System.out.println();
             System.out.println("Tast 1 for at indbetale penge");
             System.out.println("Tast 2 for at udskrive din billet");
-            System.out.println("Tast 3 for at få returpengene");
+            System.out.println("Tast 3 for at faa returpengene");
             System.out.println("Tast 4 for at se alle  billettyper");
             System.out.println();
-            System.out.println("Tast 10 for at logge ind som montør");
+            System.out.println("Tast 10 for at logge ind som montoer");
 
-            if (automat.erMontør()) {
-                System.out.println("Tast 11 for at se status (montør)");
-                System.out.println("Tast 12 for at nulstille (montør)");
-                System.out.println("Tast 13 for at sætte billetpris (montør)");
-                System.out.println("Tast 14 for at printe log på skærmen");
-                System.out.println("Tast 15 for at logge ud af montørtilstand");
+            if (automat.erMontoer()) {
+                System.out.println("Tast 11 for at se status (montoer)");
+                System.out.println("Tast 12 for at nulstille (montoer)");
+                System.out.println("Tast 13 for at saette billetpris (montoer)");
+                System.out.println("Tast 14 for at printe log paa skaermen");
+                System.out.println("Tast 15 for at logge ud af montoertilstand");
             }
             
             System.out.println("-----------------------------------------------");
@@ -40,16 +40,16 @@ public class BenytBilletautomat {
             int valg = tastatur.nextInt();
             switch (valg) {
                 case 1: {
-                    System.out.print("Skriv beløb: ");
-                    double beløb = tastatur.nextDouble();
-                    automat.indsætPenge(beløb);
+                    System.out.print("Skriv beloeb: ");
+                    double beloeb = tastatur.nextDouble();
+                    automat.indsaetPenge(beloeb);
                     break;
                 }
                 case 2: {                                                       // Der skal printes en liste af forskellige billet typer.
                     automat.udskrivBilletTyper();
-                    System.out.print("Indtast hvilken type billet du ønsker: ");
+                    System.out.print("Indtast hvilken type billet du oensker: ");
                     int type = tastatur.nextInt() - 1;
-                    System.out.print("\nIndtast ønskede zoneantal: ");
+                    System.out.print("\nIndtast oenskede zoneantal: ");
                     int zoner = tastatur.nextInt();
                     if(zoner>0 && zoner<10){
                         automat.udskrivBillet(type, zoner);
@@ -60,8 +60,8 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 3: {
-                    double beløb = automat.returpenge();
-                    System.out.println("Du fik " + beløb + " retur retur");
+                    double beloeb = automat.returpenge();
+                    System.out.println("Du fik " + beloeb + " retur retur");
                     break;
                 }
                 case 4: {
@@ -69,94 +69,94 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 10: {
-                    // Her logger man ind i montør tilstand
+                    // Her logger man ind i montoer tilstand
                     System.out.print("Skriv kode: ");
                     String kode = tastatur.next();
-                    automat.montørLogin(kode);
+                    automat.montoerLogin(kode);
                     break;
                 }
                 case 11: {
-                    if (automat.erMontør()) {
+                    if (automat.erMontoer()) {
                         System.out.println("Antal billetter solgt: " + automat.getAntalBilletterSolgt());
                         System.out.println("Total indkomst: " + automat.getTotal() + " kr");
                     } else {
-                        System.out.println("Afvist - Log ind først.");
+                        System.out.println("Afvist - Log ind foerst.");
                     }
                     break;
                 }
                 case 12: {
-                    if (automat.erMontør()) {
+                    if (automat.erMontoer()) {
                         automat.nulstil();
                     } else {
-                        System.out.println("Afvist - Log ind først.");
+                        System.out.println("Afvist - Log ind foerst.");
                     }
                     break;
                 }
                 case 13: {
-                    if (automat.erMontør()) {
-                        System.out.print("Hvilken billet skal ændres? ");
+                    if (automat.erMontoer()) {
+                        System.out.print("Hvilken billet skal aendres? ");
                         String inType = tastatur.next();
                         System.out.print("\nhvad skal en zone koste? ");
-                        double inBeløb = tastatur.nextDouble();
-                        if(inBeløb >= 0){
-                            automat.setBilletpris(inType, inBeløb);
+                        double inBeloeb = tastatur.nextDouble();
+                        if(inBeloeb >= 0){
+                            automat.setBilletpris(inType, inBeloeb);
                         }
                         else{
                             System.out.println("En billet kan ikke have negativ pris.");
                         }
                     } else {
-                        System.out.println("Afvist - Log ind først.");
+                        System.out.println("Afvist - Log ind foerst.");
                     }
                     break;
                 }
                 case 14: {
                     // Her printer man loggen
-                    if (automat.erMontør()) {
+                    if (automat.erMontoer()) {
                         System.out.println( "Tryk 1 for at printe alle.\n"
-                                          + "Tast 2 for at søge på UUID.\n"
-                                          + "Tast 3 for at søge på tilbagebetalinger.\n"
-                                          + "Tast 4 for at søge på indsatte penge.");
+                                          + "Tast 2 for at soege paa UUID.\n"
+                                          + "Tast 3 for at soege paa tilbagebetalinger.\n"
+                                          + "Tast 4 for at soege paa indsatte penge.");
                         int tast = tastatur.nextInt();
                         switch(tast) {
                             case 1: {
-                                automat.montørLog();
+                                automat.montoerLog();
                                 break;
                             } case 2: {
                                 System.out.print("Indtast UUID: ");
-                                String søg = tastatur.next();
-                                automat.montørFindUUID(søg);
+                                String soeg = tastatur.next();
+                                automat.montoerFindUUID(soeg);
                                 break;
                             } case 3: {
-                                 System.out.println("Søg efter tilbagebetalinger.");
-                                System.out.print("Tryk O hvis du vil søge over eller lig med beløbet, og U hvis du vil søge under eller lig med: ");
+                                 System.out.println("Soeg efter tilbagebetalinger.");
+                                System.out.print("Tryk O hvis du vil soege over eller lig med beloebet, og U hvis du vil soege under eller lig med: ");
                                 String underOver = tastatur.next();
-                                System.out.print("Indtast det beløb du vil søge efter: ");
-                                double beløb = tastatur.nextDouble();
-                                automat.montørFindTilbageBetalinger(beløb, underOver);
+                                System.out.print("Indtast det beloeb du vil soege efter: ");
+                                double beloeb = tastatur.nextDouble();
+                                automat.montoerFindTilbageBetalinger(beloeb, underOver);
                                 break;
                             } case 4: {
-                                System.out.println("Søg efter indbetalinger.");
-                                System.out.print("Tryk O hvis du vil søge over eller lig med beløbet, og U hvis du vil søge under eller lig med: ");
+                                System.out.println("Soeg efter indbetalinger.");
+                                System.out.print("Tryk O hvis du vil soege over eller lig med beloebet, og U hvis du vil soege under eller lig med: ");
                                 String underOver = tastatur.next();
-                                System.out.print("Indtast det beløb du vil søge efter: ");
-                                double beløb = tastatur.nextDouble();
-                                automat.montørFindIndsattePenge(beløb, underOver);
+                                System.out.print("Indtast det beloeb du vil soege efter: ");
+                                double beloeb = tastatur.nextDouble();
+                                automat.montoerFindIndsattePenge(beloeb, underOver);
                                 break;
                             }
                         }
                     } else {
-                        System.out.println("Afvist - Log ind først.");
+                        System.out.println("Afvist - Log ind foerst.");
                     }
                     
                     break;
                 }
                 case 15: {
-                    // Her logger man ud fra montør tilstand
-                    automat.montørLogin("");
+                    // Her logger man ud fra montoer tilstand
+                    automat.montoerLogin("");
                     break;
                 }
                 default: {
-                    System.out.println("Ugyldigt valg, prøv igen");
+                    System.out.println("Ugyldigt valg, proev igen");
                     break;
                 }
             }

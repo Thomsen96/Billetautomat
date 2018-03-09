@@ -23,7 +23,7 @@ public class Event {
         this.zoner = zoner;
         
         switch(event) {
-            case "indsæt penge" : {
+            case "indsaet penge" : {
                 eventType = 1;
                 tekst = uuid.toString() + " " + Dato.toString() + " Der er indsat " + var +" kr.";
                 break;
@@ -43,9 +43,9 @@ public class Event {
                 eventType = 5;
                 tekst = uuid.toString() + " " + Dato.toString() + " Admin logget ud.";
                 break;
-            } case "admin forsøg": {
+            } case "admin forsoeg": {
                 eventType = 6;
-                tekst = uuid.toString() + " " + Dato.toString() + " Forsøgt Admin login.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Forsoegt Admin login.";
                 break;
             } case "reset": {
                 eventType = 7;
@@ -57,7 +57,7 @@ public class Event {
                 break;
             } case "manglende tilladelse": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsøgt at tilgå montør funktion ID: " + var;
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsoegt at tilgaa montoer funktion ID: " + var;
                 break;
             } default: {
                 eventType = 0;
@@ -72,8 +72,8 @@ public class Event {
         System.out.println(tekst);
     }
     
-    public boolean sammenlignUUID (String søg) {
-        return uuid.toString().equals(søg);
+    public boolean sammenlignUUID (String soeg) {
+        return uuid.toString().equals(soeg);
     }
     
     public double getVar() {
