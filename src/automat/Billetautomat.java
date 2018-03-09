@@ -75,7 +75,7 @@ public class Billetautomat {
      */
     public void udskrivBillet(int inType, int zoner) {
         double billetpris = getBilletpris(billeter.get(inType).getType(), zoner);
-        if (balance <= billetpris) {
+        if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
             balance -= billetpris; // Billetter koster 10 kroner
