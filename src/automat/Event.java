@@ -45,7 +45,7 @@ public class Event {
                 break;
             } case "admin forsoeg": {
                 eventType = 6;
-                tekst = uuid.toString() + " " + Dato.toString() + " Forsoegt Admin login.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Forsøgt Admin login.";
                 break;
             } case "reset": {
                 eventType = 7;
@@ -57,11 +57,11 @@ public class Event {
                 break;
             } case "manglende tilladelse": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsoegt at tilgaa montoer funktion ID: " + var;
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsøgt at tilgå montoer funktion ID: " + var;
                 break;
             } default: {
                 eventType = 0;
-                tekst = uuid.toString() + " " + Dato.toString() + " Fejl i LOG!!";
+                tekst = uuid.toString() + " " + Dato.toString() + " Fejl i LOG!! der var forsøgt at til føje: " + event;
                 break;
             }
             

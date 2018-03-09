@@ -17,21 +17,21 @@ public class BenytBilletautomat {
         while (true) {
             System.out.println("-----------------------------------------------");
             automat.udskrivBilletTyper();
-            System.out.println("\nBalancen er paa " + automat.getBalance() + " kroner");
+            System.out.println("\nBalancen er på " + automat.getBalance() + " kroner");
             System.out.println();
             System.out.println("Tast 1 for at indbetale penge");
             System.out.println("Tast 2 for at udskrive din billet");
-            System.out.println("Tast 3 for at faa returpengene");
+            System.out.println("Tast 3 for at få returpengene");
             System.out.println("Tast 4 for at se alle  billettyper");
             System.out.println();
-            System.out.println("Tast 10 for at logge ind som montoer");
+            System.out.println("Tast 10 for at logge ind som montør");
 
             if (automat.erMontoer()) {
-                System.out.println("Tast 11 for at se status (montoer)");
-                System.out.println("Tast 12 for at nulstille (montoer)");
-                System.out.println("Tast 13 for at saette billetpris (montoer)");
-                System.out.println("Tast 14 for at printe log paa skaermen");
-                System.out.println("Tast 15 for at logge ud af montoertilstand");
+                System.out.println("Tast 11 for at se status (montør)");
+                System.out.println("Tast 12 for at nulstille (montør)");
+                System.out.println("Tast 13 for at sætte billetpris (montør)");
+                System.out.println("Tast 14 for at printe log på skærmen (montør)");
+                System.out.println("Tast 15 for at logge ud af montørtilstand (montør)");
             }
             
             System.out.println("-----------------------------------------------");
@@ -40,16 +40,16 @@ public class BenytBilletautomat {
             int valg = tastatur.nextInt();
             switch (valg) {
                 case 1: {
-                    System.out.print("Skriv beloeb: ");
+                    System.out.print("Skriv beløb: ");
                     double beloeb = tastatur.nextDouble();
                     automat.indsaetPenge(beloeb);
                     break;
                 }
                 case 2: {                                                       // Der skal printes en liste af forskellige billet typer.
                     automat.udskrivBilletTyper();
-                    System.out.print("Indtast hvilken type billet du oensker: ");
+                    System.out.print("Indtast hvilken type billet du ønsker: ");
                     int type = tastatur.nextInt() - 1;
-                    System.out.print("\nIndtast oenskede zoneantal: ");
+                    System.out.print("\nIndtast ønskede zone antal: ");
                     int zoner = tastatur.nextInt();
                     if(zoner>0 && zoner<10){
                         automat.udskrivBillet(type, zoner);
@@ -80,7 +80,7 @@ public class BenytBilletautomat {
                         System.out.println("Antal billetter solgt: " + automat.getAntalBilletterSolgt());
                         System.out.println("Total indkomst: " + automat.getTotal() + " kr");
                     } else {
-                        System.out.println("Afvist - Log ind foerst.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     break;
                 }
@@ -88,15 +88,15 @@ public class BenytBilletautomat {
                     if (automat.erMontoer()) {
                         automat.nulstil();
                     } else {
-                        System.out.println("Afvist - Log ind foerst.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     break;
                 }
                 case 13: {
                     if (automat.erMontoer()) {
-                        System.out.print("Hvilken billet skal aendres? ");
+                        System.out.print("Hvilken billet skal ændres? ");
                         String inType = tastatur.next();
-                        System.out.print("\nhvad skal en zone koste? ");
+                        System.out.print("\nHvad skal en zone koste? ");
                         double inBeloeb = tastatur.nextDouble();
                         if(inBeloeb >= 0){
                             automat.setBilletpris(inType, inBeloeb);
@@ -105,7 +105,7 @@ public class BenytBilletautomat {
                             System.out.println("En billet kan ikke have negativ pris.");
                         }
                     } else {
-                        System.out.println("Afvist - Log ind foerst.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     break;
                 }
@@ -113,9 +113,9 @@ public class BenytBilletautomat {
                     // Her printer man loggen
                     if (automat.erMontoer()) {
                         System.out.println( "Tryk 1 for at printe alle.\n"
-                                          + "Tast 2 for at soege paa UUID.\n"
-                                          + "Tast 3 for at soege paa tilbagebetalinger.\n"
-                                          + "Tast 4 for at soege paa indsatte penge.");
+                                          + "Tast 2 for at søge på UUID.\n"
+                                          + "Tast 3 for at søge på tilbagebetalinger.\n"
+                                          + "Tast 4 for at søge på indsatte penge.");
                         int tast = tastatur.nextInt();
                         switch(tast) {
                             case 1: {
@@ -127,25 +127,25 @@ public class BenytBilletautomat {
                                 automat.montoerFindUUID(soeg);
                                 break;
                             } case 3: {
-                                 System.out.println("Soeg efter tilbagebetalinger.");
-                                System.out.print("Tryk O hvis du vil soege over eller lig med beloebet, og U hvis du vil soege under eller lig med: ");
+                                 System.out.println("Søg efter tilbagebetalinger.");
+                                System.out.print("Tryk O hvis du vil søge over eller lig med beloebet, og U hvis du vil søge under eller lig med: ");
                                 String underOver = tastatur.next();
-                                System.out.print("Indtast det beloeb du vil soege efter: ");
+                                System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beloeb = tastatur.nextDouble();
                                 automat.montoerFindTilbageBetalinger(beloeb, underOver);
                                 break;
                             } case 4: {
                                 System.out.println("Soeg efter indbetalinger.");
-                                System.out.print("Tryk O hvis du vil soege over eller lig med beloebet, og U hvis du vil soege under eller lig med: ");
+                                System.out.print("Tryk O hvis du vil søge over eller lig med beloebet, og U hvis du vil søge under eller lig med: ");
                                 String underOver = tastatur.next();
-                                System.out.print("Indtast det beloeb du vil soege efter: ");
+                                System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beloeb = tastatur.nextDouble();
                                 automat.montoerFindIndsattePenge(beloeb, underOver);
                                 break;
                             }
                         }
                     } else {
-                        System.out.println("Afvist - Log ind foerst.");
+                        System.out.println("Afvist - Log ind først.");
                     }
                     
                     break;
@@ -156,7 +156,7 @@ public class BenytBilletautomat {
                     break;
                 }
                 default: {
-                    System.out.println("Ugyldigt valg, proev igen");
+                    System.out.println("Ugyldigt valg, prøv igen");
                     break;
                 }
             }

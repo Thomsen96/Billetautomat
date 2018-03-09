@@ -23,7 +23,7 @@ public class Billetautomat {
         billeter.add(new Billettype("Barn (0-14 aar)", 6));
         billeter.add(new Billettype("Cykel", 14));
         billeter.add(new Billettype("Pensionist", 8));
-        billeter.add(new Billettype("Blaa sokker", 4));
+        billeter.add(new Billettype("Blå sokker", 4));
         billeter.add(new Billettype("Weekend", 30));
         billeter.add(new Billettype("24-Timer (voksen)", 20));
         
@@ -51,9 +51,9 @@ public class Billetautomat {
     public void indsaetPenge(double beloeb) {
         if (beloeb >= 0) {
             balance = balance + beloeb;
-            eventLog.add(new Event("indsaet penge", beloeb, "" , 0));
+            eventLog.add(new Event("indsæt penge", beloeb, "" , 0));
         } else {
-            System.err.println("Man kan ikke indsaette et negative beloeb.");
+            System.err.println("Man kan ikke indsætte et negative beløb.");
         }
     }
 
@@ -103,7 +103,7 @@ public class Billetautomat {
     public double returpenge() {
         double returbeloeb = balance;
         balance = 0;
-        System.out.println("Du faar " + returbeloeb + " kr retur");
+        System.out.println("Du får " + returbeloeb + " kr retur");
         eventLog.add(new Event("penge retur", returbeloeb, "" , 0));
         return returbeloeb;
     }
@@ -117,16 +117,15 @@ public class Billetautomat {
         if ("1234".equals(adgangskode)) {
             eventLog.add(new Event("admin login", 0, "" , 0));
             montoertilstand = true;
-            System.out.println("Montoertilstand aktiveret");
-            System.out.println("Du kan nu angive billetpris");
+            System.out.println("Montørtilstand aktiveret");
 
         } else {
             if (montoertilstand == true) {
                 eventLog.add(new Event("admin logud", 0, "" , 0));
                 montoertilstand = false;
-                System.out.println("Montoertilstand deaktiveret");
+                System.out.println("Montørtilstand deaktiveret");
             } else {
-                eventLog.add(new Event("admin forsoeg", 0, "" , 0));
+                eventLog.add(new Event("admin forsøg", 0, "" , 0));
                 montoertilstand = false;
                 System.out.println("Forkert adgangskode");
             }
@@ -150,7 +149,7 @@ public class Billetautomat {
 
         } else {
             eventLog.add(new Event("manglende tilladelse", 11, "" , 0));
-            System.out.println("Afvist - log ind foerst");
+            System.out.println("Afvist - log ind først");
             return 0;
         }
     }
@@ -171,7 +170,7 @@ public class Billetautomat {
             return total;
         } else {
             eventLog.add(new Event("manglende tilladelse", 11, "" , 0));
-            System.out.println("Afvist - log ind foerst");
+            System.out.println("Afvist - log ind først");
             return 0;
         }
     }
@@ -207,7 +206,7 @@ public class Billetautomat {
             balance = 0;
             eventLog.add(new Event("reset", 0, "" , 0));
         } else {
-            System.out.println("Afvist - log ind foerst");
+            System.out.println("Afvist - log ind først");
             eventLog.add(new Event("manglende tilladelse", 12, "" , 0));
         }
     }
@@ -221,7 +220,7 @@ public class Billetautomat {
                 Event.printLog();
             });
         } else {
-            System.out.println("Afvist - log ind foerst.");
+            System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14, "" , 0));
         }
     }
@@ -229,7 +228,7 @@ public class Billetautomat {
     public void montoerFindUUID(String soeg) {
         if (montoertilstand) {
             taeller = 0;
-            System.out.println("Der soeges efter loggen med UUID: " + soeg);
+            System.out.println("Der søges efter loggen med UUID: " + soeg);
             eventLog.forEach((Event) -> {
                 if (Event.sammenlignUUID(soeg)) {
                     Event.printLog();
@@ -242,7 +241,7 @@ public class Billetautomat {
             }
 
         } else {
-            System.out.println("Afvist - log ind foerst.");
+            System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14, "" , 0));
         }
     }
@@ -268,7 +267,7 @@ public class Billetautomat {
                 System.out.println("Der var ingen tilbagebetalinger under " + over + " kr.");
             }
         } else {
-            System.out.println("Afvist - log ind foerst.");
+            System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14, "" , 0));
         }
     }
@@ -295,7 +294,7 @@ public class Billetautomat {
             }
             
         } else {
-            System.out.println("Afvist - log ind foerst.");
+            System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14, "" , 0));
         }
     }
