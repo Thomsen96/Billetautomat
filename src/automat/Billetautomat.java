@@ -113,9 +113,9 @@ public class Billetautomat {
     /**
      * montoerLogin Bestemmer montoer tilstand ud fra login streng.
      *
-     * @param String adgangskode
+     * @param adgangskode
      */
-    void montoerLogin(String adgangskode) {
+    public void montoerLogin(String adgangskode) {
         if ("1234".equals(adgangskode)) {
             eventLog.add(new Event("admin login", 0, "" , 0));
             montoertilstand = true;
