@@ -61,7 +61,6 @@ public class BenytBilletautomat {
                 }
                 case 3: {
                     double beloeb = automat.returpenge();
-                    System.out.println("Du fik " + beloeb + " retur retur");
                     break;
                 }
                 case 4: {
