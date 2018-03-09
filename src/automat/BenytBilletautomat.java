@@ -1,5 +1,6 @@
 package automat;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -40,8 +41,9 @@ public class BenytBilletautomat {
             int valg = 0;
             try {
                 valg = tastatur.nextInt();
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Der skal indtastes et heltal");
+                tastatur.nextLine();
             }
             switch (valg) {
                 case 1: {
@@ -49,8 +51,9 @@ public class BenytBilletautomat {
                     double beloeb = 0;
                     try {
                         beloeb = tastatur.nextDouble();
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("Der skal indtastes et tal.");
+                        tastatur.nextLine();
                     }
                     automat.indsaetPenge(beloeb);
                     break;
@@ -61,15 +64,17 @@ public class BenytBilletautomat {
                     int type = 0;
                     try {
                         type = tastatur.nextInt() - 1;
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("Der skal indtastes et heltal");
+                        tastatur.nextLine();
                     }
                     System.out.print("\nIndtast ønskede zone antal: ");
                     int zoner = 0;
                     try {
                         zoner = tastatur.nextInt();
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("Der skal indtastes et heltal");
+                        tastatur.nextLine();
                     }
                     if(zoner>0 && zoner<10){
                         automat.udskrivBillet(type, zoner);
@@ -93,8 +98,9 @@ public class BenytBilletautomat {
                     String kode = null;
                     try {
                         kode = tastatur.next();
-                    } catch (Exception e) {
+                    } catch (InputMismatchException e) {
                         System.out.println("Ugyldigt tegn");
+                        tastatur.nextLine();
                     }
                     automat.montoerLogin(kode);
                     break;
@@ -122,15 +128,17 @@ public class BenytBilletautomat {
                         String inType = null;
                         try {
                             inType = tastatur.next();
-                        } catch (Exception e) {
+                        } catch (InputMismatchException e) {
                             System.out.println("Ugyldigt tegn");
+                            tastatur.nextLine();
                         }
                         System.out.print("\nHvad skal en zone koste? ");
                         double inBeloeb = 0;
                         try {
                             inBeloeb = tastatur.nextDouble();
-                        } catch (Exception e) {
+                        } catch (InputMismatchException e) {
                             System.out.println("Der skal indtastes et tal");
+                            tastatur.nextLine();
                         }
                         if(inBeloeb >= 0){
                             automat.setBilletpris(inType, inBeloeb);
@@ -153,8 +161,9 @@ public class BenytBilletautomat {
                         int tast = 0;
                         try {
                             tast = tastatur.nextInt();
-                        } catch (Exception e) {
+                        } catch (InputMismatchException e) {
                             System.out.println("Der skal indtastes et heltal");
+                            tastatur.nextLine();
                         }
                         switch(tast) {
                             case 1: {
@@ -165,8 +174,9 @@ public class BenytBilletautomat {
                                 String soeg = null;
                             try {
                                 soeg = tastatur.next();
-                            } catch (Exception e) {
+                            } catch (InputMismatchException e) {
                                 System.out.println("Ugyldigt tegn");
+                                tastatur.nextLine();
                             }
                                 automat.montoerFindUUID(soeg);
                                 break;
@@ -176,15 +186,17 @@ public class BenytBilletautomat {
                                 String underOver = null;
                             try {
                                 underOver = tastatur.next();
-                            } catch (Exception e) {
+                            } catch (InputMismatchException e) {
                                 System.out.println("Ugyldigt tegn");
+                                tastatur.nextLine();
                             }
                                 System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beloeb = 0;
                             try {
                                 beloeb = tastatur.nextDouble();
-                            } catch (Exception e) {
+                            } catch (InputMismatchException e) {
                                 System.out.println("Der skal indtastes et tal");
+                                tastatur.nextLine();
                             }
                                 automat.montoerFindTilbageBetalinger(beloeb, underOver);
                                 break;
@@ -194,15 +206,17 @@ public class BenytBilletautomat {
                                 String underOver = null;
                             try {
                                 underOver = tastatur.next();
-                            } catch (Exception e) {
+                            } catch (InputMismatchException e) {
                                 System.out.println("Ugyldigt tegn");
+                                tastatur.nextLine();
                             }
                                 System.out.print("Indtast det beløb du vil søge efter: ");
                                 double beloeb = 0;
                             try {
                                 beloeb = tastatur.nextDouble();
-                            } catch (Exception e) {
+                            } catch (InputMismatchException e) {
                                 System.out.println("Der skal indtastes et tal");
+                                tastatur.nextLine();
                             }
                                 automat.montoerFindIndsattePenge(beloeb, underOver);
                                 break;
