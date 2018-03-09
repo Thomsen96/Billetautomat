@@ -37,20 +37,40 @@ public class BenytBilletautomat {
             System.out.println("-----------------------------------------------");
             
             System.out.println("Menu valg: ");
-            int valg = tastatur.nextInt();
+            int valg = 0;
+            try {
+                valg = tastatur.nextInt();
+            } catch (Exception e) {
+                System.out.println("Der skal indtastes et heltal");
+            }
             switch (valg) {
                 case 1: {
                     System.out.print("Skriv beløb: ");
-                    double beloeb = tastatur.nextDouble();
+                    double beloeb = 0;
+                    try {
+                        beloeb = tastatur.nextDouble();
+                    } catch (Exception e) {
+                        System.out.println("Der skal indtastes et tal.");
+                    }
                     automat.indsaetPenge(beloeb);
                     break;
                 }
                 case 2: {                                                       // Der skal printes en liste af forskellige billet typer.
                     automat.udskrivBilletTyper();
                     System.out.print("Indtast hvilken type billet du ønsker: ");
-                    int type = tastatur.nextInt() - 1;
+                    int type = 0;
+                    try {
+                        type = tastatur.nextInt() - 1;
+                    } catch (Exception e) {
+                        System.out.println("Der skal indtastes et heltal");
+                    }
                     System.out.print("\nIndtast ønskede zone antal: ");
-                    int zoner = tastatur.nextInt();
+                    int zoner = 0;
+                    try {
+                        zoner = tastatur.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Der skal indtastes et heltal");
+                    }
                     if(zoner>0 && zoner<10){
                         automat.udskrivBillet(type, zoner);
                     }
@@ -70,7 +90,12 @@ public class BenytBilletautomat {
                 case 10: {
                     // Her logger man ind i montoer tilstand
                     System.out.print("Skriv kode: ");
-                    String kode = tastatur.next();
+                    String kode = null;
+                    try {
+                        kode = tastatur.next();
+                    } catch (Exception e) {
+                        System.out.println("Ugyldigt tegn");
+                    }
                     automat.montoerLogin(kode);
                     break;
                 }
@@ -94,9 +119,19 @@ public class BenytBilletautomat {
                 case 13: {
                     if (automat.erMontoer()) {
                         System.out.print("Hvilken billet skal ændres? ");
-                        String inType = tastatur.next();
+                        String inType = null;
+                        try {
+                            inType = tastatur.next();
+                        } catch (Exception e) {
+                            System.out.println("Ugyldigt tegn");
+                        }
                         System.out.print("\nHvad skal en zone koste? ");
-                        double inBeloeb = tastatur.nextDouble();
+                        double inBeloeb = 0;
+                        try {
+                            inBeloeb = tastatur.nextDouble();
+                        } catch (Exception e) {
+                            System.out.println("Der skal indtastes et tal");
+                        }
                         if(inBeloeb >= 0){
                             automat.setBilletpris(inType, inBeloeb);
                         }
@@ -115,30 +150,60 @@ public class BenytBilletautomat {
                                           + "Tast 2 for at søge på UUID.\n"
                                           + "Tast 3 for at søge på tilbagebetalinger.\n"
                                           + "Tast 4 for at søge på indsatte penge.");
-                        int tast = tastatur.nextInt();
+                        int tast = 0;
+                        try {
+                            tast = tastatur.nextInt();
+                        } catch (Exception e) {
+                            System.out.println("Der skal indtastes et heltal");
+                        }
                         switch(tast) {
                             case 1: {
                                 automat.montoerLog();
                                 break;
                             } case 2: {
                                 System.out.print("Indtast UUID: ");
-                                String soeg = tastatur.next();
+                                String soeg = null;
+                            try {
+                                soeg = tastatur.next();
+                            } catch (Exception e) {
+                                System.out.println("Ugyldigt tegn");
+                            }
                                 automat.montoerFindUUID(soeg);
                                 break;
                             } case 3: {
                                  System.out.println("Søg efter tilbagebetalinger.");
                                 System.out.print("Tryk O hvis du vil søge over eller lig med beloebet, og U hvis du vil søge under eller lig med: ");
-                                String underOver = tastatur.next();
+                                String underOver = null;
+                            try {
+                                underOver = tastatur.next();
+                            } catch (Exception e) {
+                                System.out.println("Ugyldigt tegn");
+                            }
                                 System.out.print("Indtast det beløb du vil søge efter: ");
-                                double beloeb = tastatur.nextDouble();
+                                double beloeb = 0;
+                            try {
+                                beloeb = tastatur.nextDouble();
+                            } catch (Exception e) {
+                                System.out.println("Der skal indtastes et tal");
+                            }
                                 automat.montoerFindTilbageBetalinger(beloeb, underOver);
                                 break;
                             } case 4: {
                                 System.out.println("Soeg efter indbetalinger.");
                                 System.out.print("Tryk O hvis du vil søge over eller lig med beloebet, og U hvis du vil søge under eller lig med: ");
-                                String underOver = tastatur.next();
+                                String underOver = null;
+                            try {
+                                underOver = tastatur.next();
+                            } catch (Exception e) {
+                                System.out.println("Ugyldigt tegn");
+                            }
                                 System.out.print("Indtast det beløb du vil søge efter: ");
-                                double beloeb = tastatur.nextDouble();
+                                double beloeb = 0;
+                            try {
+                                beloeb = tastatur.nextDouble();
+                            } catch (Exception e) {
+                                System.out.println("Der skal indtastes et tal");
+                            }
                                 automat.montoerFindIndsattePenge(beloeb, underOver);
                                 break;
                             }
