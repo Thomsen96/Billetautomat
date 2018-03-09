@@ -35,24 +35,24 @@ public class BilletautomatTest {
         Billetautomat auto = new Billetautomat();
         
         auto.indsaetPenge(0);
-        assertEquals(auto.returpenge(), 0, 0.0001);
+        assertEquals(0, auto.returpenge(), 0.0001);
         
         auto.indsaetPenge(100);
-        assertEquals(auto.returpenge(), 100, 0.0001);
+        assertEquals(100, auto.returpenge(), 0.0001);
         
         auto.indsaetPenge(10.5);
-        assertEquals(auto.returpenge(), 10.5, 0.0001);
+        assertEquals(10.5, auto.returpenge(), 0.0001);
         
         auto.indsaetPenge(10);
         auto.indsaetPenge(20);
-        assertEquals(auto.returpenge(), 30, 0.0001);
+        assertEquals(30, auto.returpenge(), 0.0001);
         
         auto.indsaetPenge(10);
         auto.indsaetPenge(20.24);
-        assertEquals(auto.returpenge(), 30.24, 0.0001);
+        assertEquals(30.24, auto.returpenge(), 0.0001);
         
         auto.indsaetPenge(-10);
-        assertEquals(auto.returpenge(), 0, 0.0001);      
+        assertEquals(0, auto.returpenge(), 0.0001);      
     }
     
     @Test
@@ -61,33 +61,65 @@ public class BilletautomatTest {
         Billetautomat auto = new Billetautomat();
         
         auto.indsaetPenge(0);
-        assertEquals(auto.getBalance(), 0, 0.0001);
+        assertEquals(0, auto.getBalance(), 0.0001);
         auto.returpenge();
-        assertEquals(auto.getBalance(), 0, 0.0001);
+        assertEquals(0, auto.getBalance(), 0.0001);
         
         auto.indsaetPenge(100);
-        assertEquals(auto.getBalance(), 100, 0.0001);
+        assertEquals(100, auto.getBalance(), 0.0001);
         auto.returpenge();
         
         auto.indsaetPenge(10.5);
-        assertEquals(auto.getBalance(), 10.5, 0.0001);
+        assertEquals(10.5, auto.getBalance(), 0.0001);
         auto.returpenge();
         
         auto.indsaetPenge(10);
         auto.indsaetPenge(20);
-        assertEquals(auto.getBalance(), 30, 0.0001);
+        assertEquals(30, auto.getBalance(), 0.0001);
         auto.returpenge();
         
         auto.indsaetPenge(10);
         auto.indsaetPenge(20.24);
-        assertEquals(auto.getBalance(), 30.24, 0.0001);
+        assertEquals(30.24, auto.getBalance(), 0.0001);
         auto.returpenge();
         
         auto.indsaetPenge(-10);
-        assertEquals(auto.getBalance(), 0, 0.0001); 
+        assertEquals(0, auto.getBalance(), 0.0001); 
         auto.returpenge();
     }
     
+    @Test
+    public void test_pengebalance2() {
+        // Det antages at indsættelse af penge er gået godt.
+        Billetautomat auto = new Billetautomat();
+        
+        auto.indsaetPenge(0);
+        assertEquals(0, auto.getBalance(), 0.0001);
+        auto.returpenge();
+        assertEquals(0, auto.getBalance(), 0.0001);
+        
+        auto.indsaetPenge(100);
+        assertEquals(100, auto.getBalance(), 0.0001);
+        auto.returpenge();
+        
+        auto.indsaetPenge(10.5);
+        assertEquals(10.5, auto.getBalance(), 0.0001);
+        auto.returpenge();
+        
+        auto.indsaetPenge(10);
+        auto.indsaetPenge(20);
+        assertEquals(30, auto.getBalance(), 0.0001);
+        auto.returpenge();
+        
+        auto.indsaetPenge(10);
+        auto.indsaetPenge(20.24);
+        assertEquals(30.24, auto.getBalance(), 0.0001);
+        auto.returpenge();
+        
+        auto.indsaetPenge(-10);
+        assertEquals(0, auto.getBalance(), 0.0001); 
+        auto.returpenge();
+    }
     
 }
 
