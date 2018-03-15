@@ -23,7 +23,7 @@ public class Event {
         this.zoner = zoner;
         
         switch(event) {
-            case "indsaet penge" : {
+            case "indsæt penge" : {
                 eventType = 1;
                 tekst = uuid.toString() + " " + Dato.toString() + " Der er indsat " + var +" kr.";
                 break;
