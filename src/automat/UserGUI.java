@@ -12,6 +12,10 @@ package automat;
 public class UserGUI extends javax.swing.JPanel {
     
     Billetautomat ba;
+    int zoneAntal;
+    int billetAntal;
+    
+    double pris;
     
     /**
      * Creates new form UserGUI
@@ -24,7 +28,7 @@ public class UserGUI extends javax.swing.JPanel {
     
     public void setupBilletChoice() {
         for( int i = 0; i < ba.billeter.size(); i++) {
-            choice1.addItem(ba.billeter.get(i).getType() + "    -    " + ba.billeter.get(i).getBilletpris());
+            billetValg.addItem(ba.billeter.get(i).getType() + "    -    " + ba.billeter.get(i).getBilletpris());
         }
     }
     
@@ -42,14 +46,14 @@ public class UserGUI extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        choice1 = new java.awt.Choice();
+        billetValg = new java.awt.Choice();
         jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        zoneInput = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
+        billetInput = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        subTotalOutput = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -64,29 +68,41 @@ public class UserGUI extends javax.swing.JPanel {
 
         jLabel1.setText("Bilettype");
 
+        zoneInput.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                zoneInputStateChanged(evt);
+            }
+        });
+        zoneInput.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                zoneInputMousePressed(evt);
+            }
+        });
+
         jLabel2.setText("Zone antal:");
 
         jLabel3.setText("Billet antal:");
 
-        jLabel4.setText("Pris:");
-
-        jTextField1.setText("0");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        billetInput.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                billetInputStateChanged(evt);
             }
         });
+        billetInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                billetInputPropertyChange(evt);
+            }
+        });
+
+        jLabel4.setText("Pris:");
+
+        subTotalOutput.setText("0");
 
         jLabel5.setText("Indkøbskurv:");
 
         jLabel6.setText("Total:");
 
         jTextField2.setText("0");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
 
         jLabel7.setText("Stadtion:");
 
@@ -109,7 +125,7 @@ public class UserGUI extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(subTotalOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,10 +133,10 @@ public class UserGUI extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(zoneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel1)
-                                    .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(billetValg, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
@@ -128,7 +144,7 @@ public class UserGUI extends javax.swing.JPanel {
                         .addGap(164, 164, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(billetInput, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,41 +165,65 @@ public class UserGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(choice1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(billetValg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(zoneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(billetInput, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subTotalOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
+    private void zoneInputMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoneInputMousePressed
+        System.out.println("automat.UserGUI.zoneInputMousePressed()");
+        
+    }//GEN-LAST:event_zoneInputMousePressed
+
+    private void billetInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_billetInputPropertyChange
+        // TODO add your handling code here:
+        System.out.println("automat.UserGUI.billetInputPropertyChange()");
+        
+    }//GEN-LAST:event_billetInputPropertyChange
+
+    private void zoneInputStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_zoneInputStateChanged
+        // TODO add your handling code here:
+        System.out.println("automat.UserGUI.zoneInputStateChanged()");
+        billetAntal =  (Integer)billetInput.getValue();
+        zoneAntal   =  (Integer)zoneInput.getValue();
+        pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
+        subTotalOutput.setText(String.valueOf(pris));
+        repaint();
+    }//GEN-LAST:event_zoneInputStateChanged
+
+    private void billetInputStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_billetInputStateChanged
+        
+        
+        billetAntal =  (Integer)billetInput.getValue();
+        zoneAntal   =  (Integer)zoneInput.getValue();
+        pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
+        subTotalOutput.setText(String.valueOf(pris));
+        repaint();
+    }//GEN-LAST:event_billetInputStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public java.awt.Choice choice1;
+    private javax.swing.JSpinner billetInput;
+    public java.awt.Choice billetValg;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -193,11 +233,10 @@ public class UserGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField subTotalOutput;
+    private javax.swing.JSpinner zoneInput;
     // End of variables declaration//GEN-END:variables
 }

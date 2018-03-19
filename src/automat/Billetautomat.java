@@ -34,8 +34,8 @@ public class Billetautomat {
     /**
      * Giver prisen for en billet.
      *
-     * @param inType
-     * @param zoner
+     * @param inType - billet som String
+     * @param zoner - Antal zoner der ønskes.
      * @return pris paa billet med zoner
      */
     public double getBilletpris(String inType, int zoner) {
