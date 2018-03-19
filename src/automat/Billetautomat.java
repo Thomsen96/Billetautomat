@@ -12,9 +12,11 @@ public class Billetautomat {
     private int taeller = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
     ArrayList<Billettype> billeter = new ArrayList<>();
+    ArrayList<Kurv> kurv = new ArrayList<>(); 
 
+    
     /**
-     * Opret en billetautomat der saelger billetter til 10 kr.
+     * Oprette billetautomaten men nogle standart billeter.
      */
     public Billetautomat() {
         
@@ -27,7 +29,7 @@ public class Billetautomat {
         billeter.add(new Billettype("Weekend", 30));
         billeter.add(new Billettype("24-Timer (voksen)", 20));
         
-        // saetter balancen
+        // sætter balancen
         balance = 0;
     }
 
@@ -36,7 +38,7 @@ public class Billetautomat {
      *
      * @param inType - billet som String
      * @param zoner - Antal zoner der ønskes.
-     * @return pris paa billet med zoner
+     * @return pris på billet med zoner
      */
     public double getBilletpris(String inType, int zoner) {
         double resultat = billeter.get(soegBilletTyper(inType)).getBilletpris();
@@ -48,7 +50,7 @@ public class Billetautomat {
     /**
      * Modtag nogle penge (i kroner) fra en kunde.
      *
-     * @param beloeb
+     * @param beloeb - Beløb der ønskes indsat
      */
     public void indsaetPenge(double beloeb) {
         if (beloeb >= 0) {
@@ -62,7 +64,7 @@ public class Billetautomat {
     /**
      * Giver balancen (beloebet maskinen har modtaget til den naeste billet).
      *
-     * @return Nuvaerende balance
+     * @return - Nuvaerende balance
      */
     public double getBalance() {
         return balance;
@@ -70,8 +72,8 @@ public class Billetautomat {
 
     /**
      * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
-     * @param inType
-     * @param zoner soeger efter billeter med det antal zoner
+     * @param inType - Streng navn på billeten
+     * @param zoner søger efter billeter med det antal zoner
      */
     public void udskrivBillet(int inType, int zoner) {
         double billetpris = getBilletpris(billeter.get(inType).getType(), zoner);
@@ -98,7 +100,7 @@ public class Billetautomat {
     }
 
     /**
-     * returpenge nulstiller ogsaa balancen.
+     * returpenge nulstiller også balancen.
      *
      * @return beregner hvor mange penge man skal have retur
      */
@@ -180,8 +182,8 @@ public class Billetautomat {
     /**
      * setBilletpris Setter en ny billet pris
      *
-     * @param inType
-     * @param inPris
+     * @param inType - Billet navn der ønskes ændret
+     * @param inPris - Nye pris på billet.
      */
     public void montoerSetBilletpris(String inType, double inPris) {
         if (montoertilstand) {
@@ -201,7 +203,7 @@ public class Billetautomat {
     }
 
     /**
-     * nulstil Nulstiller antal billeter solgt
+     * Nulstiller: antal billeter solgt og balancen.
      */
     public void montoerNulstil() {
         if (montoertilstand) {
@@ -324,4 +326,26 @@ public class Billetautomat {
         }
         return -1; //Hvis der ikke findes en billet med det antal zoner.
     }
+    
+    public void addtoKurv(String inString, int inZoner, double inPris){
+        kurv.add(new Kurv(inString, inZoner, inPris));     
+    }
+    
+    /**
+     * Giver en kurv.
+     * 
+     * @param index - Den plads i arrayListen der ønskes returneret.
+     * @return Det kurv objekt der er ønsket.
+     */
+    public Kurv getkurv(int index) {
+        Kurv tempKurv = kurv.get(index);
+        kurv.remove(index);
+        return tempKurv;
+    }
+    
+    
+    
+    
+    
+    
 }
