@@ -30,6 +30,10 @@ public class UserGUI extends javax.swing.JPanel {
         for( int i = 0; i < ba.billeter.size(); i++) {
             billetValg.addItem(ba.billeter.get(i).getType() + "    -    " + ba.billeter.get(i).getBilletpris());
         }
+        billetAntal =  (Integer)billetInput.getValue();
+        zoneAntal   =  (Integer)zoneInput.getValue();
+        pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
+        subTotalOutput.setText(String.format("%.2f kr",pris));
     }
     
     
@@ -62,20 +66,25 @@ public class UserGUI extends javax.swing.JPanel {
 
         jMenuItem1.setText("jMenuItem1");
 
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        billetValg.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                billetValgItemStateChanged(evt);
+            }
+        });
+
         jLabel1.setText("Bilettype");
 
+        zoneInput.setModel(new javax.swing.SpinnerNumberModel(1, 1, 9, 1));
         zoneInput.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 zoneInputStateChanged(evt);
-            }
-        });
-        zoneInput.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                zoneInputMousePressed(evt);
             }
         });
 
@@ -83,35 +92,31 @@ public class UserGUI extends javax.swing.JPanel {
 
         jLabel3.setText("Billet antal:");
 
+        billetInput.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         billetInput.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 billetInputStateChanged(evt);
             }
         });
-        billetInput.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                billetInputPropertyChange(evt);
-            }
-        });
 
         jLabel4.setText("Pris:");
 
-        subTotalOutput.setText("0");
+        subTotalOutput.setEditable(false);
+        subTotalOutput.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        subTotalOutput.setText("0,00 kr");
 
         jLabel5.setText("Indkøbskurv:");
 
         jLabel6.setText("Total:");
 
-        jTextField2.setText("0");
+        jTextField2.setEditable(false);
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField2.setText("0,00 kr");
 
         jLabel7.setText("Stadtion:");
 
+        jTextField3.setEditable(false);
         jTextField3.setText("Hovedbanegården");
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,27 +126,27 @@ public class UserGUI extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(subTotalOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(subTotalOutput, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(zoneInput, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel1)
-                                    .addComponent(billetValg, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(billetValg, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(164, 164, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(billetInput, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,7 +154,7 @@ public class UserGUI extends javax.swing.JPanel {
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 265, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,29 +190,14 @@ public class UserGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
-
-    private void zoneInputMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_zoneInputMousePressed
-        System.out.println("automat.UserGUI.zoneInputMousePressed()");
-        
-    }//GEN-LAST:event_zoneInputMousePressed
-
-    private void billetInputPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_billetInputPropertyChange
-        // TODO add your handling code here:
-        System.out.println("automat.UserGUI.billetInputPropertyChange()");
-        
-    }//GEN-LAST:event_billetInputPropertyChange
-
     private void zoneInputStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_zoneInputStateChanged
         // TODO add your handling code here:
         System.out.println("automat.UserGUI.zoneInputStateChanged()");
         billetAntal =  (Integer)billetInput.getValue();
         zoneAntal   =  (Integer)zoneInput.getValue();
         pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
-        subTotalOutput.setText(String.valueOf(pris));
-        repaint();
+        subTotalOutput.setText(String.format("%.2f kr",pris));
+        
     }//GEN-LAST:event_zoneInputStateChanged
 
     private void billetInputStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_billetInputStateChanged
@@ -216,9 +206,16 @@ public class UserGUI extends javax.swing.JPanel {
         billetAntal =  (Integer)billetInput.getValue();
         zoneAntal   =  (Integer)zoneInput.getValue();
         pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
-        subTotalOutput.setText(String.valueOf(pris));
-        repaint();
+        subTotalOutput.setText(String.format("%.2f kr",pris));
+        
     }//GEN-LAST:event_billetInputStateChanged
+
+    private void billetValgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_billetValgItemStateChanged
+        billetAntal =  (Integer)billetInput.getValue();
+        zoneAntal   =  (Integer)zoneInput.getValue();
+        pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
+        subTotalOutput.setText(String.format("%.2f kr",pris));
+    }//GEN-LAST:event_billetValgItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
