@@ -327,8 +327,8 @@ public class Billetautomat {
         return -1; //Hvis der ikke findes en billet med det antal zoner.
     }
     
-    public void addtoKurv(String inString, int inZoner, double inPris){
-        kurv.add(new Kurv(inString, inZoner, inPris));     
+    public void addtoKurv(int inAntal, String inString, int inZoner, double inPris, int inIndex){
+        kurv.add(new Kurv(inAntal, inString, inZoner, inPris, inIndex));     
     }
     
     /**

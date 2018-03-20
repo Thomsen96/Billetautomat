@@ -19,6 +19,7 @@ public class UserGUI extends javax.swing.JPanel {
     int billetAntal;
     
     double pris;
+    double totalPris;
     
     /**
      * Creates new form UserGUI
@@ -31,20 +32,47 @@ public class UserGUI extends javax.swing.JPanel {
     
     public void setupBilletChoice() {
         for( int i = 0; i < ba.billeter.size(); i++) {
-            billetValg.addItem(ba.billeter.get(i).getType() + "    -    " + ba.billeter.get(i).getBilletpris());
+            
+            billetValg.addItem(String.format("%-20s  -  %4.2f kr",ba.billeter.get(i).getType(), ba.billeter.get(i).getBilletpris()));
         }
         update();
     }
     
     public void update(){
-        
+        updateInput();
+        updateKurv();
+        updateOutput();
+    }
+    
+    public void updateInput(){
         billetAntal =  (Integer)billetInput.getValue();
         zoneAntal   =  (Integer)zoneInput.getValue();
         pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
-        
-        
-        subTotalOutput.setText(String.format("%.2f kr",pris));
     }
+    
+    public void updateKurv() {
+        DefaultListModel listModel = new DefaultListModel();
+        for( int i = 0; i < ba.kurv.size(); i++) {
+            listModel.addElement(String.format("%d%s%s%s%d%s%.2f"
+                    , ba.kurv.get(i).getAntalBilleter() 
+                    , " - " 
+                    , ba.kurv.get(i).getType() 
+                    , "   Zoner:  " 
+                    , ba.kurv.get(i).getZoner() 
+                    , "   "
+                    ,ba.kurv.get(i).getPris()));
+            
+            totalPris += ba.kurv.get(i).getPris();
+        }
+        kurvList.setModel(listModel);
+    }
+    
+    public void updateOutput() {
+        subTotalOutput.setText(String.format("%.2f kr",pris));
+        totalPrisOut.setText(String.format("%.2f kr",totalPris));
+    }
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -63,11 +91,11 @@ public class UserGUI extends javax.swing.JPanel {
         subTotalOutput = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        totalPrisOut = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         addtoKurv = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        redigerBillet = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -120,9 +148,9 @@ public class UserGUI extends javax.swing.JPanel {
 
         jLabel6.setText("Total:");
 
-        jTextField2.setEditable(false);
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField2.setText("0,00 kr");
+        totalPrisOut.setEditable(false);
+        totalPrisOut.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        totalPrisOut.setText("0,00 kr");
 
         jLabel7.setText("Stadtion:");
 
@@ -136,14 +164,19 @@ public class UserGUI extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("Rediger");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        redigerBillet.setText("Rediger");
+        redigerBillet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                redigerBilletActionPerformed(evt);
             }
         });
 
         jButton3.setText("Slet");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Køb");
 
@@ -184,14 +217,14 @@ public class UserGUI extends javax.swing.JPanel {
                         .addGap(121, 121, 121)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(redigerBillet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                            .addComponent(totalPrisOut, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -232,9 +265,9 @@ public class UserGUI extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
+                            .addComponent(redigerBillet)
                             .addComponent(jButton3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(totalPrisOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)))
@@ -256,29 +289,36 @@ public class UserGUI extends javax.swing.JPanel {
 
     private void addtoKurvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtoKurvActionPerformed
         
+        updateInput();
+        ba.addtoKurv(billetAntal, ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal, pris, billetValg.getSelectedIndex());
         update();
-        ba.addtoKurv(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal, pris);
-        DefaultListModel listModel = new DefaultListModel();
-        for( int i = 0; i < ba.kurv.size(); i++) {
-            listModel.addElement(ba.kurv.get(i).getType() + "  Zoner:" + ba.kurv.get(i).getZoner());
-        }
-        
-        kurvList.setModel(listModel);
         
         
         
     }//GEN-LAST:event_addtoKurvActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void redigerBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigerBilletActionPerformed
+        Kurv tempKurv = ba.getkurv(kurvList.getSelectedIndex());
+        
+        billetValg.select(tempKurv.getIndex());
+        zoneInput.setValue(tempKurv.getZoner());
+        billetInput.setValue(tempKurv.getAntalBilleter());
+        
+        ba.kurv.remove(kurvList.getSelectedIndex());
+        
+        update();
+    }//GEN-LAST:event_redigerBilletActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        ba.kurv.remove(kurvList.getSelectedIndex());
+        update();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addtoKurv;
     private javax.swing.JSpinner billetInput;
     public java.awt.Choice billetValg;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -292,10 +332,11 @@ public class UserGUI extends javax.swing.JPanel {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JList<String> kurvList;
+    private javax.swing.JButton redigerBillet;
     private javax.swing.JTextField subTotalOutput;
+    private javax.swing.JTextField totalPrisOut;
     private javax.swing.JSpinner zoneInput;
     // End of variables declaration//GEN-END:variables
 }
