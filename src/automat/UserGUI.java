@@ -51,16 +51,18 @@ public class UserGUI extends javax.swing.JPanel {
     }
     
     public void updateKurv() {
+        totalPris = 0;
         DefaultListModel listModel = new DefaultListModel();
         for( int i = 0; i < ba.kurv.size(); i++) {
-            listModel.addElement(String.format("%d%s%s%s%d%s%.2f"
+            listModel.addElement(String.format("%d%s%s%s%d%s%.2f%s"
                     , ba.kurv.get(i).getAntalBilleter() 
-                    , " - " 
+                    , " stk    " 
                     , ba.kurv.get(i).getType() 
-                    , "   Zoner:  " 
+                    , "      " 
                     , ba.kurv.get(i).getZoner() 
-                    , "   "
-                    ,ba.kurv.get(i).getPris()));
+                    , " zoner        "
+                    , ba.kurv.get(i).getPris()
+                    , " kr."));
             
             totalPris += ba.kurv.get(i).getPris();
         }
@@ -69,7 +71,7 @@ public class UserGUI extends javax.swing.JPanel {
     
     public void updateOutput() {
         subTotalOutput.setText(String.format("%.2f kr",pris));
-        totalPrisOut.setText(String.format("%.2f kr",totalPris));
+        totalPrisOut.setText(String.format("%.2f kr", totalPris));
     }
     
     
@@ -81,6 +83,7 @@ public class UserGUI extends javax.swing.JPanel {
         jMenuItem1 = new javax.swing.JMenuItem();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
+        jMenuItem2 = new javax.swing.JMenuItem();
         billetValg = new java.awt.Choice();
         jLabel1 = new javax.swing.JLabel();
         zoneInput = new javax.swing.JSpinner();
@@ -96,7 +99,7 @@ public class UserGUI extends javax.swing.JPanel {
         jTextField3 = new javax.swing.JTextField();
         addtoKurv = new javax.swing.JButton();
         redigerBillet = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        fjernFraKurv = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         kurvList = new javax.swing.JList<>();
@@ -109,6 +112,8 @@ public class UserGUI extends javax.swing.JPanel {
             public String getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jList1);
+
+        jMenuItem2.setText("jMenuItem2");
 
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
@@ -171,10 +176,10 @@ public class UserGUI extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setText("Slet");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        fjernFraKurv.setText("Slet");
+        fjernFraKurv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                fjernFraKurvActionPerformed(evt);
             }
         });
 
@@ -219,7 +224,7 @@ public class UserGUI extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(redigerBillet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fjernFraKurv, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -266,12 +271,12 @@ public class UserGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(redigerBillet)
-                            .addComponent(jButton3)
+                            .addComponent(fjernFraKurv)
                             .addComponent(totalPrisOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -287,6 +292,10 @@ public class UserGUI extends javax.swing.JPanel {
         update();
     }//GEN-LAST:event_billetValgItemStateChanged
 
+ /**
+ * Når knappen "tilføj" bliver trykket.
+ * @param evt 
+ */
     private void addtoKurvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtoKurvActionPerformed
         
         updateInput();
@@ -297,6 +306,10 @@ public class UserGUI extends javax.swing.JPanel {
         
     }//GEN-LAST:event_addtoKurvActionPerformed
 
+    /**
+     * Når knappen "rediger" bliver trykket.
+     * @param evt 
+     */
     private void redigerBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigerBilletActionPerformed
         Kurv tempKurv = ba.getkurv(kurvList.getSelectedIndex());
         
@@ -304,22 +317,25 @@ public class UserGUI extends javax.swing.JPanel {
         zoneInput.setValue(tempKurv.getZoner());
         billetInput.setValue(tempKurv.getAntalBilleter());
         
-        ba.kurv.remove(kurvList.getSelectedIndex());
-        
+        totalPris -= tempKurv.getPris();
         update();
     }//GEN-LAST:event_redigerBilletActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    /**
+     * Mår knappe "slet" bliver trykket
+     * @param evt 
+     */
+    private void fjernFraKurvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fjernFraKurvActionPerformed
         ba.kurv.remove(kurvList.getSelectedIndex());
         update();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_fjernFraKurvActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addtoKurv;
     private javax.swing.JSpinner billetInput;
     public java.awt.Choice billetValg;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton fjernFraKurv;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -330,6 +346,7 @@ public class UserGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField3;

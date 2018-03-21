@@ -7,17 +7,26 @@ public class Kurv {
     private final double pris;
     private final int index;
     
-
+    /**
+     * Constructor
+     * @param inAntal - Antal billeter
+     * @param inType - Sting for navn
+     * @param inZoner - 
+     * @param inPris
+     * @param inIndex 
+     */
     public Kurv(int inAntal, String inType, int inZoner, double inPris, int inIndex){
         this.antalBilleter = inAntal;
         this.type = inType;
         this.zoner = inZoner;
         this.pris = inPris;
         this.index = inIndex;
-        
-        
     }
     
+    /**
+     * finder antal billeter
+     * @return  - antal billeter
+     */
     public int getAntalBilleter() {
         return antalBilleter;
     }
