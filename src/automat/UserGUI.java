@@ -32,8 +32,8 @@ public class UserGUI extends javax.swing.JPanel {
     }
     
     public void setupBilletChoice() {
-        for( int i = 0; i < ba.billeter.size(); i++) {
-            
+                 
+   for( int i = 0; i < ba.billeter.size(); i++) {
             billetValg.addItem(String.format("%-20s  -  %4.2f kr",ba.billeter.get(i).getType(), ba.billeter.get(i).getBilletpris()));
         }
         update();
@@ -190,7 +190,7 @@ public class UserGUI extends javax.swing.JPanel {
         kurvList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(kurvList);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Montør");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -242,11 +242,8 @@ public class UserGUI extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -346,6 +343,8 @@ public class UserGUI extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         MontoerGUI mGUI = new MontoerGUI();
+        
+        mGUI.ba = this.ba;
 
         JFrame vindueMontoer = new JFrame("montør");               // opret et vindue på skærmen
         vindueMontoer.add(mGUI);                                                       // vis panelet i vinduet
@@ -353,7 +352,8 @@ public class UserGUI extends javax.swing.JPanel {
         vindueMontoer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
         vindueMontoer.pack();                                                          // sæt vinduets størrelse
         vindueMontoer.setVisible(true);                                                // åbn vinduet
-
+        
+        mGUI.update();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
