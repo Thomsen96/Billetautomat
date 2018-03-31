@@ -62,12 +62,12 @@ public class MontoerGUI extends javax.swing.JPanel {
         btnReturSearch = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jSpinner_penge_vestre = new javax.swing.JSpinner();
+        jSpinner_penge_venstre = new javax.swing.JSpinner();
         jLabel14 = new javax.swing.JLabel();
         jSpinner_penge_højre = new javax.swing.JSpinner();
         btnPengeSearch = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        inputUUID = new javax.swing.JTextField();
+        txtInputUUID = new javax.swing.JTextField();
         btnUUIDSearch = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
 
@@ -163,23 +163,46 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         jLabel10.setText("Mellem:");
 
+        jSpinner_retur_venstre.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 10.0d));
+
         jLabel11.setText("og");
 
+        jSpinner_retur_højre.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
+
         btnReturSearch.setText("Søg");
+        btnReturSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReturSearchActionPerformed(evt);
+            }
+        });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Penge:");
 
         jLabel13.setText("Mellem:");
 
+        jSpinner_penge_venstre.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 10.0d));
+
         jLabel14.setText("og");
 
+        jSpinner_penge_højre.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
+
         btnPengeSearch.setText("Søg");
+        btnPengeSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengeSearchActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("UUID:");
 
         btnUUIDSearch.setText("Søg");
+        btnUUIDSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUUIDSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -214,11 +237,11 @@ public class MontoerGUI extends javax.swing.JPanel {
                     .addComponent(jLabel15)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(inputUUID, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtInputUUID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel13)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinner_penge_vestre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jSpinner_penge_venstre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -257,13 +280,13 @@ public class MontoerGUI extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(jLabel14)
                     .addComponent(btnPengeSearch)
-                    .addComponent(jSpinner_penge_vestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinner_penge_venstre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinner_penge_højre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(inputUUID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtInputUUID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUUIDSearch))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
@@ -298,9 +321,25 @@ public class MontoerGUI extends javax.swing.JPanel {
     private void btnIndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndSearchActionPerformed
         double venstre = (Double)jSpinner_ind_venstre.getValue();
         double højre = (Double)jSpinner_ind_højre.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, højre );
+        ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 1);
         
     }//GEN-LAST:event_btnIndSearchActionPerformed
+
+    private void btnReturSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturSearchActionPerformed
+        double venstre = (Double)jSpinner_retur_venstre.getValue();
+        double højre = (Double)jSpinner_retur_højre.getValue();
+        ba.montoerFindIndsattePengeMellem(venstre, højre , 2, 2);
+    }//GEN-LAST:event_btnReturSearchActionPerformed
+
+    private void btnPengeSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengeSearchActionPerformed
+        double venstre = (Double)jSpinner_penge_venstre.getValue();
+        double højre = (Double)jSpinner_penge_højre.getValue();
+        ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 2);
+    }//GEN-LAST:event_btnPengeSearchActionPerformed
+
+    private void btnUUIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUUIDSearchActionPerformed
+        ba.montoerFindUUID(txtInputUUID.getText());
+    }//GEN-LAST:event_btnUUIDSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -309,7 +348,6 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JButton btnPrintLog;
     private javax.swing.JButton btnReturSearch;
     private javax.swing.JButton btnUUIDSearch;
-    private javax.swing.JTextField inputUUID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -331,10 +369,11 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner_ind_højre;
     private javax.swing.JSpinner jSpinner_ind_venstre;
     private javax.swing.JSpinner jSpinner_penge_højre;
-    private javax.swing.JSpinner jSpinner_penge_vestre;
+    private javax.swing.JSpinner jSpinner_penge_venstre;
     private javax.swing.JSpinner jSpinner_retur_højre;
     private javax.swing.JSpinner jSpinner_retur_venstre;
     private javax.swing.JTabbedPane tabSearch;
+    private javax.swing.JTextField txtInputUUID;
     private javax.swing.JTextField txtOutputBalance;
     private javax.swing.JTextField txtOutputKunder;
     private javax.swing.JTextField txtOutputSolgt;

@@ -303,26 +303,27 @@ public class Billetautomat {
         }
     }
 
-    public void montoerFindIndsattePengeMellem(double venstre, double højre) {
+    public void montoerFindIndsattePengeMellem(double venstre, double højre, int valg1, int valg2) {
         if (montoertilstand) {
             int count = 0;
             if ( venstre < højre) {
                 for( int i = 0; i < eventLog.size(); i++) {
-                    if(eventLog.get(i).getVar() >= venstre && eventLog.get(i).getVar() <= højre && eventLog.get(i).getValg() == 1 ) {
+                    if(eventLog.get(i).getVar() >= venstre && eventLog.get(i).getVar() <= højre && 
+                            eventLog.get(i).getValg() == valg1 || eventLog.get(i).getValg() == valg2) {
                         eventLog.get(i).printLog();
                         count += 1;
                     }
                 }
             } else {
                 for( int i = 0; i < eventLog.size(); i++) {
-                    if(eventLog.get(i).getVar() <= venstre && eventLog.get(i).getVar() >= højre && eventLog.get(i).getValg() == 1 ) {
+                    if(eventLog.get(i).getVar() <= venstre && eventLog.get(i).getVar() >= højre && eventLog.get(i).getValg() == valg1 ) {
                         eventLog.get(i).printLog();
                         count += 1;
                     }
                 }
             }
             if (count == 0) {
-                System.out.println("Der var ingen indbagebetalinger mellem: " + venstre + " og " + højre + " kr.");
+                System.out.println("Intet match på søgning mellem: " + venstre + " og " + højre + " kr.");
             }
         } else {
             System.out.println("Afvist - log ind først.");

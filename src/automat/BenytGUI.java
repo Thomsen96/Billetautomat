@@ -25,7 +25,7 @@ public class BenytGUI {
         vindueUser.pack();                                                          // sæt vinduets størrelse
         vindueUser.setVisible(true);                                                // åbn vinduet
         
-        ba.indsaetPenge(100);
+
         
     }
 }

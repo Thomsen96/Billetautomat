@@ -192,11 +192,11 @@
                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="inputUUID" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtInputUUID" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jSpinner_penge_vestre" min="-2" pref="75" max="-2" attributes="0"/>
+                                      <Component id="jSpinner_penge_venstre" min="-2" pref="75" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -244,14 +244,14 @@
                           <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnPengeSearch" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSpinner_penge_vestre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jSpinner_penge_venstre" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jSpinner_penge_højre" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="inputUUID" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtInputUUID" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnUUIDSearch" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -314,6 +314,11 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="jSpinner_retur_venstre">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="10.0" type="number"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
@@ -321,11 +326,19 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="jSpinner_retur_h&#xf8;jre">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="1000.0" minimum="0.0" numberType="java.lang.Double" stepSize="10.0" type="number"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnReturSearch">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReturSearchActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -340,7 +353,12 @@
                 <Property name="text" type="java.lang.String" value="Mellem:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner_penge_vestre">
+            <Component class="javax.swing.JSpinner" name="jSpinner_penge_venstre">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="10.0" type="number"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel14">
               <Properties>
@@ -348,11 +366,19 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JSpinner" name="jSpinner_penge_h&#xf8;jre">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="1000.0" minimum="0.0" numberType="java.lang.Double" stepSize="10.0" type="number"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="btnPengeSearch">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPengeSearchActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
@@ -362,12 +388,15 @@
                 <Property name="text" type="java.lang.String" value="UUID:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="inputUUID">
+            <Component class="javax.swing.JTextField" name="txtInputUUID">
             </Component>
             <Component class="javax.swing.JButton" name="btnUUIDSearch">
               <Properties>
                 <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUUIDSearchActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
