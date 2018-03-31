@@ -10,6 +10,7 @@ public class Billetautomat {
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private boolean montoertilstand;
     private int taeller = 0;
+    public double totalPris = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
     ArrayList<Billettype> billeter = new ArrayList<>();
     ArrayList<Kurv> kurv = new ArrayList<>(); 

@@ -20,7 +20,6 @@ public class UserGUI extends javax.swing.JPanel {
     int billetAntal;
     
     double pris;
-    double totalPris;
     
     /**
      * Creates new form UserGUI
@@ -52,7 +51,7 @@ public class UserGUI extends javax.swing.JPanel {
     }
     
     public void updateKurv() {
-        totalPris = 0;
+        ba.totalPris = 0;
         DefaultListModel listModel = new DefaultListModel();
         for( int i = 0; i < ba.kurv.size(); i++) {
             listModel.addElement(String.format("%d%s%s%s%d%s%.2f%s"
@@ -65,14 +64,14 @@ public class UserGUI extends javax.swing.JPanel {
                     , ba.kurv.get(i).getPris()
                     , " kr."));
             
-            totalPris += ba.kurv.get(i).getPris();
+            ba.totalPris += ba.kurv.get(i).getPris();
         }
         kurvList.setModel(listModel);
     }
     
     public void updateOutput() {
         subTotalOutput.setText(String.format("%.2f kr",pris));
-        totalPrisOut.setText(String.format("%.2f kr", totalPris));
+        totalPrisOut.setText(String.format("%.2f kr", ba.totalPris));
     }
     
     
@@ -186,6 +185,11 @@ public class UserGUI extends javax.swing.JPanel {
         });
 
         jButton4.setText("Køb");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         kurvList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(kurvList);
@@ -327,7 +331,7 @@ public class UserGUI extends javax.swing.JPanel {
         zoneInput.setValue(tempKurv.getZoner());
         billetInput.setValue(tempKurv.getAntalBilleter());
         
-        totalPris -= tempKurv.getPris();
+        ba.totalPris -= tempKurv.getPris();
         update();
     }//GEN-LAST:event_redigerBilletActionPerformed
 
@@ -346,7 +350,7 @@ public class UserGUI extends javax.swing.JPanel {
         
         mGUI.ba = this.ba;
         ba.montoerLogin("1234");
-        JFrame vindueMontoer = new JFrame("montør");               // opret et vindue på skærmen
+        JFrame vindueMontoer = new JFrame("Montør");               // opret et vindue på skærmen
         vindueMontoer.add(mGUI);                                                       // vis panelet i vinduet
         
         vindueMontoer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
@@ -356,6 +360,20 @@ public class UserGUI extends javax.swing.JPanel {
         mGUI.update();
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        KoebGUI kGUI = new KoebGUI();
+        
+        kGUI.ba = this.ba;
+        JFrame vindueMontoer = new JFrame("Betaling");               // opret et vindue på skærmen
+        vindueMontoer.add(kGUI);                                                       // vis panelet i vinduet
+        
+        vindueMontoer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
+        vindueMontoer.pack();                                                          // sæt vinduets størrelse
+        vindueMontoer.setVisible(true);                                                // åbn vinduet
+        
+        kGUI.updateKurv();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
