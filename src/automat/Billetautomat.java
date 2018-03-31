@@ -231,16 +231,16 @@ public class Billetautomat {
 
     public void montoerFindUUID(String soeg) {
         if (montoertilstand) {
-            taeller = 0;
+            int count = 0;
             System.out.println("Der søges efter loggen med UUID: " + soeg);
-            eventLog.forEach((Event) -> {
-                if (Event.sammenlignUUID(soeg)) {
-                    Event.printLog();
-                    taeller += 1;
-
+            for (int i = 0; i < eventLog.size(); i++) {
+                if (eventLog.get(i).sammenlignUUID(soeg)) {
+                    eventLog.get(i).printLog();
+                    count += 1;
                 }
-            });
-            if (taeller == 0) {
+            }
+
+            if (count == 0) {
                 System.out.println("Der var ikke noget UUID med " + soeg);
             }
 
