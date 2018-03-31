@@ -78,11 +78,6 @@ public class MontoerGUI extends javax.swing.JPanel {
         jLabel2.setText("Balancen er:");
 
         txtOutputBalance.setEditable(false);
-        txtOutputBalance.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOutputBalanceActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Antal kunder:");
 
@@ -145,6 +140,7 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         tabSearch.addTab("Generalt", jPanel1);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Indbetalinger:");
 
         jLabel7.setText("Mellem:");
@@ -152,7 +148,17 @@ public class MontoerGUI extends javax.swing.JPanel {
         jLabel8.setText("og");
 
         btnIndSearch.setText("Søg");
+        btnIndSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIndSearchActionPerformed(evt);
+            }
+        });
 
+        jSpinner_ind_venstre.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 10.0d));
+
+        jSpinner_ind_højre.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Returpenge");
 
         jLabel10.setText("Mellem:");
@@ -161,6 +167,7 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         btnReturSearch.setText("Søg");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("Penge:");
 
         jLabel13.setText("Mellem:");
@@ -169,6 +176,7 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         btnPengeSearch.setText("Søg");
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("UUID:");
 
         btnUUIDSearch.setText("Søg");
@@ -257,7 +265,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputUUID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUUIDSearch))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         tabSearch.addTab("Søgninger", jPanel2);
@@ -287,9 +295,12 @@ public class MontoerGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtOutputBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOutputBalanceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtOutputBalanceActionPerformed
+    private void btnIndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndSearchActionPerformed
+        double venstre = (Double)jSpinner_ind_venstre.getValue();
+        double højre = (Double)jSpinner_ind_højre.getValue();
+        ba.montoerFindIndsattePengeMellem(venstre, højre );
+        
+    }//GEN-LAST:event_btnIndSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

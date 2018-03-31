@@ -303,6 +303,33 @@ public class Billetautomat {
         }
     }
 
+    public void montoerFindIndsattePengeMellem(double venstre, double højre) {
+        if (montoertilstand) {
+            int count = 0;
+            if ( venstre < højre) {
+                for( int i = 0; i < eventLog.size(); i++) {
+                    if(eventLog.get(i).getVar() >= venstre && eventLog.get(i).getVar() <= højre && eventLog.get(i).getValg() == 1 ) {
+                        eventLog.get(i).printLog();
+                        count += 1;
+                    }
+                }
+            } else {
+                for( int i = 0; i < eventLog.size(); i++) {
+                    if(eventLog.get(i).getVar() <= venstre && eventLog.get(i).getVar() >= højre && eventLog.get(i).getValg() == 1 ) {
+                        eventLog.get(i).printLog();
+                        count += 1;
+                    }
+                }
+            }
+            if (count == 0) {
+                System.out.println("Der var ingen indbagebetalinger mellem: " + venstre + " og " + højre + " kr.");
+            }
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14, "" , 0));
+        }
+    }
+    
     /**
      * erMontoer Checker om tilstanden er montoer.
      *

@@ -345,7 +345,7 @@ public class UserGUI extends javax.swing.JPanel {
         MontoerGUI mGUI = new MontoerGUI();
         
         mGUI.ba = this.ba;
-
+        ba.montoerLogin("1234");
         JFrame vindueMontoer = new JFrame("montør");               // opret et vindue på skærmen
         vindueMontoer.add(mGUI);                                                       // vis panelet i vinduet
         
