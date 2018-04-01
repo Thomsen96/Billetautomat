@@ -7,10 +7,6 @@ package automat;
 
 import javax.swing.DefaultListModel;
 
-/**
- *
- * @author Jonas
- */
 public class KoebGUI extends javax.swing.JPanel {
 
     Billetautomat ba;
@@ -19,12 +15,10 @@ public class KoebGUI extends javax.swing.JPanel {
         initComponents();
     }
     public void update() {
-        // skriv kurven.
         updateKurv();
         updatetxt();
     }
     public void updateKurv() {
-        ba.totalPris = 0;
         DefaultListModel listModel = new DefaultListModel();
         for( int i = 0; i < ba.kurv.size(); i++) {
             listModel.addElement(String.format("%d%s%s%s%d%s%.2f%s"
@@ -36,16 +30,14 @@ public class KoebGUI extends javax.swing.JPanel {
                     , " zoner        "
                     , ba.kurv.get(i).getPris()
                     , " kr."));
-            
-            ba.totalPris += ba.kurv.get(i).getPris();
         }
         kurvList.setModel(listModel);
     }
     
     public void updatetxt() {
-        txtOutputTotal.setText(String.format("%.2f",ba.totalPris));
+        txtOutputTotal.setText(String.format("%.2f", ba.getTotalPris()));
         txtOutputIndsæt.setText(String.format("%.2f", ba.getBalance()));
-        txtOutputMangler.setText(String.format("%.2f", ba.totalPris - ba.getBalance()));
+        txtOutputMangler.setText(String.format("%.2f", ba.getTotalPris() - ba.getBalance()));
         txtOutputSaldo.setText(String.format("%.2f", ba.getBalance()));
     }
     
@@ -171,6 +163,11 @@ public class KoebGUI extends javax.swing.JPanel {
         });
 
         btnBetalKontant.setText("Kontant");
+        btnBetalKontant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBetalKontantActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Total:");
 
@@ -194,49 +191,47 @@ public class KoebGUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOutputTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOutputIndsæt, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtOutputMangler)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtOutputTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtOutputIndsæt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtOutputMangler, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtOutputSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnIndsæt500)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnIndsæt1000))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(btnIndsæt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnIndsæt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnIndsæt20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnIndsæt100))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnIndsæt200, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnIndsæt50, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnIndsæt10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(btnIndsæt2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(btnBetalKredit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnBetalKontant, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtOutputSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnBetalKredit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBetalKontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnIndsæt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt100, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt500, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(btnIndsæt200, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsæt1000, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +241,7 @@ public class KoebGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -254,8 +249,7 @@ public class KoebGUI extends javax.swing.JPanel {
                             .addComponent(jLabel4)
                             .addComponent(txtOutputIndsæt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
-                            .addComponent(txtOutputMangler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 6, Short.MAX_VALUE))
+                            .addComponent(txtOutputMangler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -281,7 +275,7 @@ public class KoebGUI extends javax.swing.JPanel {
                             .addComponent(btnIndsæt500)
                             .addComponent(btnIndsæt1000))
                         .addGap(7, 7, 7)
-                        .addComponent(btnBetalKontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBetalKontant, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBetalKredit, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -290,49 +284,77 @@ public class KoebGUI extends javax.swing.JPanel {
 
     private void btnIndsæt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt5ActionPerformed
         ba.indsaetPenge(5);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt5ActionPerformed
 
     private void btnBetalKreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKreditActionPerformed
-        for(int i = 0; i < ba.kurv.size(); i++) {
-            
+        
+        ba.indsaetPenge(ba.getTotalPris() - ba.getBalance());
+        
+        if( ba.udskrivBilleter() > 0) {
+            System.exit(0);
+        } else {
+            System.err.println("FEJL i kredit betaling.");
         }
+        
+        update();
+        
     }//GEN-LAST:event_btnBetalKreditActionPerformed
 
     private void btnIndsæt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1ActionPerformed
         ba.indsaetPenge(1);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt1ActionPerformed
 
     private void btnIndsæt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt2ActionPerformed
         ba.indsaetPenge(2);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt2ActionPerformed
 
     private void btnIndsæt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt10ActionPerformed
         ba.indsaetPenge(10);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt10ActionPerformed
 
     private void btnIndsæt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt20ActionPerformed
         ba.indsaetPenge(20);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt20ActionPerformed
 
     private void btnIndsæt50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt50ActionPerformed
         ba.indsaetPenge(50);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt50ActionPerformed
 
     private void btnIndsæt100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt100ActionPerformed
         ba.indsaetPenge(100);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt100ActionPerformed
 
     private void btnIndsæt200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt200ActionPerformed
         ba.indsaetPenge(200);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt200ActionPerformed
 
     private void btnIndsæt500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt500ActionPerformed
         ba.indsaetPenge(500);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt500ActionPerformed
 
     private void btnIndsæt1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1000ActionPerformed
         ba.indsaetPenge(1000);
+        updatetxt();
     }//GEN-LAST:event_btnIndsæt1000ActionPerformed
+
+    private void btnBetalKontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKontantActionPerformed
+        if( ba.getBalance() >= ba.getTotalPris()) {
+            if( ba.udskrivBilleter() > 0) {
+                
+            } else {
+                System.err.println("FEJL i Kontant betaling.");
+            }
+        }
+    }//GEN-LAST:event_btnBetalKontantActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -10,7 +10,8 @@ public class Billetautomat {
     private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
     private boolean montoertilstand;
     private int taeller = 0;
-    public double totalPris = 0;
+    private int solgteBilleter = 0;
+    private double totalPris = 0;
     ArrayList<Event> eventLog = new ArrayList<>();
     ArrayList<Billettype> billeter = new ArrayList<>();
     ArrayList<Kurv> kurv = new ArrayList<>(); 
@@ -32,6 +33,9 @@ public class Billetautomat {
         
         // sætter balancen
         balance = 0;
+    }
+    public int getSolgteBilleter(){
+        return solgteBilleter;
     }
 
     /**
@@ -56,6 +60,7 @@ public class Billetautomat {
     public void indsaetPenge(double beloeb) {
         if (beloeb >= 0) {
             balance = balance + beloeb;
+            System.out.println("Der er indsat " + beloeb + " kr.");
             eventLog.add(new Event("indsæt penge", beloeb, "" , 0));
         } else {
             System.err.println("Man kan ikke indsætte et negative beløb.");
@@ -70,28 +75,54 @@ public class Billetautomat {
     public double getBalance() {
         return balance;
     }
+    
+    /**
+     * 
+     * @return Totale pris for kurven
+     */
+    public double getTotalPris() {
+        return totalPris;
+    }
 
+    /**
+     * 
+     * @return 1 for printede billeter -1 hvis ikke nok penge.
+     */
+    public int udskrivBilleter() {
+        if(balance >= totalPris) {
+            for(int i = 0; i < kurv.size(); i++) {
+                for(int j = 0; j < kurv.get(i).getAntalBilleter(); j++) {
+                    printBillet(kurv.get(i).getIndex(), kurv.get(i).getZoner());
+                }
+            }
+            kurv.clear();   
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+    
     /**
      * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
      * @param inType - Streng navn på billeten
      * @param zoner søger efter billeter med det antal zoner
      */
-    public void udskrivBillet(int inType, int zoner) {
+    public void printBillet(int inType, int zoner) {
         double billetpris = getBilletpris(billeter.get(inType).getType(), zoner);
         if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
             balance -= billetpris; // Billetter koster 10 kroner
-
+            solgteBilleter += 1;
             eventLog.add(new Event("print billet", billetpris, "" , zoner));
             
             System.out.println("##########B##T#########");
             System.out.println("# BlueJ Trafikselskab #");
             System.out.println("#                     #");
-            System.out.println("#  " + billeter.get(inType).getType() + "billet      #");
-            System.out.println("#        " + billetpris + "0 kr.       #");
+            System.out.println("#  " + billeter.get(inType).getType() + " billet  #");
+            System.out.println("#      " + billetpris + "0 kr.      #");
             System.out.println("#                     #");
-            System.out.println("#        " + eventLog.get(eventLog.size()-1).getDato() + "             #");
+            System.out.println("#    " + eventLog.get(eventLog.size()-1).getDato() + "    #");
             System.out.println("#  " + eventLog.get(eventLog.size()-1).getUUID() + "  #");
             System.out.println("##########B##T#########");
             System.out.println();
@@ -357,7 +388,9 @@ public class Billetautomat {
     }
     
     public void addtoKurv(int inAntal, String inString, int inZoner, double inPris, int inIndex){
-        kurv.add(new Kurv(inAntal, inString, inZoner, inPris, inIndex));     
+        kurv.add(new Kurv(inAntal, inString, inZoner, inPris, inIndex));
+        totalPris += inPris;
+        
     }
     
     /**
@@ -368,6 +401,7 @@ public class Billetautomat {
      */
     public Kurv getkurv(int index) {
         Kurv tempKurv = kurv.get(index);
+        totalPris -= tempKurv.getPris();
         kurv.remove(index);
         return tempKurv;
     }

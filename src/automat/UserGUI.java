@@ -51,7 +51,6 @@ public class UserGUI extends javax.swing.JPanel {
     }
     
     public void updateKurv() {
-        ba.totalPris = 0;
         DefaultListModel listModel = new DefaultListModel();
         for( int i = 0; i < ba.kurv.size(); i++) {
             listModel.addElement(String.format("%d%s%s%s%d%s%.2f%s"
@@ -64,14 +63,13 @@ public class UserGUI extends javax.swing.JPanel {
                     , ba.kurv.get(i).getPris()
                     , " kr."));
             
-            ba.totalPris += ba.kurv.get(i).getPris();
         }
         kurvList.setModel(listModel);
     }
     
     public void updateOutput() {
         subTotalOutput.setText(String.format("%.2f kr",pris));
-        totalPrisOut.setText(String.format("%.2f kr", ba.totalPris));
+        totalPrisOut.setText(String.format("%.2f kr", ba.getTotalPris()));
     }
     
     
@@ -331,7 +329,6 @@ public class UserGUI extends javax.swing.JPanel {
         zoneInput.setValue(tempKurv.getZoner());
         billetInput.setValue(tempKurv.getAntalBilleter());
         
-        ba.totalPris -= tempKurv.getPris();
         update();
     }//GEN-LAST:event_redigerBilletActionPerformed
 
@@ -372,7 +369,7 @@ public class UserGUI extends javax.swing.JPanel {
         vindueMontoer.pack();                                                          // sæt vinduets størrelse
         vindueMontoer.setVisible(true);                                                // åbn vinduet
         
-        kGUI.updateKurv();
+        kGUI.update();
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
