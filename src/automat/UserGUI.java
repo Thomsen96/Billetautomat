@@ -328,16 +328,15 @@ public class UserGUI extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         MontoerGUI mGUI = new MontoerGUI();
+        JFrame MontoerVindue = new JFrame("Montør");               // opret et vindue på skærmen
         
         mGUI.ba = this.ba;
         ba.montoerLogin("1234");
-        JFrame vindueMontoer = new JFrame("Montør");               // opret et vindue på skærmen
-        vindueMontoer.add(mGUI);                                                       // vis panelet i vinduet
         
-        vindueMontoer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        vindueMontoer.pack();                                                          // sæt vinduets størrelse
-        vindueMontoer.setVisible(true);                                                // åbn vinduet
-        
+        MontoerVindue.add(mGUI);                                                       // vis panelet i vinduet
+        MontoerVindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
+        MontoerVindue.pack();                                                          // sæt vinduets størrelse
+        MontoerVindue.setVisible(true);                                                // åbn vinduet
         mGUI.update();
         
     }//GEN-LAST:event_jButton1ActionPerformed
