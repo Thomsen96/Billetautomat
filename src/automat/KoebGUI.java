@@ -292,7 +292,7 @@ public class KoebGUI extends javax.swing.JPanel {
         ba.indsaetPenge(ba.getTotalPris() - ba.getBalance());
         
         if( ba.udskrivBilleter() > 0) {
-            System.exit(0);
+            setVisible(false);
         } else {
             System.err.println("FEJL i kredit betaling.");
         }
@@ -349,7 +349,7 @@ public class KoebGUI extends javax.swing.JPanel {
     private void btnBetalKontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKontantActionPerformed
         if( ba.getBalance() >= ba.getTotalPris()) {
             if( ba.udskrivBilleter() > 0) {
-                
+                setVisible(false);
             } else {
                 System.err.println("FEJL i Kontant betaling.");
             }
