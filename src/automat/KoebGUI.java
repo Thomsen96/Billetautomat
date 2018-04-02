@@ -5,11 +5,13 @@
  */
 package automat;
 
-import javax.swing.DefaultListModel;
+import javax.swing.*;
 
 public class KoebGUI extends javax.swing.JPanel {
 
     Billetautomat ba;
+    JFrame koebGUI;
+    UserGUI userGUI;
     
     public KoebGUI() {
         initComponents();
@@ -33,16 +35,12 @@ public class KoebGUI extends javax.swing.JPanel {
         }
         kurvList.setModel(listModel);
     }
-    
     public void updatetxt() {
         txtOutputTotal.setText(String.format("%.2f", ba.getTotalPris()));
         txtOutputIndsæt.setText(String.format("%.2f", ba.getBalance()));
         txtOutputMangler.setText(String.format("%.2f", ba.getTotalPris() - ba.getBalance()));
         txtOutputSaldo.setText(String.format("%.2f", ba.getBalance()));
     }
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,7 +205,6 @@ public class KoebGUI extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtOutputMangler, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
@@ -259,7 +256,7 @@ public class KoebGUI extends javax.swing.JPanel {
                             .addComponent(btnIndsæt1)
                             .addComponent(btnIndsæt2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnIndsæt5)
                             .addComponent(btnIndsæt10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -281,18 +278,19 @@ public class KoebGUI extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void btnIndsæt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt5ActionPerformed
         ba.indsaetPenge(5);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt5ActionPerformed
-
     private void btnBetalKreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKreditActionPerformed
         
+        // Gør så man kan betale noget kontant og resten på kortet.
         ba.indsaetPenge(ba.getTotalPris() - ba.getBalance());
         
+        
         if( ba.udskrivBilleter() > 0) {
-            setVisible(false);
+            userGUI.update();
+            koebGUI.dispose();
         } else {
             System.err.println("FEJL i kredit betaling.");
         }
@@ -300,56 +298,46 @@ public class KoebGUI extends javax.swing.JPanel {
         update();
         
     }//GEN-LAST:event_btnBetalKreditActionPerformed
-
     private void btnIndsæt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1ActionPerformed
         ba.indsaetPenge(1);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt1ActionPerformed
-
     private void btnIndsæt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt2ActionPerformed
         ba.indsaetPenge(2);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt2ActionPerformed
-
     private void btnIndsæt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt10ActionPerformed
         ba.indsaetPenge(10);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt10ActionPerformed
-
     private void btnIndsæt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt20ActionPerformed
         ba.indsaetPenge(20);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt20ActionPerformed
-
     private void btnIndsæt50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt50ActionPerformed
         ba.indsaetPenge(50);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt50ActionPerformed
-
     private void btnIndsæt100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt100ActionPerformed
         ba.indsaetPenge(100);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt100ActionPerformed
-
     private void btnIndsæt200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt200ActionPerformed
         ba.indsaetPenge(200);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt200ActionPerformed
-
     private void btnIndsæt500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt500ActionPerformed
         ba.indsaetPenge(500);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt500ActionPerformed
-
     private void btnIndsæt1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1000ActionPerformed
         ba.indsaetPenge(1000);
         updatetxt();
     }//GEN-LAST:event_btnIndsæt1000ActionPerformed
-
     private void btnBetalKontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKontantActionPerformed
         if( ba.getBalance() >= ba.getTotalPris()) {
             if( ba.udskrivBilleter() > 0) {
-                setVisible(false);
+                
             } else {
                 System.err.println("FEJL i Kontant betaling.");
             }

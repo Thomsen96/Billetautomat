@@ -8,22 +8,21 @@ public class BenytGUI {
         
         Billetautomat ba = new Billetautomat();
         
-        
-        
-        
-        
         UserGUI uGUI = new UserGUI();                                           // opret panelet
-        
         uGUI.ba = ba;
+        
         
         uGUI.setupBilletChoice();
 
-        JFrame vindueUser = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
-        vindueUser.add(uGUI);                                                       // vis panelet i vinduet
+        JFrame UserGUI = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
+        uGUI.userGUI = UserGUI;
+        UserGUI.add(uGUI);                                                       // vis panelet i vinduet
 
-        vindueUser.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        vindueUser.pack();                                                          // sæt vinduets størrelse
-        vindueUser.setVisible(true);                                                // åbn vinduet
+        UserGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
+        UserGUI.pack();                                                          // sæt vinduets størrelse
+        UserGUI.setVisible(true);      
+        
+        // åbn vinduet
         
 
         

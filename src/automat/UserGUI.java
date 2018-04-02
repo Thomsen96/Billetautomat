@@ -1,29 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package automat;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
+import javax.swing.*;
 
-
-
-/**
- *
- * @author Jonas
- */
 public class UserGUI extends javax.swing.JPanel {
     Billetautomat ba;
+    JFrame userGUI;
     int zoneAntal;
     int billetAntal;
-    
     double pris;
-    
-    /**
-     * Creates new form UserGUI
-     */
+
     public UserGUI() {
         initComponents();
         
@@ -71,9 +57,7 @@ public class UserGUI extends javax.swing.JPanel {
         subTotalOutput.setText(String.format("%.2f kr",pris));
         totalPrisOut.setText(String.format("%.2f kr", ba.getTotalPris()));
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -360,16 +344,18 @@ public class UserGUI extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         KoebGUI kGUI = new KoebGUI();
+        JFrame KoebVindue = new JFrame("Betaling");               // opret et vindue på skærmen
         
+        // Sender Egenskaber videre til betalings vinduet.
         kGUI.ba = this.ba;
-        JFrame vindueMontoer = new JFrame("Betaling");               // opret et vindue på skærmen
-        vindueMontoer.add(kGUI);                                                       // vis panelet i vinduet
+        kGUI.koebGUI = KoebVindue;
+        kGUI.userGUI = this;
         
-        vindueMontoer.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        vindueMontoer.pack();                                                          // sæt vinduets størrelse
-        vindueMontoer.setVisible(true);                                                // åbn vinduet
-        
-        kGUI.update();
+        // Opsætning af vinduet.
+        KoebVindue.add(kGUI);                                                       // vis panelet i vinduet
+        KoebVindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
+        KoebVindue.pack();                                                          // sæt vinduets størrelse
+        KoebVindue.setVisible(true);                                                // åbn vinduet
     }//GEN-LAST:event_jButton4ActionPerformed
 
 
