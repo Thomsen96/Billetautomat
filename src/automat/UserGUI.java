@@ -82,10 +82,10 @@ public class UserGUI extends javax.swing.JPanel {
         addtoKurv = new javax.swing.JButton();
         redigerBillet = new javax.swing.JButton();
         fjernFraKurv = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnOpenKoeb = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         kurvList = new javax.swing.JList<>();
-        jButton1 = new javax.swing.JButton();
+        btnOpenMontoer = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -166,20 +166,20 @@ public class UserGUI extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText("Køb");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnOpenKoeb.setText("Køb");
+        btnOpenKoeb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnOpenKoebActionPerformed(evt);
             }
         });
 
         kurvList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(kurvList);
 
-        jButton1.setText("Montør");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnOpenMontoer.setText("Montør");
+        btnOpenMontoer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOpenMontoerActionPerformed(evt);
             }
         });
 
@@ -228,8 +228,8 @@ public class UserGUI extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnOpenMontoer, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnOpenKoeb, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -239,7 +239,7 @@ public class UserGUI extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(btnOpenMontoer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -271,7 +271,7 @@ public class UserGUI extends javax.swing.JPanel {
                             .addComponent(totalPrisOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)))
+                        .addComponent(btnOpenKoeb)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -325,12 +325,14 @@ public class UserGUI extends javax.swing.JPanel {
         update();
     }//GEN-LAST:event_fjernFraKurvActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnOpenMontoerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenMontoerActionPerformed
         
         MontoerGUI mGUI = new MontoerGUI();
         JFrame MontoerVindue = new JFrame("Montør");               // opret et vindue på skærmen
         
         mGUI.ba = this.ba;
+        mGUI.montoerGUI = MontoerVindue;
+        mGUI.userGUI = this;
         ba.montoerLogin("1234");
         
         MontoerVindue.add(mGUI);                                                       // vis panelet i vinduet
@@ -339,9 +341,9 @@ public class UserGUI extends javax.swing.JPanel {
         MontoerVindue.setVisible(true);                                                // åbn vinduet
         mGUI.update();
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnOpenMontoerActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnOpenKoebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenKoebActionPerformed
         KoebGUI kGUI = new KoebGUI();
         JFrame KoebVindue = new JFrame("Betaling");               // opret et vindue på skærmen
         
@@ -355,16 +357,16 @@ public class UserGUI extends javax.swing.JPanel {
         KoebVindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
         KoebVindue.pack();                                                          // sæt vinduets størrelse
         KoebVindue.setVisible(true);                                                // åbn vinduet
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnOpenKoebActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addtoKurv;
     private javax.swing.JSpinner billetInput;
     public java.awt.Choice billetValg;
+    private javax.swing.JButton btnOpenKoeb;
+    private javax.swing.JButton btnOpenMontoer;
     private javax.swing.JButton fjernFraKurv;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
