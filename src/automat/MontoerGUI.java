@@ -76,8 +76,8 @@ public class MontoerGUI extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
         jSpinner3 = new javax.swing.JSpinner();
+        jTextField3 = new javax.swing.JTextField();
 
         jLabel1.setText("Udskriv loggen til en fil:");
 
@@ -153,7 +153,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnPrintLog))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(95, Short.MAX_VALUE))
         );
 
         tabSearch.addTab("Generalt", jPanel1);
@@ -306,7 +306,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtInputUUID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUUIDSearch))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         tabSearch.addTab("Søgninger", jPanel2);
@@ -320,6 +320,8 @@ public class MontoerGUI extends javax.swing.JPanel {
         jLabel16.setText("Valgte billet:");
 
         jLabel17.setText("Nuværende billetnavn:");
+
+        jTextField1.setEditable(false);
 
         jLabel18.setText("Nyt billetnavn:");
 
@@ -340,6 +342,8 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         jLabel20.setText("Ny billet pris:");
 
+        jTextField3.setEditable(false);
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -358,14 +362,13 @@ public class MontoerGUI extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jSpinner3)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel19))
+                                .addGap(0, 132, Short.MAX_VALUE))
+                            .addComponent(jTextField3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -390,7 +393,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                         .addGap(14, 14, 14)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -398,7 +401,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         tabSearch.addTab("Ændre billeter", jPanel3);
@@ -407,11 +410,11 @@ public class MontoerGUI extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tabSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 358, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tabSearch)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -482,7 +485,6 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner_ind_højre;
     private javax.swing.JSpinner jSpinner_ind_venstre;
@@ -492,6 +494,7 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner_retur_venstre;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTabbedPane tabSearch;
     private javax.swing.JTextField txtInputUUID;
     private javax.swing.JTextField txtOutputBalance;
