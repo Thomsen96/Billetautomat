@@ -321,8 +321,11 @@ public class UserGUI extends javax.swing.JPanel {
      * @param evt 
      */
     private void fjernFraKurvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fjernFraKurvActionPerformed
-        ba.kurv.remove(kurvList.getSelectedIndex());
-        update();
+        if (kurvList.getSelectedIndex() >= 0) {
+            ba.removeItemKurv(kurvList.getSelectedIndex());
+            update();
+        }
+        
     }//GEN-LAST:event_fjernFraKurvActionPerformed
 
     private void btnOpenMontoerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenMontoerActionPerformed
@@ -351,6 +354,7 @@ public class UserGUI extends javax.swing.JPanel {
         kGUI.ba = this.ba;
         kGUI.koebGUI = KoebVindue;
         kGUI.userGUI = this;
+        kGUI.update();
         
         // Opsætning af vinduet.
         KoebVindue.add(kGUI);                                                       // vis panelet i vinduet

@@ -4,6 +4,7 @@ Opgaver der skal arbejdes på..
 UserGUI:
 - Print af billeter
 - Køb af billeter
+- Fjernelse af total pris på billeter
 
 
 MontørGUI:

@@ -393,6 +393,11 @@ public class Billetautomat {
         
     }
     
+    public void removeItemKurv(int index) {
+        totalPris -= kurv.get(index).getPris();
+        kurv.remove(index);
+    }
+    
     /**
      * Giver en kurv.
      * 
