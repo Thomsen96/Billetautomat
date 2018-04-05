@@ -9,7 +9,6 @@ public class Billetautomat {
 
     private double balance;                                 // Hvor mange penge kunden p.t. har puttet i automaten
     private boolean montoertilstand;                        // Bestemmer om man har montør retigheder.
-    private int taeller = 0;                                
     private int solgteBilleter = 0;                         // Tæller hvor mange billeter der er solgt
     private double totalPris = 0;                           // Tæller sammen hvor mange penge man har for i kurven.
     private double totalPengeTjent = 0;                     // Tæller hvor meget man har købt for i denne kørsel.
@@ -312,22 +311,22 @@ public class Billetautomat {
 
     public void montoerFindTilbageBetalinger(double over, String underOver) {
         if (montoertilstand) {
-            taeller = 0;
+            int count = 0;
             System.out.println("Der ledes efter tilbetalinger " + underOver + " " + over + " kr.\n");
-            eventLog.forEach((Event) -> {
-                if (Event.getVar() >= over && Event.getValg() == 2 && underOver.equals("o") || underOver.equals("O")) {
-                    Event.printLog();
-                    taeller += 1;
+            for (int i = 0; i < eventLog.size(); i++) {
+                if (eventLog.get(i).getVar() >= over && eventLog.get(i).getValg() == 2 && underOver.equals("o") || underOver.equals("O")) {
+                    eventLog.get(i).printLog();
+                    count += 1;
 
-                } else if (Event.getVar() <= over && Event.getValg() == 2 && underOver.equals("u") || underOver.equals("U")) {
-                    Event.printLog();
-                    taeller += 1;
+                } else if (eventLog.get(i).getVar() <= over && eventLog.get(i).getValg() == 2 && underOver.equals("u") || underOver.equals("U")) {
+                    eventLog.get(i).printLog();
+                    count += 1;
                 }
-            });
-            if (taeller == 0 && underOver.equals("o") || underOver.equals("O")) {
+            }
+            if (count == 0 && underOver.equals("o") || underOver.equals("O")) {
                 System.out.println("Der var ingen tilbagebetalinger over " + over + " kr.");
             }
-            if (taeller == 0 && underOver.equals("u") || underOver.equals("U")) {
+            if (count == 0 && underOver.equals("u") || underOver.equals("U")) {
                 System.out.println("Der var ingen tilbagebetalinger under " + over + " kr.");
             }
         } else {
@@ -338,22 +337,23 @@ public class Billetautomat {
 
     public void montoerFindIndsattePenge(double over, String underOver) {
         if (montoertilstand) {
-            taeller = 0;
+            int count = 0;
             System.out.println("Der ledes efter indbetalinger " + underOver + " " + over + " kr.\n");
-            eventLog.forEach((Event) -> {
-                if (Event.getVar() >= over && Event.getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
-                    Event.printLog();
-                    taeller += 1;
+            
+            for (int i = 0; i < eventLog.size(); i++) {
+                if (eventLog.get(i).getVar() >= over && eventLog.get(i).getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
+                    eventLog.get(i).printLog();
+                    count += 1;
 
-                } else if (Event.getVar() <= over && Event.getValg() == 1 && underOver.equals("u") || underOver.equals("U")) {
-                    Event.printLog();
-                    taeller += 1;
+                } else if (eventLog.get(i).getVar() <= over && eventLog.get(i).getValg() == 1 && underOver.equals("u") || underOver.equals("U")) {
+                    eventLog.get(i).printLog();
+                    count += 1;
                 }
-            });
-            if (taeller == 0 && underOver.equals("o") || underOver.equals("O")) {
+            }
+            if (count == 0 && underOver.equals("o") || underOver.equals("O")) {
                 System.out.println("Der var ingen indbagebetalinger over " + over + " kr.");
             }
-            if (taeller == 0 && underOver.equals("u") || underOver.equals("U")) {
+            if (count == 0 && underOver.equals("u") || underOver.equals("U")) {
                 System.out.println("Der var ingen indbagebetalinger under " + over + " kr.");
             }
             
