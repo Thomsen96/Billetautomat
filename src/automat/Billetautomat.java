@@ -7,14 +7,16 @@ import java.util.ArrayList;
  */
 public class Billetautomat {
 
-    private double balance; // Hvor mange penge kunden p.t. har puttet i automaten
-    private boolean montoertilstand;
-    private int taeller = 0;
-    private int solgteBilleter = 0;
-    private double totalPris = 0;
-    ArrayList<Event> eventLog = new ArrayList<>();
-    ArrayList<Billettype> billeter = new ArrayList<>();
-    ArrayList<Kurv> kurv = new ArrayList<>(); 
+    private double balance;                                 // Hvor mange penge kunden p.t. har puttet i automaten
+    private boolean montoertilstand;                        // Bestemmer om man har montør retigheder.
+    private int taeller = 0;                                
+    private int solgteBilleter = 0;                         // Tæller hvor mange billeter der er solgt
+    private double totalPris = 0;                           // Tæller sammen hvor mange penge man har for i kurven.
+    private double totalPengeTjent = 0;                     // Tæller hvor meget man har købt for i denne kørsel.
+    private int kunderTotal = 0;                            // Tæller hvor mange kunder der har været igennem.    
+    ArrayList<Event> eventLog = new ArrayList<>();          // Holder styr på alle events.
+    ArrayList<Billettype> billeter = new ArrayList<>();     // Holder styr på alle billettyper.
+    ArrayList<Kurv> kurv = new ArrayList<>();               // Holder styr på hvad der er i kurven.
 
     
     /**
@@ -34,8 +36,23 @@ public class Billetautomat {
         // sætter balancen
         balance = 0;
     }
+    
+    
+    /**
+     * 
+     * @return Antal solgte billeter i denne kørsel.
+     */
     public int getSolgteBilleter(){
         return solgteBilleter;
+    }
+    
+    
+    /**
+     * 
+     * @return 
+     */
+    public double getTotalTjent(){
+        return totalPengeTjent;
     }
 
     /**
@@ -77,6 +94,14 @@ public class Billetautomat {
     }
     
     /**
+     * Giver det totale antal kunder der har været igennem maskinen.
+     * @return - Total antal kunder
+     */
+    public int getKunder() {
+        return kunderTotal;
+    }
+    
+    /**
      * 
      * @return Totale pris for kurven
      */
@@ -95,7 +120,9 @@ public class Billetautomat {
                     printBillet(kurv.get(i).getIndex(), kurv.get(i).getZoner());
                 }
             }
-            kurv.clear();   
+            kunderTotal += 1;
+            kurv.clear();
+            totalPris = 0;
             return 1;
         } else {
             return -1;
@@ -112,19 +139,20 @@ public class Billetautomat {
         if (balance < billetpris) {
             System.out.println("Du mangler at indbetale nogle penge");
         } else {
-            balance -= billetpris; // Billetter koster 10 kroner
+            balance -= billetpris;
+            totalPengeTjent += billetpris;
             solgteBilleter += 1;
             eventLog.add(new Event("print billet", billetpris, "" , zoner));
             
-            System.out.println("##########B##T#########");
-            System.out.println("# BlueJ Trafikselskab #");
-            System.out.println("#                     #");
-            System.out.println("#  " + billeter.get(inType).getType() + " billet  #");
-            System.out.println("#      " + billetpris + "0 kr.      #");
-            System.out.println("#                     #");
-            System.out.println("#    " + eventLog.get(eventLog.size()-1).getDato() + "    #");
+            System.out.println("###################B##T###################");
+            System.out.println("#          BlueJ Trafikselskab           #");
+            System.out.println("#                                        #");
+            System.out.println("#            " + billeter.get(inType).getType() + " billet               #");
+            System.out.println("#              " + billetpris + "0 kr.                 #");
+            System.out.println("#                                        #");
+            System.out.println("#      " + eventLog.get(eventLog.size()-1).getDato() + "     #");
             System.out.println("#  " + eventLog.get(eventLog.size()-1).getUUID() + "  #");
-            System.out.println("##########B##T#########");
+            System.out.println("###################B##T###################");
             System.out.println();
 
             

@@ -18,8 +18,8 @@ public class MontoerGUI extends javax.swing.JPanel {
     public void update() {
         txtOutputBalance.setText(String.format("%.2f",ba.getBalance()));
         txtOutputSolgt.setText(String.format("%d", ba.getSolgteBilleter()));
-        //txtOutputKunder
-        //txtOutput
+        txtOutputKunder.setText(String.format("%d", ba.getKunder()));
+        txtOutputTjent.setText(String.format("%.2f",ba.getTotalTjent()));
         
     }
 
