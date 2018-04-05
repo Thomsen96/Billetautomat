@@ -285,10 +285,12 @@ public class KoebGUI extends javax.swing.JPanel {
     private void btnBetalKreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKreditActionPerformed
         
         // Gør så man kan betale noget kontant og resten på kortet.
-        ba.indsaetPenge(ba.getTotalPris() - ba.getBalance());
-        
-        
+        if(ba.getBalance() < ba.getTotalPris()) {
+            ba.indsaetPenge(ba.getTotalPris() - ba.getBalance());
+        }
+
         if( ba.udskrivBilleter() > 0) {
+            ba.returpenge();
             userGUI.update();
             koebGUI.dispose();
         } else {
@@ -296,7 +298,7 @@ public class KoebGUI extends javax.swing.JPanel {
         }
         
         update();
-        
+               
     }//GEN-LAST:event_btnBetalKreditActionPerformed
     private void btnIndsæt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1ActionPerformed
         ba.indsaetPenge(1);
