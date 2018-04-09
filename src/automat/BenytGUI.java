@@ -3,7 +3,7 @@ package automat;
 import javax.swing.JFrame;
 
 public class BenytGUI {
-
+//test
     public static void main(String[] arg) {
         
         Billetautomat ba = new Billetautomat();
