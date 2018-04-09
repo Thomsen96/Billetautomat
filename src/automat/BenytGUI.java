@@ -12,7 +12,7 @@ public class BenytGUI {
         uGUI.ba = ba;
         
         
-        uGUI.setupBilletChoice();
+        uGUI.updateBilletValg();
 
         JFrame UserGUI = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
         uGUI.userGUI = UserGUI;

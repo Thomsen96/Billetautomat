@@ -16,9 +16,9 @@ public class UserGUI extends javax.swing.JPanel {
         
     }
     
-    public void setupBilletChoice() {
-                 
-   for( int i = 0; i < ba.billeter.size(); i++) {
+    public void updateBilletValg() {
+        billetValg.removeAll();
+        for( int i = 0; i < ba.billeter.size(); i++) {
             billetValg.addItem(String.format("%-20s  -  %4.2f kr",ba.billeter.get(i).getType(), ba.billeter.get(i).getBilletpris()));
         }
         update();
@@ -336,6 +336,7 @@ public class UserGUI extends javax.swing.JPanel {
         mGUI.ba = this.ba;
         mGUI.montoerGUI = MontoerVindue;
         mGUI.userGUI = this;
+        mGUI.updateBilletValg();
         ba.montoerLogin("1234");
         
         MontoerVindue.add(mGUI);                                                       // vis panelet i vinduet

@@ -15,12 +15,31 @@ public class MontoerGUI extends javax.swing.JPanel {
         initComponents();
     }
     
+    
+    public void updateBilletValg() { 
+        billetValg.removeAll();
+        for( int i = 0; i < ba.billeter.size(); i++) {
+            billetValg.addItem(String.format("%-20s",ba.billeter.get(i).getType()));
+        }
+        billetValg.addItem(String.format("%-20s" , "Ny billet"));
+        update();
+    }
+    
+    
     public void update() {
+        
+        // Generalt:
         txtOutputBalance.setText(String.format("%.2f",ba.getBalance()));
         txtOutputSolgt.setText(String.format("%d", ba.getSolgteBilleter()));
         txtOutputKunder.setText(String.format("%d", ba.getKunder()));
         txtOutputTjent.setText(String.format("%.2f",ba.getTotalTjent()));
         
+        // Ændring af billeter:
+        txtOutputBilletNavn.setText(String.format("%s",ba.billeter.get(billetValg.getSelectedIndex()).getType()));
+        txtOutputBilletPris.setText(String.format("%.2f",ba.billeter.get(billetValg.getSelectedIndex()).getBilletpris()));    
+        
+        txtInputBilletnavn.setText(String.format("%s",ba.billeter.get(billetValg.getSelectedIndex()).getType()));
+        jsInputBilletPris.setValue((Double)ba.billeter.get(billetValg.getSelectedIndex()).getBilletpris());
     }
 
      /**
@@ -70,14 +89,15 @@ public class MontoerGUI extends javax.swing.JPanel {
         billetValg = new java.awt.Choice();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtOutputBilletNavn = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        txtInputBilletnavn = new javax.swing.JTextField();
+        btnOpdaterBillet = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
-        jTextField3 = new javax.swing.JTextField();
+        jsInputBilletPris = new javax.swing.JSpinner();
+        txtOutputBilletPris = new javax.swing.JTextField();
+        btnFjernBillet = new javax.swing.JButton();
 
         jLabel1.setText("Udskriv loggen til en fil:");
 
@@ -321,20 +341,14 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         jLabel17.setText("Nuværende billetnavn:");
 
-        jTextField1.setEditable(false);
+        txtOutputBilletNavn.setEditable(false);
 
         jLabel18.setText("Nyt billetnavn:");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        btnOpdaterBillet.setText("Opdater");
+        btnOpdaterBillet.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Opdater");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnOpdaterBilletActionPerformed(evt);
             }
         });
 
@@ -342,7 +356,16 @@ public class MontoerGUI extends javax.swing.JPanel {
 
         jLabel20.setText("Ny billet pris:");
 
-        jTextField3.setEditable(false);
+        jsInputBilletPris.setModel(new javax.swing.SpinnerNumberModel(0.0d, null, null, 1.0d));
+
+        txtOutputBilletPris.setEditable(false);
+
+        btnFjernBillet.setText("Fjern billet");
+        btnFjernBillet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFjernBilletActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -351,9 +374,9 @@ public class MontoerGUI extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(txtOutputBilletNavn)
                     .addComponent(billetValg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtInputBilletnavn, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
@@ -362,15 +385,17 @@ public class MontoerGUI extends javax.swing.JPanel {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinner3)
+                            .addComponent(jsInputBilletPris)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel19))
                                 .addGap(0, 132, Short.MAX_VALUE))
-                            .addComponent(jTextField3))
+                            .addComponent(txtOutputBilletPris))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnOpdaterBillet, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                            .addComponent(btnFjernBillet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -383,24 +408,27 @@ public class MontoerGUI extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtOutputBilletNavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(txtInputBilletnavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtOutputBilletPris, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnFjernBillet, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(1, 1, 1)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jsInputBilletPris, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnOpdaterBillet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -442,26 +470,48 @@ public class MontoerGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_btnUUIDSearchActionPerformed
 
     private void billetValgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_billetValgItemStateChanged
-        update();
+        if (billetValg.getSelectedIndex() > ba.billeter.size() - 1) {
+            txtOutputBilletNavn.setText(billetValg.getSelectedItem());
+            txtOutputBilletPris.setText("10.00");
+            txtInputBilletnavn.setText(billetValg.getSelectedItem());
+            jsInputBilletPris.setValue(10);
+        } else {
+            update();
+        }
+        
     }//GEN-LAST:event_billetValgItemStateChanged
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    private void btnOpdaterBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdaterBilletActionPerformed
+        if ( billetValg.getSelectedIndex() > ba.billeter.size() - 1) {
+            ba.billeter.add(new Billettype(txtInputBilletnavn.getText(), (double)jsInputBilletPris.getValue()));
+        } else {
+            ba.montoerOpdaterBillet(billetValg.getSelectedIndex(), txtInputBilletnavn.getText(), (Double)jsInputBilletPris.getValue());
+            userGUI.updateBilletValg();
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+            updateBilletValg();
+            userGUI.billetValg.select(0);
+        }
+        
+    }//GEN-LAST:event_btnOpdaterBilletActionPerformed
+
+    private void btnFjernBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernBilletActionPerformed
+        ba.montoerFjernBillet(billetValg.getSelectedIndex());
+        userGUI.updateBilletValg();
+        
+        updateBilletValg();
+        billetValg.select(0);
+    }//GEN-LAST:event_btnFjernBilletActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public java.awt.Choice billetValg;
+    private javax.swing.JButton btnFjernBillet;
     private javax.swing.JButton btnIndSearch;
+    private javax.swing.JButton btnOpdaterBillet;
     private javax.swing.JButton btnPengeSearch;
     private javax.swing.JButton btnPrintLog;
     private javax.swing.JButton btnReturSearch;
     private javax.swing.JButton btnUUIDSearch;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -485,19 +535,19 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner_ind_højre;
     private javax.swing.JSpinner jSpinner_ind_venstre;
     private javax.swing.JSpinner jSpinner_penge_højre;
     private javax.swing.JSpinner jSpinner_penge_venstre;
     private javax.swing.JSpinner jSpinner_retur_højre;
     private javax.swing.JSpinner jSpinner_retur_venstre;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JSpinner jsInputBilletPris;
     private javax.swing.JTabbedPane tabSearch;
+    private javax.swing.JTextField txtInputBilletnavn;
     private javax.swing.JTextField txtInputUUID;
     private javax.swing.JTextField txtOutputBalance;
+    private javax.swing.JTextField txtOutputBilletNavn;
+    private javax.swing.JTextField txtOutputBilletPris;
     private javax.swing.JTextField txtOutputKunder;
     private javax.swing.JTextField txtOutputSolgt;
     private javax.swing.JTextField txtOutputTjent;

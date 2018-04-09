@@ -431,9 +431,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField1" max="32767" attributes="0"/>
+                          <Component id="txtOutputBilletNavn" max="32767" attributes="0"/>
                           <Component id="billetValg" max="32767" attributes="0"/>
-                          <Component id="jTextField2" alignment="1" max="32767" attributes="0"/>
+                          <Component id="txtInputBilletnavn" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -444,7 +444,7 @@
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jSpinner3" max="32767" attributes="0"/>
+                                  <Component id="jsInputBilletPris" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -452,10 +452,13 @@
                                       </Group>
                                       <EmptySpace min="0" pref="132" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="jTextField3" max="32767" attributes="0"/>
+                                  <Component id="txtOutputBilletPris" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="84" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="btnOpdaterBillet" pref="84" max="32767" attributes="0"/>
+                                  <Component id="btnFjernBillet" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -472,26 +475,31 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtOutputBilletNavn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtInputBilletnavn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSpinner3" min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="txtOutputBilletPris" min="-2" pref="25" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jButton1" max="32767" attributes="0"/>
+                              <Component id="btnFjernBillet" min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                           </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jsInputBilletPris" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="btnOpdaterBillet" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="33" max="32767" attributes="0"/>
                   </Group>
@@ -517,7 +525,7 @@
                 <Property name="text" type="java.lang.String" value="Nuv&#xe6;rende billetnavn:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
+            <Component class="javax.swing.JTextField" name="txtOutputBilletNavn">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
@@ -527,17 +535,14 @@
                 <Property name="text" type="java.lang.String" value="Nyt billetnavn:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField2ActionPerformed"/>
-              </Events>
+            <Component class="javax.swing.JTextField" name="txtInputBilletnavn">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="btnOpdaterBillet">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Opdater"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpdaterBilletActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
@@ -550,12 +555,25 @@
                 <Property name="text" type="java.lang.String" value="Ny billet pris:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner3">
+            <Component class="javax.swing.JSpinner" name="jsInputBilletPris">
+              <Properties>
+                <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+                  <SpinnerModel initial="0.0" numberType="java.lang.Double" stepSize="1.0" type="number"/>
+                </Property>
+              </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField3">
+            <Component class="javax.swing.JTextField" name="txtOutputBilletPris">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnFjernBillet">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fjern billet"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFjernBilletActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

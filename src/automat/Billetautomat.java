@@ -260,7 +260,28 @@ public class Billetautomat {
         }
 
     }
+    
+    /**
+     * Fjerener en billet fra salgsmulighederne.
+     * @param index i Arraylisten
+     */
+    public void montoerFjernBillet(int index) {
+        billeter.remove(index);
+    }
 
+    /**
+     * Opdatere en billet.
+     * @param index - Index på Billeten
+     * @param nytNavn  - Det nye navn
+     * @param nyPris - Den nye pris
+     */
+    public void montoerOpdaterBillet(int index, String nytNavn, double nyPris) {
+        billeter.get(index).setType(nytNavn);
+        billeter.get(index).setBilletpris(nyPris);        
+    }
+    
+    
+    
     /**
      * Nulstiller: antal billeter solgt og balancen.
      */
