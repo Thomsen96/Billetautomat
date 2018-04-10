@@ -5,12 +5,3 @@
 
 /nbproject/
 /build/
-build/
-\build\
-\build\
-nbproject/private/private.properties
-nbproject/*
-build/classes/automat/Billetautomat.class
-/dist/
-*.class
-*.xml
