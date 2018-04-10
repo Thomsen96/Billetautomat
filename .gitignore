@@ -2,6 +2,7 @@
 *.properties
 *.mf
 *.class
-
+\build\
+\nbproject\
 /nbproject/
 /build/
