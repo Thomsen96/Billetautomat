@@ -103,6 +103,15 @@ public class MontoerGUI extends javax.swing.JPanel {
         jsInputBilletPris = new javax.swing.JSpinner();
         txtOutputBilletPris = new javax.swing.JTextField();
         btnFjernBillet = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+
+        tabSearch.setMaximumSize(new java.awt.Dimension(358, 287));
+        tabSearch.setMinimumSize(new java.awt.Dimension(358, 287));
+        tabSearch.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                tabSearchStateChanged(evt);
+            }
+        });
 
         jLabel1.setText("Udskriv loggen til en fil:");
 
@@ -131,27 +140,19 @@ public class MontoerGUI extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtOutputKunder)
-                            .addComponent(txtOutputBalance)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtOutputTjent)
-                                    .addComponent(txtOutputSolgt, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(195, 195, 195))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnPrintLog, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtOutputTjent)
+                    .addComponent(txtOutputSolgt, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(btnPrintLog, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                    .addComponent(txtOutputBalance)
+                    .addComponent(txtOutputKunder))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,7 +396,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel20)
                                     .addComponent(jLabel19))
-                                .addGap(0, 132, Short.MAX_VALUE))
+                                .addGap(0, 409, Short.MAX_VALUE))
                             .addComponent(txtOutputBilletPris))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -438,16 +439,17 @@ public class MontoerGUI extends javax.swing.JPanel {
         );
 
         tabSearch.addTab("Ændre billeter", jPanel3);
+        tabSearch.addTab("Log ud", jTabbedPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 358, Short.MAX_VALUE)
+            .addComponent(tabSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tabSearch)
+            .addComponent(tabSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -503,6 +505,14 @@ public class MontoerGUI extends javax.swing.JPanel {
         billetValg.select(0);
     }//GEN-LAST:event_btnFjernBilletActionPerformed
 
+    private void tabSearchStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabSearchStateChanged
+        if(this.tabSearch.getSelectedIndex() == 3) {
+            ejer.setTab(0);
+            this.tabSearch.setSelectedIndex(0);
+            ba.montoerLogin("");
+        }
+    }//GEN-LAST:event_tabSearchStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public java.awt.Choice billetValg;
@@ -542,6 +552,7 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner_penge_venstre;
     private javax.swing.JSpinner jSpinner_retur_højre;
     private javax.swing.JSpinner jSpinner_retur_venstre;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JSpinner jsInputBilletPris;
     private javax.swing.JTabbedPane tabSearch;
     private javax.swing.JTextField txtInputBilletnavn;

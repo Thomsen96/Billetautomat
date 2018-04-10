@@ -22,13 +22,19 @@ public class MainGUI extends javax.swing.JPanel {
      * Creates new form MainGUI
      */
     public MainGUI() {
-        initComponents();        
+        initComponents(); 
+        jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI() {
+			protected int calculateTabAreaHeight(int t, int h, int m) {
+				return 0;
+			}
+		});
     }
     
     void setBa(Billetautomat ba) {
         this.ba = ba;
         koebGUI1.setup(ba, ejer);
         userGUI1.setup(ba, ejer);
+        montoerLoginGUI1.setup(ba, ejer);
         montoerGUI1.setup(ba, ejer);
     }
     
@@ -52,21 +58,23 @@ public class MainGUI extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         userGUI1 = new automat.UserGUI();
         koebGUI1 = new automat.KoebGUI();
+        montoerLoginGUI1 = new automat.montoerLoginGUI();
         montoerGUI1 = new automat.MontoerGUI();
 
-        jTabbedPane1.addTab("tab1", userGUI1);
-        jTabbedPane1.addTab("tab2", koebGUI1);
-        jTabbedPane1.addTab("tab3", montoerGUI1);
+        jTabbedPane1.addTab("MainGUI", userGUI1);
+        jTabbedPane1.addTab("KoebGUI", koebGUI1);
+        jTabbedPane1.addTab("MontoerLoginGUI", montoerLoginGUI1);
+        jTabbedPane1.addTab("MontoerGUI", montoerGUI1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -75,6 +83,7 @@ public class MainGUI extends javax.swing.JPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private automat.KoebGUI koebGUI1;
     private automat.MontoerGUI montoerGUI1;
+    private automat.montoerLoginGUI montoerLoginGUI1;
     private automat.UserGUI userGUI1;
     // End of variables declaration//GEN-END:variables
 
