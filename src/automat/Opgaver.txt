@@ -8,9 +8,11 @@ UserGUI:
 
 
 MontørGUI:
+
 - Gemme logs i filer, gerne med dato'er på
 - Kan slukke maskinen ("Sikkert")
 - Nulstille funktion
 	Skal først skrive loggen ud i en fil
 - Printe gratis billeter
 - Fjerne billeter fra salgsmulighederne.
+

@@ -3,24 +3,20 @@ package automat;
 import javax.swing.JFrame;
 
 public class BenytGUI {
-//test
     public static void main(String[] arg) {
         
         Billetautomat ba = new Billetautomat();
         
-        UserGUI uGUI = new UserGUI();                                           // opret panelet
-        uGUI.ba = ba;
+        MainGUI mainGUI = new MainGUI();                                           // opret panelet
+        JFrame vindue = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
         
+        mainGUI.setBa(ba);
         
-        uGUI.updateBilletValg();
+        vindue.add(mainGUI);                                                       // vis panelet i vinduet
 
-        JFrame UserGUI = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
-        uGUI.userGUI = UserGUI;
-        UserGUI.add(uGUI);                                                       // vis panelet i vinduet
-
-        UserGUI.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        UserGUI.pack();                                                          // sæt vinduets størrelse
-        UserGUI.setVisible(true);      
+        vindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
+        vindue.pack();                                                          // sæt vinduets størrelse
+        vindue.setVisible(true);      
         
         // åbn vinduet
         

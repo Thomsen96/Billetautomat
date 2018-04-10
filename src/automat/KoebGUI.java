@@ -10,12 +10,20 @@ import javax.swing.*;
 public class KoebGUI extends javax.swing.JPanel {
 
     Billetautomat ba;
+    MainGUI ejer;
     JFrame koebGUI;
     UserGUI userGUI;
     
     public KoebGUI() {
         initComponents();
     }
+    
+    public void setup(Billetautomat ba, MainGUI ejer) {
+        this.ba = ba;
+        this.ejer = ejer;
+        update();
+    }
+    
     public void update() {
         updateKurv();
         updatetxt();
@@ -281,6 +289,7 @@ public class KoebGUI extends javax.swing.JPanel {
     private void btnIndsæt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt5ActionPerformed
         ba.indsaetPenge(5);
         updatetxt();
+        
     }//GEN-LAST:event_btnIndsæt5ActionPerformed
     private void btnBetalKreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKreditActionPerformed
         
@@ -291,13 +300,13 @@ public class KoebGUI extends javax.swing.JPanel {
 
         if( ba.udskrivBilleter() > 0) {
             ba.returpenge();
-            userGUI.update();
-            koebGUI.dispose();
+            ejer.setTab(0);
         } else {
             System.err.println("FEJL i kredit betaling.");
         }
         
         update();
+        
                
     }//GEN-LAST:event_btnBetalKreditActionPerformed
     private void btnIndsæt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1ActionPerformed
@@ -340,8 +349,7 @@ public class KoebGUI extends javax.swing.JPanel {
         if( ba.getBalance() >= ba.getTotalPris()) {
             if( ba.udskrivBilleter() > 0) {
                 ba.returpenge();
-                userGUI.update();
-                koebGUI.dispose();
+                ejer.setTab(0);
             } else {
                 System.err.println("FEJL i Kontant betaling.");
             }

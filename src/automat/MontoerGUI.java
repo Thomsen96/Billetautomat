@@ -1,13 +1,12 @@
 package automat;
 
-import javax.swing.*;
 
 
 public class MontoerGUI extends javax.swing.JPanel {
 
     Billetautomat ba;
-    JFrame montoerGUI;
-    UserGUI userGUI;
+    MainGUI ejer;
+
     
     
     
@@ -15,6 +14,12 @@ public class MontoerGUI extends javax.swing.JPanel {
         initComponents();
     }
     
+    public void setup(Billetautomat ba, MainGUI ejer) {
+    this.ba = ba;
+    this.ejer = ejer;
+    updateBilletValg();
+    update();
+    }
     
     public void updateBilletValg() { 
         billetValg.removeAll();
@@ -486,18 +491,14 @@ public class MontoerGUI extends javax.swing.JPanel {
             ba.billeter.add(new Billettype(txtInputBilletnavn.getText(), (double)jsInputBilletPris.getValue()));
         } else {
             ba.montoerOpdaterBillet(billetValg.getSelectedIndex(), txtInputBilletnavn.getText(), (Double)jsInputBilletPris.getValue());
-            userGUI.updateBilletValg();
-
             updateBilletValg();
-            userGUI.billetValg.select(0);
+            
         }
         
     }//GEN-LAST:event_btnOpdaterBilletActionPerformed
 
     private void btnFjernBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernBilletActionPerformed
-        ba.montoerFjernBillet(billetValg.getSelectedIndex());
-        userGUI.updateBilletValg();
-        
+        ba.montoerFjernBillet(billetValg.getSelectedIndex());       
         updateBilletValg();
         billetValg.select(0);
     }//GEN-LAST:event_btnFjernBilletActionPerformed

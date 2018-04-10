@@ -87,7 +87,10 @@ public class BilletautomatTest {
         assertEquals(0, auto.getBalance(), 0.0001); 
         auto.returpenge();
     }
+
+}
     
+   /* 
     @Test
     public void test_KoebAfBillet() {
         // Test på køb af billeter.
@@ -220,4 +223,4 @@ public class BilletautomatTest {
         
 }
 
-    
+    */

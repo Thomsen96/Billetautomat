@@ -4,6 +4,8 @@ package automat;
 import java.util.Date;
 import java.util.UUID;
 
+// test
+
 public class Event {
     private Date Dato = new Date();
     private UUID uuid = UUID.randomUUID();
