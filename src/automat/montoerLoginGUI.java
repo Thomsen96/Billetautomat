@@ -1,6 +1,6 @@
 package automat;
 
-    
+import java.awt.event.*;
 
 public class montoerLoginGUI extends javax.swing.JPanel {
     
@@ -14,6 +14,17 @@ public class montoerLoginGUI extends javax.swing.JPanel {
     public void setup(Billetautomat ba, MainGUI vindue) {
         this.ba = ba;
         this.ejer = vindue;
+    }
+    
+    private void login() {
+        String kode = new String (passInput.getPassword());
+        passInput.setText("");
+        ba.montoerLogin(kode);
+        if(ba.erMontoer()) {
+            ejer.setTab(3);
+        } else {
+            ejer.setTab(0);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -30,6 +41,12 @@ public class montoerLoginGUI extends javax.swing.JPanel {
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
+            }
+        });
+
+        passInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                passInputKeyPressed(evt);
             }
         });
 
@@ -59,15 +76,14 @@ public class montoerLoginGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String kode = new String (passInput.getPassword());
-        passInput.setText("");
-        ba.montoerLogin(kode);
-        if(ba.erMontoer()) {
-            ejer.setTab(3);
-        } else {
-            ejer.setTab(0);
-        }
+        login();
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void passInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passInputKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            login();
+        }
+    }//GEN-LAST:event_passInputKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

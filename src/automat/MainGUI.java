@@ -30,12 +30,16 @@ public class MainGUI extends javax.swing.JPanel {
 		});
     }
     
-    void setBa(Billetautomat ba) {
+    public void setBa(Billetautomat ba) {
         this.ba = ba;
         koebGUI1.setup(ba, ejer);
         userGUI1.setup(ba, ejer);
         montoerLoginGUI1.setup(ba, ejer);
         montoerGUI1.setup(ba, ejer);
+    }
+    
+    public void updateUserGUI() {
+        userGUI1.update();
     }
     
     

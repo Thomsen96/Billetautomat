@@ -301,6 +301,7 @@ public class KoebGUI extends javax.swing.JPanel {
         if( ba.udskrivBilleter() > 0) {
             ba.returpenge();
             ejer.setTab(0);
+            ejer.updateUserGUI();
         } else {
             System.err.println("FEJL i kredit betaling.");
         }
@@ -350,6 +351,7 @@ public class KoebGUI extends javax.swing.JPanel {
             if( ba.udskrivBilleter() > 0) {
                 ba.returpenge();
                 ejer.setTab(0);
+                ejer.updateUserGUI();
             } else {
                 System.err.println("FEJL i Kontant betaling.");
             }

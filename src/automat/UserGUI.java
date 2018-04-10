@@ -1,14 +1,10 @@
 package automat;
 
 import javax.swing.DefaultListModel;
-import javax.swing.*;
 
 public class UserGUI extends javax.swing.JPanel {
     Billetautomat ba;
     MainGUI ejer;
-    int zoneAntal;
-    int billetAntal;
-    double pris;
 
     public UserGUI() {
         initComponents();
@@ -29,17 +25,11 @@ public class UserGUI extends javax.swing.JPanel {
     }
     
     public void update(){
-        updateInput();
         updateKurv();
         updateOutput();
     }
     
-    public void updateInput(){
-        billetAntal =  (Integer)billetInput.getValue();
-        zoneAntal   =  (Integer)zoneInput.getValue();
-        pris = billetAntal * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal);
-    }
-    
+
     public void updateKurv() {
         DefaultListModel listModel = new DefaultListModel();
         for( int i = 0; i < ba.kurv.size(); i++) {
@@ -58,6 +48,7 @@ public class UserGUI extends javax.swing.JPanel {
     }
     
     public void updateOutput() {
+        double pris = (Integer)billetInput.getValue() * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), (Integer)zoneInput.getValue());
         subTotalOutput.setText(String.format("%.2f kr",pris));
         totalPrisOut.setText(String.format("%.2f kr", ba.getTotalPris()));
     }
@@ -298,8 +289,13 @@ public class UserGUI extends javax.swing.JPanel {
  */
     private void addtoKurvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtoKurvActionPerformed
         
-        updateInput();
-        ba.addtoKurv(billetAntal, ba.billeter.get(billetValg.getSelectedIndex()).getType(), zoneAntal, pris, billetValg.getSelectedIndex());
+        int billetAntal = (Integer)billetInput.getValue();
+        String BilletNavn = ba.billeter.get(billetValg.getSelectedIndex()).getType();
+        int zoneAntal = (Integer)zoneInput.getValue();
+        double pris = (Integer)billetInput.getValue() * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), (Integer)zoneInput.getValue()); 
+        
+        
+        ba.addtoKurv(billetAntal, BilletNavn , zoneAntal, pris, billetValg.getSelectedIndex());
         update();
         
         
@@ -311,13 +307,17 @@ public class UserGUI extends javax.swing.JPanel {
      * @param evt 
      */
     private void redigerBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redigerBilletActionPerformed
-        Kurv tempKurv = ba.getkurv(kurvList.getSelectedIndex());
         
-        billetValg.select(tempKurv.getIndex());
-        zoneInput.setValue(tempKurv.getZoner());
-        billetInput.setValue(tempKurv.getAntalBilleter());
+        if (kurvList.getSelectedIndex() >= 0) {
+            Kurv tempKurv = ba.getkurv(kurvList.getSelectedIndex());
+
+            billetValg.select(tempKurv.getIndex());
+            zoneInput.setValue(tempKurv.getZoner());
+            billetInput.setValue(tempKurv.getAntalBilleter());
+
+            update();
+        }
         
-        update();
     }//GEN-LAST:event_redigerBilletActionPerformed
 
     /**
