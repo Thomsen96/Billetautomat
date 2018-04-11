@@ -47,6 +47,9 @@ public class MainGUI extends javax.swing.JPanel {
     
     public void setTab(int index) {
         jTabbedPane1.setSelectedIndex(index);
+        userGUI1.update();
+        koebGUI1.update();
+        montoerGUI1.update();
     }
     
 

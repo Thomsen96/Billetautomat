@@ -17,6 +17,7 @@ public class MontoerGUI extends javax.swing.JPanel {
     public void setup(Billetautomat ba, MainGUI ejer) {
     this.ba = ba;
     this.ejer = ejer;
+    montoerGeneralt1.setup(ba);
     updateBilletValg();
     update();
     }
@@ -33,12 +34,7 @@ public class MontoerGUI extends javax.swing.JPanel {
     
     public void update() {
         
-        // Generalt:
-        txtOutputBalance.setText(String.format("%.2f",ba.getBalance()));
-        txtOutputSolgt.setText(String.format("%d", ba.getSolgteBilleter()));
-        txtOutputKunder.setText(String.format("%d", ba.getKunder()));
-        txtOutputTjent.setText(String.format("%.2f",ba.getTotalTjent()));
-        
+        montoerGeneralt1.update();
         // Ændring af billeter:
         txtOutputBilletNavn.setText(String.format("%s",ba.billeter.get(billetValg.getSelectedIndex()).getType()));
         txtOutputBilletPris.setText(String.format("%.2f",ba.billeter.get(billetValg.getSelectedIndex()).getBilletpris()));    
@@ -57,17 +53,7 @@ public class MontoerGUI extends javax.swing.JPanel {
     private void initComponents() {
 
         tabSearch = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        btnPrintLog = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        txtOutputBalance = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txtOutputKunder = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtOutputTjent = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtOutputSolgt = new javax.swing.JTextField();
+        montoerGeneralt1 = new automat.MontoerGeneralt();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -112,77 +98,7 @@ public class MontoerGUI extends javax.swing.JPanel {
                 tabSearchStateChanged(evt);
             }
         });
-
-        jLabel1.setText("Udskriv loggen til en fil:");
-
-        btnPrintLog.setText("Udskriv");
-
-        jLabel2.setText("Balancen er:");
-
-        txtOutputBalance.setEditable(false);
-
-        jLabel3.setText("Antal kunder:");
-
-        txtOutputKunder.setEditable(false);
-
-        jLabel4.setText("Penge tjent:");
-
-        txtOutputTjent.setEditable(false);
-
-        jLabel5.setText("Antal billeter solgt");
-
-        txtOutputSolgt.setEditable(false);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtOutputTjent)
-                    .addComponent(txtOutputSolgt, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(btnPrintLog, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(txtOutputBalance)
-                    .addComponent(txtOutputKunder))
-                .addContainerGap(386, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtOutputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtOutputKunder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtOutputTjent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtOutputSolgt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnPrintLog))
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
-
-        tabSearch.addTab("Generalt", jPanel1);
+        tabSearch.addTab("Generalt", montoerGeneralt1);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Indbetalinger:");
@@ -453,28 +369,34 @@ public class MontoerGUI extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndSearchActionPerformed
-        double venstre = (Double)jSpinner_ind_venstre.getValue();
-        double højre = (Double)jSpinner_ind_højre.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 1);
-        
-    }//GEN-LAST:event_btnIndSearchActionPerformed
+    private void tabSearchStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabSearchStateChanged
+        if(this.tabSearch.getSelectedIndex() == 3) {
+            ejer.setTab(0);
+            this.tabSearch.setSelectedIndex(0);
+            ba.montoerLogin("");
+        }
+    }//GEN-LAST:event_tabSearchStateChanged
 
-    private void btnReturSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturSearchActionPerformed
-        double venstre = (Double)jSpinner_retur_venstre.getValue();
-        double højre = (Double)jSpinner_retur_højre.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, højre , 2, 2);
-    }//GEN-LAST:event_btnReturSearchActionPerformed
+    private void btnFjernBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernBilletActionPerformed
+        ba.montoerFjernBillet(billetValg.getSelectedIndex());
+        updateBilletValg();
+        billetValg.select(0);
+        ejer.updateUserGUI();
 
-    private void btnPengeSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengeSearchActionPerformed
-        double venstre = (Double)jSpinner_penge_venstre.getValue();
-        double højre = (Double)jSpinner_penge_højre.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 2);
-    }//GEN-LAST:event_btnPengeSearchActionPerformed
+    }//GEN-LAST:event_btnFjernBilletActionPerformed
 
-    private void btnUUIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUUIDSearchActionPerformed
-        ba.montoerFindUUID(txtInputUUID.getText());
-    }//GEN-LAST:event_btnUUIDSearchActionPerformed
+    private void btnOpdaterBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdaterBilletActionPerformed
+        if ( billetValg.getSelectedIndex() > ba.billeter.size() - 1) {
+            ba.billeter.add(new Billettype(txtInputBilletnavn.getText(), (double)jsInputBilletPris.getValue()));
+        } else {
+            ba.montoerOpdaterBillet(billetValg.getSelectedIndex(), txtInputBilletnavn.getText(), (Double)jsInputBilletPris.getValue());
+            updateBilletValg();
+
+        }
+        ejer.updateUserGUI();
+        ejer.updateUserGUI();
+
+    }//GEN-LAST:event_btnOpdaterBilletActionPerformed
 
     private void billetValgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_billetValgItemStateChanged
         if (billetValg.getSelectedIndex() > ba.billeter.size() - 1) {
@@ -485,45 +407,41 @@ public class MontoerGUI extends javax.swing.JPanel {
         } else {
             update();
         }
-        
+
     }//GEN-LAST:event_billetValgItemStateChanged
 
-    private void btnOpdaterBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdaterBilletActionPerformed
-        if ( billetValg.getSelectedIndex() > ba.billeter.size() - 1) {
-            ba.billeter.add(new Billettype(txtInputBilletnavn.getText(), (double)jsInputBilletPris.getValue()));
-        } else {
-            ba.montoerOpdaterBillet(billetValg.getSelectedIndex(), txtInputBilletnavn.getText(), (Double)jsInputBilletPris.getValue());
-            updateBilletValg();
-            
-        }
-        
-    }//GEN-LAST:event_btnOpdaterBilletActionPerformed
+    private void btnUUIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUUIDSearchActionPerformed
+        ba.montoerFindUUID(txtInputUUID.getText());
+    }//GEN-LAST:event_btnUUIDSearchActionPerformed
 
-    private void btnFjernBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernBilletActionPerformed
-        ba.montoerFjernBillet(billetValg.getSelectedIndex());       
-        updateBilletValg();
-        billetValg.select(0);
-    }//GEN-LAST:event_btnFjernBilletActionPerformed
+    private void btnPengeSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengeSearchActionPerformed
+        double venstre = (Double)jSpinner_penge_venstre.getValue();
+        double højre = (Double)jSpinner_penge_højre.getValue();
+        ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 2);
+    }//GEN-LAST:event_btnPengeSearchActionPerformed
 
-    private void tabSearchStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabSearchStateChanged
-        if(this.tabSearch.getSelectedIndex() == 3) {
-            ejer.setTab(0);
-            this.tabSearch.setSelectedIndex(0);
-            ba.montoerLogin("");
-        }
-    }//GEN-LAST:event_tabSearchStateChanged
+    private void btnReturSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturSearchActionPerformed
+        double venstre = (Double)jSpinner_retur_venstre.getValue();
+        double højre = (Double)jSpinner_retur_højre.getValue();
+        ba.montoerFindIndsattePengeMellem(venstre, højre , 2, 2);
+    }//GEN-LAST:event_btnReturSearchActionPerformed
+
+    private void btnIndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndSearchActionPerformed
+        double venstre = (Double)jSpinner_ind_venstre.getValue();
+        double højre = (Double)jSpinner_ind_højre.getValue();
+        ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 1);
+
+    }//GEN-LAST:event_btnIndSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public java.awt.Choice billetValg;
+    private java.awt.Choice billetValg;
     private javax.swing.JButton btnFjernBillet;
     private javax.swing.JButton btnIndSearch;
     private javax.swing.JButton btnOpdaterBillet;
     private javax.swing.JButton btnPengeSearch;
-    private javax.swing.JButton btnPrintLog;
     private javax.swing.JButton btnReturSearch;
     private javax.swing.JButton btnUUIDSearch;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -534,16 +452,11 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSpinner jSpinner_ind_højre;
@@ -554,14 +467,11 @@ public class MontoerGUI extends javax.swing.JPanel {
     private javax.swing.JSpinner jSpinner_retur_venstre;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JSpinner jsInputBilletPris;
+    private automat.MontoerGeneralt montoerGeneralt1;
     private javax.swing.JTabbedPane tabSearch;
     private javax.swing.JTextField txtInputBilletnavn;
     private javax.swing.JTextField txtInputUUID;
-    private javax.swing.JTextField txtOutputBalance;
     private javax.swing.JTextField txtOutputBilletNavn;
     private javax.swing.JTextField txtOutputBilletPris;
-    private javax.swing.JTextField txtOutputKunder;
-    private javax.swing.JTextField txtOutputSolgt;
-    private javax.swing.JTextField txtOutputTjent;
     // End of variables declaration//GEN-END:variables
 }

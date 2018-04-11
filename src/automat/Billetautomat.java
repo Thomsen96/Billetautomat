@@ -7,12 +7,13 @@ import java.util.ArrayList;
  */
 public class Billetautomat {
 
-    private double balance;                                 // Hvor mange penge kunden p.t. har puttet i automaten
-    private boolean montoertilstand;                        // Bestemmer om man har montør retigheder.
+    private double balance = 0;                                 // Hvor mange penge kunden p.t. har puttet i automaten
+    private boolean montoertilstand = false;                        // Bestemmer om man har montør retigheder.
     private int solgteBilleter = 0;                         // Tæller hvor mange billeter der er solgt
     private double totalPris = 0;                           // Tæller sammen hvor mange penge man har for i kurven.
     private double totalPengeTjent = 0;                     // Tæller hvor meget man har købt for i denne kørsel.
     private int kunderTotal = 0;                            // Tæller hvor mange kunder der har været igennem.    
+    private String station = "København H";
     ArrayList<Event> eventLog = new ArrayList<>();          // Holder styr på alle events.
     ArrayList<Billettype> billeter = new ArrayList<>();     // Holder styr på alle billettyper.
     ArrayList<Kurv> kurv = new ArrayList<>();               // Holder styr på hvad der er i kurven.
@@ -37,6 +38,21 @@ public class Billetautomat {
     }
     
     
+    /**
+     * 
+     * @return - Stations navn.
+     */
+    public String getStation() {
+        return station;
+    }
+    
+    /**
+     * Sætter stationsnavnet.
+     * @param nyStation - Nyt stations navn
+     */
+    public void setStation(String nyStation) {
+        station = nyStation;
+    }
     /**
      * 
      * @return Antal solgte billeter i denne kørsel.
