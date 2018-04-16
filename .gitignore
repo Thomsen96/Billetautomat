@@ -2,6 +2,10 @@
 *.properties
 *.mf
 *.class
+*.xml~
+*.properties~
+*.mf~
+*.class~
 \build\
 \nbproject\
 /nbproject/
