@@ -12,6 +12,7 @@ public class MontoerAendreBilleter extends javax.swing.JPanel {
         this.ba = ba;
         this.ejer = ejer;
         updateBilletValg();
+        
     }
     
     public void update() {
@@ -20,6 +21,7 @@ public class MontoerAendreBilleter extends javax.swing.JPanel {
         
         txtInputBilletnavn.setText(String.format("%s",ba.billeter.get(billetValg.getSelectedIndex()).getType()));
         jsInputBilletPris.setValue((Double)ba.billeter.get(billetValg.getSelectedIndex()).getBilletpris());
+        
     }
     
     public void updateBilletValg() { 
@@ -177,7 +179,6 @@ public class MontoerAendreBilleter extends javax.swing.JPanel {
             updateBilletValg();
 
         }
-        ejer.updateUserGUI();
         ejer.updateUserGUI();
     }//GEN-LAST:event_btnOpdaterBilletActionPerformed
 

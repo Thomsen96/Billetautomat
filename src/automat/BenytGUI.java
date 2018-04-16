@@ -10,7 +10,7 @@ public class BenytGUI {
         MainGUI mainGUI = new MainGUI();                                           // opret panelet
         JFrame vindue = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
         
-        mainGUI.setBa(ba);
+        mainGUI.setup(ba);
         
         vindue.add(mainGUI);                                                       // vis panelet i vinduet
 
