@@ -1,0 +1,4 @@
+SSH/FTP: 
+ubuntu4.saluton.dk
+oop_jonas
+java1234

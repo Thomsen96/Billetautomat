@@ -4,8 +4,7 @@ public class MainGUI extends javax.swing.JPanel {
     
     Billetautomat ba;
     MainGUI ejer = this;
-    
-//
+
     public MainGUI() {
         initComponents(); 
         

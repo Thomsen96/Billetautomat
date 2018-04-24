@@ -1,5 +1,6 @@
 package automat;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ import java.util.Scanner;
  */
 public class BenytBilletautomat {
 
-    public static void main(String[] arg) {
+    public static void main(String[] arg) throws IOException {
         Billetautomat automat = new Billetautomat();
         Scanner tastatur = new java.util.Scanner(System.in);  // forbered
         

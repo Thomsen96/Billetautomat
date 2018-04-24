@@ -17,6 +17,14 @@ public class UserGUI extends javax.swing.JPanel {
         updateBilletValg();
         update();
     }
+
+    
+    public void update(){
+        updateBilletValg();
+        updateKurv();
+        updateOutput();
+    }
+    
     public void updateBilletValg() {
         billetValg.removeAll();
         for( int i = 0; i < ba.billeter.size(); i++) {
@@ -24,12 +32,6 @@ public class UserGUI extends javax.swing.JPanel {
         }
     }
     
-    public void update(){
-        updateKurv();
-        updateOutput();
-    }
-    
-
     public void updateKurv() {
         DefaultListModel listModel = new DefaultListModel();
         for( int i = 0; i < ba.kurv.size(); i++) {

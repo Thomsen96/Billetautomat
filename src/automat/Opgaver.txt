@@ -2,9 +2,6 @@ Opgaver der skal arbejdes på..
 
 
 UserGUI:
-- Print af billeter
-- Køb af billeter
-- Fjernelse af total pris på billeter
 
 
 MontørGUI:
@@ -13,6 +10,20 @@ MontørGUI:
 - Kan slukke maskinen ("Sikkert")
 - Nulstille funktion
 	Skal først skrive loggen ud i en fil
-- Printe gratis billeter
-- Fjerne billeter fra salgsmulighederne.
 
+Overklasse af billetautomater
+
+Billetautomat
+- Printe loggen som der er i maskinen ud i en fil.
+
+
+Klasser er altid store begyndelsesbogstaver og variabler og metoder er atltid små.
+
+Hvad hvis man vil have en bagrundstråd til at påminde main tråden om en opdatering?
+    - Jacob har svært ved det..
+    - Til kontrol af om Der er blevet lavet ny billeter fra kontrol systemet
+    - Jacob laver eksempel med os.
+
+Events til interfaces?
+
+Skal Billetautomaten deles op med nedarvning?
