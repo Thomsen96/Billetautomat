@@ -31,15 +31,34 @@ public class Kurv {
         return antalBilleter;
     }
     
+    /**
+     * 
+     * @return billet navnet
+     */
     public String getType() {
         return type;
     }
+    
+    /**
+     * 
+     * @return Antal zoner
+     */
     public int getZoner() {
         return zoner;
     }
+    
+    /**
+     * 
+     * @return Prisen for den specifikke billet
+     */
     public double getPris() {
         return pris;
     }
+    
+    /**
+     * 
+     * @return In
+     */
     public int getIndex() {
         return index;
     }

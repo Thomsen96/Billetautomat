@@ -20,10 +20,10 @@ public class MontoerSoegninger extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jSpinner_ind_venstre = new javax.swing.JSpinner();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner_ind_højre = new javax.swing.JSpinner();
+        jSpinner_ind_h = new javax.swing.JSpinner();
         btnIndSearch = new javax.swing.JButton();
         btnReturSearch = new javax.swing.JButton();
-        jSpinner_retur_højre = new javax.swing.JSpinner();
+        jSpinner_retur_h = new javax.swing.JSpinner();
         jLabel11 = new javax.swing.JLabel();
         jSpinner_retur_venstre = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
@@ -32,7 +32,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jSpinner_penge_venstre = new javax.swing.JSpinner();
         jLabel14 = new javax.swing.JLabel();
-        jSpinner_penge_højre = new javax.swing.JSpinner();
+        jSpinner_penge_h = new javax.swing.JSpinner();
         btnPengeSearch = new javax.swing.JButton();
         btnUUIDSearch = new javax.swing.JButton();
         txtInputUUID = new javax.swing.JTextField();
@@ -47,7 +47,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
 
         jLabel8.setText("og");
 
-        jSpinner_ind_højre.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
+        jSpinner_ind_h.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
 
         btnIndSearch.setText("Søg");
         btnIndSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +63,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
             }
         });
 
-        jSpinner_retur_højre.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
+        jSpinner_retur_h.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
 
         jLabel11.setText("og");
 
@@ -83,7 +83,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
 
         jLabel14.setText("og");
 
-        jSpinner_penge_højre.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
+        jSpinner_penge_h.setModel(new javax.swing.SpinnerNumberModel(1000.0d, 0.0d, null, 10.0d));
 
         btnPengeSearch.setText("Søg");
         btnPengeSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -117,7 +117,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner_ind_højre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinner_ind_h, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnIndSearch))
                     .addComponent(jLabel9)
@@ -128,7 +128,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner_retur_højre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSpinner_retur_h, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnReturSearch))
                     .addComponent(jLabel12)
@@ -143,7 +143,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel14)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinner_penge_højre, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jSpinner_penge_h, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnPengeSearch)
@@ -161,7 +161,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
                     .addComponent(jLabel8)
                     .addComponent(btnIndSearch)
                     .addComponent(jSpinner_ind_venstre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner_ind_højre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner_ind_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,7 +170,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
                     .addComponent(jLabel11)
                     .addComponent(btnReturSearch)
                     .addComponent(jSpinner_retur_venstre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner_retur_højre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner_retur_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -179,7 +179,7 @@ public class MontoerSoegninger extends javax.swing.JPanel {
                     .addComponent(jLabel14)
                     .addComponent(btnPengeSearch)
                     .addComponent(jSpinner_penge_venstre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner_penge_højre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSpinner_penge_h, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -192,19 +192,19 @@ public class MontoerSoegninger extends javax.swing.JPanel {
 
     private void btnIndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndSearchActionPerformed
         double venstre = (Double)jSpinner_ind_venstre.getValue();
-        double højre = (Double)jSpinner_ind_højre.getValue();
+        double højre = (Double)jSpinner_ind_h.getValue();
         ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 1);
     }//GEN-LAST:event_btnIndSearchActionPerformed
 
     private void btnReturSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturSearchActionPerformed
         double venstre = (Double)jSpinner_retur_venstre.getValue();
-        double højre = (Double)jSpinner_retur_højre.getValue();
+        double højre = (Double)jSpinner_retur_h.getValue();
         ba.montoerFindIndsattePengeMellem(venstre, højre , 2, 2);
     }//GEN-LAST:event_btnReturSearchActionPerformed
 
     private void btnPengeSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengeSearchActionPerformed
         double venstre = (Double)jSpinner_penge_venstre.getValue();
-        double højre = (Double)jSpinner_penge_højre.getValue();
+        double højre = (Double)jSpinner_penge_h.getValue();
         ba.montoerFindIndsattePengeMellem(venstre, højre , 1, 2);
     }//GEN-LAST:event_btnPengeSearchActionPerformed
 
@@ -228,11 +228,11 @@ public class MontoerSoegninger extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JSpinner jSpinner_ind_højre;
+    private javax.swing.JSpinner jSpinner_ind_h;
     private javax.swing.JSpinner jSpinner_ind_venstre;
-    private javax.swing.JSpinner jSpinner_penge_højre;
+    private javax.swing.JSpinner jSpinner_penge_h;
     private javax.swing.JSpinner jSpinner_penge_venstre;
-    private javax.swing.JSpinner jSpinner_retur_højre;
+    private javax.swing.JSpinner jSpinner_retur_h;
     private javax.swing.JSpinner jSpinner_retur_venstre;
     private javax.swing.JTextField txtInputUUID;
     // End of variables declaration//GEN-END:variables

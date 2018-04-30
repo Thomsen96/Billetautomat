@@ -27,6 +27,7 @@ public class Billetautomat {
 
     /**
      * Oprette billetautomaten men nogle standart billeter.
+     * @throws java.io.IOException
      */
     public Billetautomat() throws IOException {
 
@@ -45,7 +46,7 @@ public class Billetautomat {
             String lin = linjer.get(i);
             int split = lin.indexOf("¤");
             
-            String billetnavn = lin.substring( 0 , split - 1);
+            String billetnavn = lin.substring( 0 , split);
             double billetpris = Double.parseDouble(lin.substring(split + 1));
             
             billeter.add(new Billettype(billetnavn, billetpris));
@@ -148,10 +149,13 @@ public class Billetautomat {
     public int udskrivBilleter() {
         if (balance >= totalPris) {
             for (int i = 0; i < kurv.size(); i++) {
+                totalPengeTjent += kurv.get(i).getPris();
                 for (int j = 0; j < kurv.get(i).getAntalBilleter(); j++) {
-                    printBillet(kurv.get(i).getIndex(), kurv.get(i).getZoner());
+                    solgteBilleter += 1;
+                    printBillet(kurv.get(i).getType(), kurv.get(i).getPris()/kurv.get(i).getAntalBilleter(), kurv.get(i).getZoner());
                 }
             }
+            balance -= totalPris;
             kunderTotal += 1;
             kurv.clear();
             totalPris = 0;
@@ -167,28 +171,21 @@ public class Billetautomat {
      * @param inType - Streng navn på billeten
      * @param zoner søger efter billeter med det antal zoner
      */
-    public void printBillet(int inType, int zoner) {
-        double billetpris = getBilletpris(billeter.get(inType).getType(), zoner);
-        if (balance < billetpris) {
-            System.out.println("Du mangler at indbetale nogle penge");
-        } else {
-            balance -= billetpris;
-            totalPengeTjent += billetpris;
-            solgteBilleter += 1;
-            eventLog.add(new Event("print billet", billetpris, "", zoner));
+    public void printBillet(String inType, double inPris, int zoner) {
+       
+        eventLog.add(new Event("print billet", inPris, "", zoner));
 
-            System.out.println("###################B##T###################");
-            System.out.println("#          BlueJ Trafikselskab           #");
-            System.out.println("#                                        #");
-            System.out.println("#            " + billeter.get(inType).getType() + " billet               #");
-            System.out.println("#              " + billetpris + "0 kr.                 #");
-            System.out.println("#                                        #");
-            System.out.println("#      " + eventLog.get(eventLog.size() - 1).getDato() + "     #");
-            System.out.println("#  " + eventLog.get(eventLog.size() - 1).getUUID() + "  #");
-            System.out.println("###################B##T###################");
-            System.out.println();
+        System.out.println("###################B##T###################");
+        System.out.println("#          BlueJ Trafikselskab           #");
+        System.out.println("#                                        #");
+        System.out.println("#            " + inType + " billet               #");
+        System.out.println("#              " + inPris + "0 kr.                 #");
+        System.out.println("#                                        #");
+        System.out.println("#      " + eventLog.get(eventLog.size() - 1).getDato() + "     #");
+        System.out.println("#  " + eventLog.get(eventLog.size() - 1).getUUID() + "  #");
+        System.out.println("###################B##T###################");
+        System.out.println();
 
-        }
     }
 
     /**
@@ -313,6 +310,10 @@ public class Billetautomat {
     public void montoerOpdaterBillet(int index, String nytNavn, double nyPris) {
         billeter.get(index).setType(nytNavn);
         billeter.get(index).setBilletpris(nyPris);
+        totalPris = 0;
+        for (int i = 0; i < kurv.size(); i++) {
+            totalPris += kurv.get(i).getPris();
+        }
     }
 
     /**

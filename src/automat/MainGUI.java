@@ -31,13 +31,14 @@ public class MainGUI extends javax.swing.JPanel {
     
     /**
      * Opdatere UserGUI's interface for brugeren.
-     * - Kurv
      * - Text
      */
     public void updateUserGUI() {
         userGUI1.update();
+        userGUI1.updateBilletValg();
     }
     
+
 
     
     

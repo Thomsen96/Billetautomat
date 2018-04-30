@@ -25,11 +25,9 @@ public class BenytGUI {
         while (mainGUI.isShowing()) {
             try {
                 Thread.sleep(5000);
-
                 EventQueue.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        
                         mainGUI.updateUserGUI();
                     }
                 });
