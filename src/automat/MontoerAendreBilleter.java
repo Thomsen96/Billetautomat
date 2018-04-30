@@ -174,6 +174,7 @@ public class MontoerAendreBilleter extends javax.swing.JPanel {
     private void btnOpdaterBilletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdaterBilletActionPerformed
         if ( billetValg.getSelectedIndex() > ba.billeter.size() - 1) {
             ba.billeter.add(new Billettype(txtInputBilletnavn.getText(), (double)jsInputBilletPris.getValue()));
+            updateBilletValg();
         } else {
             ba.montoerOpdaterBillet(billetValg.getSelectedIndex(), txtInputBilletnavn.getText(), (Double)jsInputBilletPris.getValue());
             updateBilletValg();

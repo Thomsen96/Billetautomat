@@ -27,3 +27,7 @@ Hvad hvis man vil have en bagrundstråd til at påminde main tråden om en opdat
 Events til interfaces?
 
 Skal Billetautomaten deles op med nedarvning?
+
+
+Opdatere montør ændrebilet dropdown menu.
+Tilføje billet type til events ved print.

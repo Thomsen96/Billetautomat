@@ -315,6 +315,16 @@ public class Billetautomat {
             totalPris += kurv.get(i).getPris();
         }
     }
+    
+    /**
+     * Tilføjer en ny billet til Billeter arrayet.
+     * @param inType Billetnavn
+     * @param inPris Billetpris
+     */
+    public void montoerOpretBillet(String inType, double inPris) {
+        billeter.add(new Billettype(inType, inPris));
+        
+    }
 
     /**
      * Nulstiller: antal billeter solgt og balancen.
