@@ -9,16 +9,14 @@ public class BenytGUI {
     public static void main(String[] arg) throws IOException {
 
         Billetautomat ba = new Billetautomat();
-
-        MainGUI mainGUI = new MainGUI();                                           // opret panelet
-        JFrame vindue = new JFrame("Billetautomat v.4.232.9960");               // opret et vindue på skærmen
-
+        MainGUI mainGUI = new MainGUI();                                       
+        JFrame vindue = new JFrame("Billetautomat v.4.232.9960");               
+        
         mainGUI.setup(ba);
-
-        vindue.add(mainGUI);                                                       // vis panelet i vinduet
-
+        
+        vindue.add(mainGUI);                                                    // vis panelet i vinduet
         vindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        vindue.pack();                                                          // sæt vinduets størrelse
+        vindue.pack();                                                          // set vinduets stoerrelse
         vindue.setVisible(true);
 
         // åbn vinduet
@@ -28,13 +26,11 @@ public class BenytGUI {
                 EventQueue.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        mainGUI.updateUserGUI();
+                        // Handle billet update
                     }
                 });
             } catch (InterruptedException ex) {
-
             }
-
         }
     }
 }

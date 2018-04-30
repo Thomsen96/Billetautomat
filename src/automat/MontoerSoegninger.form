@@ -65,7 +65,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="383" max="32767" attributes="0"/>
+              <EmptySpace pref="377" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -149,7 +149,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnIndSearch">
       <Properties>
-        <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
+        <Property name="text" type="java.lang.String" value="Soeg"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndSearchActionPerformed"/>
@@ -157,7 +157,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnReturSearch">
       <Properties>
-        <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
+        <Property name="text" type="java.lang.String" value="Soeg"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReturSearchActionPerformed"/>
@@ -229,7 +229,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnPengeSearch">
       <Properties>
-        <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
+        <Property name="text" type="java.lang.String" value="Soeg"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPengeSearchActionPerformed"/>
@@ -237,7 +237,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnUUIDSearch">
       <Properties>
-        <Property name="text" type="java.lang.String" value="S&#xf8;g"/>
+        <Property name="text" type="java.lang.String" value="Soeg"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUUIDSearchActionPerformed"/>

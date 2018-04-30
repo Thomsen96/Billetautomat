@@ -110,9 +110,9 @@ public class Billetautomat {
         if (beloeb >= 0) {
             balance = balance + beloeb;
             System.out.println("Der er indsat " + beloeb + " kr.");
-            eventLog.add(new Event("indsæt penge", beloeb, "", 0));
+            eventLog.add(new Event("insert penge", beloeb, "", 0));
         } else {
-            System.err.println("Man kan ikke indsætte et negative beløb.");
+            System.err.println("Man kan ikke insertte et negative beløb.");
         }
     }
 

@@ -30,7 +30,7 @@
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtOutputIndsæt" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="txtOutputIndsaet" min="-2" pref="62" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -50,19 +50,19 @@
                       <Component id="btnBetalKontant" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="btnIndsæt1" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt5" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt20" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt100" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt500" alignment="1" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="btnIndsaet1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet5" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet20" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet100" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet500" alignment="1" min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnIndsæt200" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt50" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt10" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt2" alignment="1" max="32767" attributes="0"/>
-                              <Component id="btnIndsæt1000" min="-2" pref="70" max="-2" attributes="0"/>
+                              <Component id="btnIndsaet200" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet50" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet10" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnIndsaet1000" min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -85,7 +85,7 @@
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtOutputTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtOutputIndsæt" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtOutputIndsaet" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtOutputMangler" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -97,28 +97,28 @@
                       </Group>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIndsæt1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIndsæt2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnIndsæt5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIndsæt10" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet10" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIndsæt20" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIndsæt50" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet20" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet50" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIndsæt100" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIndsæt200" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet100" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet200" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnIndsæt500" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnIndsæt1000" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet500" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnIndsaet1000" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Component id="btnBetalKontant" pref="66" max="32767" attributes="0"/>
@@ -157,84 +157,84 @@
         <Property name="text" type="java.lang.String" value="Indk&#xf8;bskurv:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t5">
+    <Component class="javax.swing.JButton" name="btnIndsaet5">
       <Properties>
         <Property name="text" type="java.lang.String" value="5,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet5ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t10">
+    <Component class="javax.swing.JButton" name="btnIndsaet10">
       <Properties>
         <Property name="text" type="java.lang.String" value="10,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t10ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet10ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t20">
+    <Component class="javax.swing.JButton" name="btnIndsaet20">
       <Properties>
         <Property name="text" type="java.lang.String" value="20,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t20ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet20ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t1">
+    <Component class="javax.swing.JButton" name="btnIndsaet1">
       <Properties>
         <Property name="text" type="java.lang.String" value="1,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet1ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t2">
+    <Component class="javax.swing.JButton" name="btnIndsaet2">
       <Properties>
         <Property name="text" type="java.lang.String" value="2,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet2ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t50">
+    <Component class="javax.swing.JButton" name="btnIndsaet50">
       <Properties>
         <Property name="text" type="java.lang.String" value="50,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t50ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet50ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t100">
+    <Component class="javax.swing.JButton" name="btnIndsaet100">
       <Properties>
         <Property name="text" type="java.lang.String" value="100,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t100ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet100ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t200">
+    <Component class="javax.swing.JButton" name="btnIndsaet200">
       <Properties>
         <Property name="text" type="java.lang.String" value="200,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t200ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet200ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t500">
+    <Component class="javax.swing.JButton" name="btnIndsaet500">
       <Properties>
         <Property name="text" type="java.lang.String" value="500,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t500ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet500ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnInds&#xe6;t1000">
+    <Component class="javax.swing.JButton" name="btnIndsaet1000">
       <Properties>
         <Property name="text" type="java.lang.String" value="1000,-"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInds&#xe6;t1000ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIndsaet1000ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -279,7 +279,7 @@
         <Property name="text" type="java.lang.String" value="Indsat:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtOutputInds&#xe6;t">
+    <Component class="javax.swing.JTextField" name="txtOutputIndsaet">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value=" "/>

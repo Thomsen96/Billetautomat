@@ -45,7 +45,7 @@ public class KoebGUI extends javax.swing.JPanel {
     }
     public void updatetxt() {
         txtOutputTotal.setText(String.format("%.2f", ba.getTotalPris()));
-        txtOutputIndsæt.setText(String.format("%.2f", ba.getBalance()));
+        txtOutputIndsaet.setText(String.format("%.2f", ba.getBalance()));
         txtOutputMangler.setText(String.format("%.2f", ba.getTotalPris() - ba.getBalance()));
         txtOutputSaldo.setText(String.format("%.2f", ba.getBalance()));
     }
@@ -61,16 +61,16 @@ public class KoebGUI extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         kurvList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
-        btnIndsæt5 = new javax.swing.JButton();
-        btnIndsæt10 = new javax.swing.JButton();
-        btnIndsæt20 = new javax.swing.JButton();
-        btnIndsæt1 = new javax.swing.JButton();
-        btnIndsæt2 = new javax.swing.JButton();
-        btnIndsæt50 = new javax.swing.JButton();
-        btnIndsæt100 = new javax.swing.JButton();
-        btnIndsæt200 = new javax.swing.JButton();
-        btnIndsæt500 = new javax.swing.JButton();
-        btnIndsæt1000 = new javax.swing.JButton();
+        btnIndsaet5 = new javax.swing.JButton();
+        btnIndsaet10 = new javax.swing.JButton();
+        btnIndsaet20 = new javax.swing.JButton();
+        btnIndsaet1 = new javax.swing.JButton();
+        btnIndsaet2 = new javax.swing.JButton();
+        btnIndsaet50 = new javax.swing.JButton();
+        btnIndsaet100 = new javax.swing.JButton();
+        btnIndsaet200 = new javax.swing.JButton();
+        btnIndsaet500 = new javax.swing.JButton();
+        btnIndsaet1000 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         txtOutputSaldo = new javax.swing.JTextField();
         btnBetalKredit = new javax.swing.JButton();
@@ -78,7 +78,7 @@ public class KoebGUI extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtOutputTotal = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtOutputIndsæt = new javax.swing.JTextField();
+        txtOutputIndsaet = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtOutputMangler = new javax.swing.JTextField();
 
@@ -87,73 +87,73 @@ public class KoebGUI extends javax.swing.JPanel {
 
         jLabel1.setText("Indkøbskurv:");
 
-        btnIndsæt5.setText("5,-");
-        btnIndsæt5.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet5.setText("5,-");
+        btnIndsaet5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt5ActionPerformed(evt);
+                btnIndsaet5ActionPerformed(evt);
             }
         });
 
-        btnIndsæt10.setText("10,-");
-        btnIndsæt10.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet10.setText("10,-");
+        btnIndsaet10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt10ActionPerformed(evt);
+                btnIndsaet10ActionPerformed(evt);
             }
         });
 
-        btnIndsæt20.setText("20,-");
-        btnIndsæt20.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet20.setText("20,-");
+        btnIndsaet20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt20ActionPerformed(evt);
+                btnIndsaet20ActionPerformed(evt);
             }
         });
 
-        btnIndsæt1.setText("1,-");
-        btnIndsæt1.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet1.setText("1,-");
+        btnIndsaet1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt1ActionPerformed(evt);
+                btnIndsaet1ActionPerformed(evt);
             }
         });
 
-        btnIndsæt2.setText("2,-");
-        btnIndsæt2.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet2.setText("2,-");
+        btnIndsaet2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt2ActionPerformed(evt);
+                btnIndsaet2ActionPerformed(evt);
             }
         });
 
-        btnIndsæt50.setText("50,-");
-        btnIndsæt50.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet50.setText("50,-");
+        btnIndsaet50.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt50ActionPerformed(evt);
+                btnIndsaet50ActionPerformed(evt);
             }
         });
 
-        btnIndsæt100.setText("100,-");
-        btnIndsæt100.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet100.setText("100,-");
+        btnIndsaet100.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt100ActionPerformed(evt);
+                btnIndsaet100ActionPerformed(evt);
             }
         });
 
-        btnIndsæt200.setText("200,-");
-        btnIndsæt200.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet200.setText("200,-");
+        btnIndsaet200.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt200ActionPerformed(evt);
+                btnIndsaet200ActionPerformed(evt);
             }
         });
 
-        btnIndsæt500.setText("500,-");
-        btnIndsæt500.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet500.setText("500,-");
+        btnIndsaet500.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt500ActionPerformed(evt);
+                btnIndsaet500ActionPerformed(evt);
             }
         });
 
-        btnIndsæt1000.setText("1000,-");
-        btnIndsæt1000.addActionListener(new java.awt.event.ActionListener() {
+        btnIndsaet1000.setText("1000,-");
+        btnIndsaet1000.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIndsæt1000ActionPerformed(evt);
+                btnIndsaet1000ActionPerformed(evt);
             }
         });
 
@@ -182,8 +182,8 @@ public class KoebGUI extends javax.swing.JPanel {
 
         jLabel4.setText("Indsat:");
 
-        txtOutputIndsæt.setEditable(false);
-        txtOutputIndsæt.setText(" ");
+        txtOutputIndsaet.setEditable(false);
+        txtOutputIndsaet.setText(" ");
 
         jLabel5.setText("Mangler:");
 
@@ -207,7 +207,7 @@ public class KoebGUI extends javax.swing.JPanel {
                         .addGap(27, 27, 27)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtOutputIndsæt, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtOutputIndsaet, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,18 +224,18 @@ public class KoebGUI extends javax.swing.JPanel {
                         .addComponent(btnBetalKontant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnIndsæt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt100, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt500, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnIndsaet1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet100, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet500, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnIndsæt200, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnIndsæt1000, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnIndsaet200, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet50, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnIndsaet1000, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,7 +252,7 @@ public class KoebGUI extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(txtOutputTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(txtOutputIndsæt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtOutputIndsaet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5)
                             .addComponent(txtOutputMangler, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
@@ -261,24 +261,24 @@ public class KoebGUI extends javax.swing.JPanel {
                             .addComponent(txtOutputSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIndsæt1)
-                            .addComponent(btnIndsæt2))
+                            .addComponent(btnIndsaet1)
+                            .addComponent(btnIndsaet2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnIndsæt5)
-                            .addComponent(btnIndsæt10))
+                            .addComponent(btnIndsaet5)
+                            .addComponent(btnIndsaet10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIndsæt20)
-                            .addComponent(btnIndsæt50))
+                            .addComponent(btnIndsaet20)
+                            .addComponent(btnIndsaet50))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIndsæt100)
-                            .addComponent(btnIndsæt200))
+                            .addComponent(btnIndsaet100)
+                            .addComponent(btnIndsaet200))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIndsæt500)
-                            .addComponent(btnIndsæt1000))
+                            .addComponent(btnIndsaet500)
+                            .addComponent(btnIndsaet1000))
                         .addGap(7, 7, 7)
                         .addComponent(btnBetalKontant, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -286,11 +286,11 @@ public class KoebGUI extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    private void btnIndsæt5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt5ActionPerformed
+    private void btnIndsaet5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet5ActionPerformed
         ba.indsaetPenge(5);
         updatetxt();
         
-    }//GEN-LAST:event_btnIndsæt5ActionPerformed
+    }//GEN-LAST:event_btnIndsaet5ActionPerformed
     private void btnBetalKreditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKreditActionPerformed
         
         // Gør så man kan betale noget kontant og resten på kortet.
@@ -310,42 +310,42 @@ public class KoebGUI extends javax.swing.JPanel {
         
                
     }//GEN-LAST:event_btnBetalKreditActionPerformed
-    private void btnIndsæt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1ActionPerformed
+    private void btnIndsaet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet1ActionPerformed
         ba.indsaetPenge(1);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt1ActionPerformed
-    private void btnIndsæt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt2ActionPerformed
+    }//GEN-LAST:event_btnIndsaet1ActionPerformed
+    private void btnIndsaet2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet2ActionPerformed
         ba.indsaetPenge(2);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt2ActionPerformed
-    private void btnIndsæt10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt10ActionPerformed
+    }//GEN-LAST:event_btnIndsaet2ActionPerformed
+    private void btnIndsaet10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet10ActionPerformed
         ba.indsaetPenge(10);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt10ActionPerformed
-    private void btnIndsæt20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt20ActionPerformed
+    }//GEN-LAST:event_btnIndsaet10ActionPerformed
+    private void btnIndsaet20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet20ActionPerformed
         ba.indsaetPenge(20);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt20ActionPerformed
-    private void btnIndsæt50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt50ActionPerformed
+    }//GEN-LAST:event_btnIndsaet20ActionPerformed
+    private void btnIndsaet50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet50ActionPerformed
         ba.indsaetPenge(50);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt50ActionPerformed
-    private void btnIndsæt100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt100ActionPerformed
+    }//GEN-LAST:event_btnIndsaet50ActionPerformed
+    private void btnIndsaet100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet100ActionPerformed
         ba.indsaetPenge(100);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt100ActionPerformed
-    private void btnIndsæt200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt200ActionPerformed
+    }//GEN-LAST:event_btnIndsaet100ActionPerformed
+    private void btnIndsaet200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet200ActionPerformed
         ba.indsaetPenge(200);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt200ActionPerformed
-    private void btnIndsæt500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt500ActionPerformed
+    }//GEN-LAST:event_btnIndsaet200ActionPerformed
+    private void btnIndsaet500ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet500ActionPerformed
         ba.indsaetPenge(500);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt500ActionPerformed
-    private void btnIndsæt1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsæt1000ActionPerformed
+    }//GEN-LAST:event_btnIndsaet500ActionPerformed
+    private void btnIndsaet1000ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndsaet1000ActionPerformed
         ba.indsaetPenge(1000);
         updatetxt();
-    }//GEN-LAST:event_btnIndsæt1000ActionPerformed
+    }//GEN-LAST:event_btnIndsaet1000ActionPerformed
     private void btnBetalKontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKontantActionPerformed
         if( ba.getBalance() >= ba.getTotalPris()) {
             if( ba.udskrivBilleter() > 0) {
@@ -363,16 +363,16 @@ public class KoebGUI extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBetalKontant;
     private javax.swing.JButton btnBetalKredit;
-    private javax.swing.JButton btnIndsæt1;
-    private javax.swing.JButton btnIndsæt10;
-    private javax.swing.JButton btnIndsæt100;
-    private javax.swing.JButton btnIndsæt1000;
-    private javax.swing.JButton btnIndsæt2;
-    private javax.swing.JButton btnIndsæt20;
-    private javax.swing.JButton btnIndsæt200;
-    private javax.swing.JButton btnIndsæt5;
-    private javax.swing.JButton btnIndsæt50;
-    private javax.swing.JButton btnIndsæt500;
+    private javax.swing.JButton btnIndsaet1;
+    private javax.swing.JButton btnIndsaet10;
+    private javax.swing.JButton btnIndsaet100;
+    private javax.swing.JButton btnIndsaet1000;
+    private javax.swing.JButton btnIndsaet2;
+    private javax.swing.JButton btnIndsaet20;
+    private javax.swing.JButton btnIndsaet200;
+    private javax.swing.JButton btnIndsaet5;
+    private javax.swing.JButton btnIndsaet50;
+    private javax.swing.JButton btnIndsaet500;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -380,7 +380,7 @@ public class KoebGUI extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> kurvList;
-    private javax.swing.JTextField txtOutputIndsæt;
+    private javax.swing.JTextField txtOutputIndsaet;
     private javax.swing.JTextField txtOutputMangler;
     private javax.swing.JTextField txtOutputSaldo;
     private javax.swing.JTextField txtOutputTotal;
