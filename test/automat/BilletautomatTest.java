@@ -1,12 +1,13 @@
 package automat;
 
+import java.io.IOException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BilletautomatTest {
     
     @Test
-    public void test_IndsaetPenge() {
+    public void test_IndsaetPenge() throws IOException {
         Billetautomat auto = new Billetautomat();
         
         auto.indsaetPenge(-100);
@@ -30,7 +31,7 @@ public class BilletautomatTest {
     }
     
     @Test
-    public void test_pengeRetur() {
+    public void test_pengeRetur() throws IOException {
         // Det antages at indsættelse af penge er gået godt.
         Billetautomat auto = new Billetautomat();
         
@@ -56,7 +57,7 @@ public class BilletautomatTest {
     }
     
     @Test
-    public void test_pengebalance() {
+    public void test_pengebalance() throws IOException {
         // Det antages at indsættelse af penge er gået godt.
         Billetautomat auto = new Billetautomat();
         
