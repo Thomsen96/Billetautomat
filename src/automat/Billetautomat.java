@@ -1,6 +1,8 @@
 package automat;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -12,7 +14,7 @@ import java.util.List;
  */
 public class Billetautomat {
     
-    private String billetVersion = "";
+    private int billetVersion = 0;
     private String iD = "";
     private double balance = 0;                                 // Hvor mange penge kunden p.t. har puttet i automaten
     private boolean montoertilstand = false;                        // Bestemmer om man har montør retigheder.
@@ -30,7 +32,8 @@ public class Billetautomat {
      * @throws java.io.IOException
      */
     public Billetautomat() throws IOException {
-
+        
+        pullBilleter();
         // Opsætter automaten med 
         List<String> linjer = Files.readAllLines(Paths.get("src/automat/Automat.txt"), Charset.defaultCharset());
         station = linjer.get(0);
@@ -39,8 +42,8 @@ public class Billetautomat {
         linjer.clear();
         
         // opsætter Automaten med billeter
-        linjer = Files.readAllLines(Paths.get("Billeter.txt"), Charset.defaultCharset());
-        billetVersion = linjer.get(0);
+        linjer = Files.readAllLines(Paths.get("src/automat/Billeter.txt"), Charset.defaultCharset());
+        billetVersion = Integer.parseInt(linjer.get(0));
         for( int i = 1; i < linjer.size(); i++) {
             
             String lin = linjer.get(i);
@@ -54,6 +57,7 @@ public class Billetautomat {
         
     }
 
+    
     /**
      *
      * @return - Stations navn.
@@ -169,6 +173,7 @@ public class Billetautomat {
      * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
      *
      * @param inType - Streng navn på billeten
+     * @param inPris prisen på billeten.
      * @param zoner søger efter billeter med det antal zoner
      */
     public void printBillet(String inType, double inPris, int zoner) {
@@ -503,4 +508,51 @@ public class Billetautomat {
         return tempKurv;
     }
 
+    
+    private int pullBilleter() throws IOException {
+        datakommunikation.FtpForbindelse FTP = new datakommunikation.FtpForbindelse();
+        
+        FTP.forbind("ubuntu4.saluton.dk","oop_jonas","java1234");
+        String indhold;
+        
+        indhold = FTP.modtagTekst("RETR Billeter.txt");
+        
+        FileWriter fil = new FileWriter("src/automat/Billeter.txt");
+        PrintWriter ud = new PrintWriter(fil);
+        ud.print(indhold);
+        ud.close();
+        return 1;
+    }
+    
+    public int checkForUpdate() throws IOException {
+        
+        pullBilleter();
+        
+        List<String> linjer = Files.readAllLines(Paths.get("src/automat/Billeter.txt"), Charset.defaultCharset());
+        
+        if(billetVersion < Integer.parseInt(linjer.get(0))) {
+            updateBilleter();
+        } else {
+            return 0;
+        }
+        return 1;
+    }
+    
+    private void updateBilleter() throws IOException {
+        
+        List<String> linjer = Files.readAllLines(Paths.get("src/automat/Billeter.txt"), Charset.defaultCharset());
+                
+        billeter.clear();
+        
+        for( int i = 1; i < linjer.size(); i++) {
+            
+            String lin = linjer.get(i);
+            int split = lin.indexOf("¤");
+            
+            String billetnavn = lin.substring( 0 , split);
+            double billetpris = Double.parseDouble(lin.substring(split + 1));
+            
+            billeter.add(new Billettype(billetnavn, billetpris));
+        }    
+    }
 }

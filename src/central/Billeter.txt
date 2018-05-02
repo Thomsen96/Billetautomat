@@ -1,0 +1,8 @@
+12
+Voksen¤15.0
+Barn (0-14 år)¤6.0
+Cykel¤14.0
+Pensionist¤8.0
+Blå sokker¤4.0
+Weekend¤30.0
+24-Timer (voksen)¤20.0

@@ -2,6 +2,8 @@ package automat;
 
 import java.awt.EventQueue;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class BenytGUI {
@@ -22,11 +24,18 @@ public class BenytGUI {
         // åbn vinduet
         while (mainGUI.isShowing()) {
             try {
-                Thread.sleep(5000);
+                Thread.sleep(10000);
                 EventQueue.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        // Handle billet update
+                        
+                        try {
+                            if(ba.checkForUpdate() == 1) {
+                                mainGUI.updateUserGUI(); 
+                            }
+                        } catch (IOException ex) {
+                            Logger.getLogger(BenytGUI.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
             } catch (InterruptedException ex) {
