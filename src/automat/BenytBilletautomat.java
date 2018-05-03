@@ -18,7 +18,7 @@ public class BenytBilletautomat {
 
         while (true) {
             System.out.println("-----------------------------------------------");
-            automat.udskrivBilletTyper();
+           // automat.udskrivBilletTyper();
             System.out.println("\nBalancen er på " + automat.getBalance() + " kroner");
             System.out.println();
             System.out.println("Tast 1 for at indbetale penge");
@@ -60,7 +60,7 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 2: {                                                       // Der skal printes en liste af forskellige billet typer.
-                    automat.udskrivBilletTyper();
+                    //automat.udskrivBilletTyper();
                     System.out.print("Indtast hvilken type billet du ønsker: ");
                     int type = 0;
                     try {
@@ -90,7 +90,7 @@ public class BenytBilletautomat {
                     break;
                 }
                 case 4: {
-                    automat.udskrivBilletTyper();
+                    //automat.udskrivBilletTyper();
                     break;
                 }
                 case 10: {
@@ -142,7 +142,7 @@ public class BenytBilletautomat {
                             tastatur.nextLine();
                         }
                         if(inBeloeb >= 0){
-                            automat.montoerSetBilletpris(inType, inBeloeb);
+                            //automat.montoerSetBilletpris(inType, inBeloeb);
                         }
                         else{
                             System.out.println("En billet kan ikke have negativ pris.");
@@ -199,7 +199,7 @@ public class BenytBilletautomat {
                                 System.out.println("Der skal indtastes et tal");
                                 tastatur.nextLine();
                             }
-                                automat.montoerFindTilbageBetalinger(beloeb, underOver);
+                                //automat.montoerFindTilbageBetalinger(beloeb, underOver);
                                 break;
                             } case 4: {
                                 System.out.println("Soeg efter indbetalinger.");
@@ -219,7 +219,7 @@ public class BenytBilletautomat {
                                 System.out.println("Der skal indtastes et tal");
                                 tastatur.nextLine();
                             }
-                                automat.montoerFindIndsattePenge(beloeb, underOver);
+                                //automat.montoerFindIndsattePenge(beloeb, underOver);
                                 break;
                             }
                         }

@@ -176,7 +176,8 @@ public class MontoerAendreBilleter extends javax.swing.JPanel {
             ba.billeter.add(new Billettype(txtInputBilletnavn.getText(), (double)jsInputBilletPris.getValue()));
             updateBilletValg();
         } else {
-            ba.montoerOpdaterBillet(billetValg.getSelectedIndex(), txtInputBilletnavn.getText(), (Double)jsInputBilletPris.getValue());
+            ba.montoerOpdaterBilletNavn(billetValg.getSelectedIndex(), txtInputBilletnavn.getText());
+            ba.montoerOpdaterBilletPris(billetValg.getSelectedIndex(), (Double)jsInputBilletPris.getValue());
             updateBilletValg();
 
         }

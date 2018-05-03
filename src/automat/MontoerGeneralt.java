@@ -16,9 +16,9 @@ public class MontoerGeneralt extends javax.swing.JPanel {
     
     public void update() {
         txtOutputBalance.setText(String.format("%.2f",ba.getBalance()));
-        txtOutputSolgt.setText(String.format("%d", ba.getSolgteBilleter()));
+        txtOutputSolgt.setText(String.format("%d", ba.montoerGetAntalBilletterSolgt()));
         txtOutputKunder.setText(String.format("%d", ba.getKunder()));
-        txtOutputTjent.setText(String.format("%.2f",ba.getTotalTjent()));
+        txtOutputTjent.setText(String.format("%.2f",ba.montoerGetTotal()));
         txtStation.setText(ba.getStation());
     }
 

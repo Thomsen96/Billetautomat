@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Model af en simpel billetautomat til enkeltbilletter med én fast pris.
+ * Model af en billetautomat
  */
 public class Billetautomat {
     
@@ -28,47 +28,49 @@ public class Billetautomat {
     ArrayList<Kurv> kurv = new ArrayList<>();               // Holder styr på hvad der er i kurven.
 
     /**
-     * Oprette billetautomaten men nogle standart billeter.
+     * Initialiszere billetautomaten ved at downloade billterne fra en FTP sever.
+     * og læser billeterne ind i programmet fra den down loadede fil.
      * @throws java.io.IOException
      */
     public Billetautomat() throws IOException {
         
-        pullBilleter();
-        // Opsætter automaten med 
+        // Henter filen
+        pullBilleter();  
+        
+        // Læser en fil lokalt der beskriver hvilken station den står på og hvilket ID den har.
         List<String> linjer = Files.readAllLines(Paths.get("src/automat/Automat.txt"), Charset.defaultCharset());
         station = linjer.get(0);
         iD = linjer.get(1);
         
         linjer.clear();
         
-        // opsætter Automaten med billeter
+        // oprætter billeter fra filen.
         linjer = Files.readAllLines(Paths.get("src/automat/Billeter.txt"), Charset.defaultCharset());
+        // BilletVersion er den version af billeter som automaten køre på.
         billetVersion = Integer.parseInt(linjer.get(0));
+        
         for( int i = 1; i < linjer.size(); i++) {
-            
+            // Læser billeten ind. og finder karakteren ¤ som opdeler billetnavne fra prisen.
             String lin = linjer.get(i);
             int split = lin.indexOf("¤");
             
             String billetnavn = lin.substring( 0 , split);
             double billetpris = Double.parseDouble(lin.substring(split + 1));
             
+            // Opretter billeten til Arraylisten.
             billeter.add(new Billettype(billetnavn, billetpris));
         }
-        
     }
 
-    
     /**
      *
-     * @return - Stations navn.
+     * @return - Stationens navn.
      */
     public String getStation() {
         return station;
     }
 
     /**
-     * Sætter stationsnavnet.
-     *
      * @param nyStation - Nyt stations navn
      */
     public void setStation(String nyStation) {
@@ -76,26 +78,23 @@ public class Billetautomat {
     }
 
     /**
-     *
      * @return Antal solgte billeter i denne kørsel.
      */
-    public int getSolgteBilleter() {
+    private int getSolgteBilleter() {
         return solgteBilleter;
     }
 
     /**
-     *
-     * @return
+     * @return Total antal penge automaten har tjent.
      */
-    public double getTotalTjent() {
+    private double getTotalTjent() {
         return totalPengeTjent;
     }
 
     /**
      * Giver prisen for en billet.
-     *
-     * @param inType - billet som String
-     * @param zoner - Antal zoner der ønskes.
+     * @param inType billet som String
+     * @param zoner Antal zoner der ønskes.
      * @return pris på billet med zoner
      */
     public double getBilletpris(String inType, int zoner) {
@@ -106,9 +105,22 @@ public class Billetautomat {
     }
 
     /**
+     * Finder in billets index ud fra navnet.
+     * @param soegType
+     * @return 
+     */
+    private int soegBilletTyper(String soegType) {
+        for (int i = 0; i < billeter.size(); i++) {
+            if (billeter.get(i).getType().equals(soegType)) {
+                return i; // returnere det index som der har det antal zoner.
+            }
+        }
+        return -1; //Hvis der ikke findes en billet med det antal zoner.
+    }
+    
+    /**
      * Modtag nogle penge (i kroner) fra en kunde.
-     *
-     * @param beloeb - Beløb der ønskes indsat
+     * @param beloeb Beløb der ønskes indsat
      */
     public void indsaetPenge(double beloeb) {
         if (beloeb >= 0) {
@@ -121,8 +133,7 @@ public class Billetautomat {
     }
 
     /**
-     * Giver balancen (beloebet maskinen har modtaget til den naeste billet).
-     *
+     * Giver balancen som der er inde i maskinen.
      * @return - Nuvaerende balance
      */
     public double getBalance() {
@@ -131,24 +142,22 @@ public class Billetautomat {
 
     /**
      * Giver det totale antal kunder der har været igennem maskinen.
-     *
-     * @return - Total antal kunder
+     * @return Total antal kunder
      */
     public int getKunder() {
         return kunderTotal;
     }
 
     /**
-     *
-     * @return Totale pris for kurven
+     * @return Totale pris for alle billeterne i kurven.
      */
     public double getTotalPris() {
         return totalPris;
     }
 
     /**
-     *
-     * @return 1 for printede billeter -1 hvis ikke nok penge.
+     * Udskriver billeterne hvis der er penge nok i maskinen.
+     * @return 1 hvis billeter er printet. -1 hvis der ikke var nok penge.
      */
     public int udskrivBilleter() {
         if (balance >= totalPris) {
@@ -170,11 +179,10 @@ public class Billetautomat {
     }
 
     /**
-     * Udskriv en billet. Opdater total og nedskriv balancen med billetprisen
-     *
-     * @param inType - Streng navn på billeten
-     * @param inPris prisen på billeten.
-     * @param zoner søger efter billeter med det antal zoner
+     * Udskriver en billet.
+     * @param inType Billetnavn
+     * @param inPris Billetpris
+     * @param zoner antal zoner billeten er gyldig.
      */
     public void printBillet(String inType, double inPris, int zoner) {
        
@@ -195,8 +203,7 @@ public class Billetautomat {
 
     /**
      * returpenge nulstiller også balancen.
-     *
-     * @return beregner hvor mange penge man skal have retur
+     * @return Antal penge retur
      */
     public double returpenge() {
         double returbeloeb = balance;
@@ -207,12 +214,11 @@ public class Billetautomat {
     }
 
     /**
-     * montoerLogin Bestemmer montoer tilstand ud fra login streng.
-     *
-     * @param adgangskode
+     * Login funktion til montør indstillinger.
+     * @param adgangskode Koden for at logge ind.
      */
     public void montoerLogin(String adgangskode) {
-        if ("1234".equals(adgangskode)) {
+        if (adgangskode.equals("1234")) {
             eventLog.add(new Event("admin login", 0, "", 0));
             montoertilstand = true;
             System.out.println("Montørtilstand aktiveret");
@@ -231,20 +237,12 @@ public class Billetautomat {
     }
 
     /**
-     * getTotal Montoer funktion
-     *
-     * @return penge tjent.
+     * Montør funktion der finder hvor meget der er tjent.
+    * @return penge tjent.
      */
     public double montoerGetTotal() {
         if (montoertilstand) {
-            double total = 0;
-            for (int i = 0; i < eventLog.size(); i++) {
-                if (eventLog.get(i).getValg() == 3) {
-                    total += eventLog.get(i).getVar();
-                }
-            }
-            return total;
-
+            return getTotalTjent();
         } else {
             eventLog.add(new Event("manglende tilladelse", 11, "", 0));
             System.out.println("Afvist - log ind først");
@@ -253,19 +251,12 @@ public class Billetautomat {
     }
 
     /**
-     * getAntalBillerterSolgt Montoer funktion
-     *
+     * Montør funk. Giver antal billeter solgt.
      * @return antal billeter solgt.
      */
     public int montoerGetAntalBilletterSolgt() {
         if (montoertilstand) {
-            int total = 0;
-            for (int i = 0; i < eventLog.size(); i++) {
-                if (eventLog.get(i).getValg() == 3) {
-                    total += 1;
-                }
-            }
-            return total;
+            return getSolgteBilleter();
         } else {
             eventLog.add(new Event("manglende tilladelse", 11, "", 0));
             System.out.println("Afvist - log ind først");
@@ -274,51 +265,35 @@ public class Billetautomat {
     }
 
     /**
-     * setBilletpris Setter en ny billet pris
-     *
-     * @param inType - Billet navn der ønskes ændret
-     * @param inPris - Nye pris på billet.
-     */
-    public void montoerSetBilletpris(String inType, double inPris) {
-        if (montoertilstand) {
-            for (int i = 0; i < billeter.size(); i++) {
-                if (billeter.get(i).getType().equals(inType)) {
-                    billeter.get(i).setBilletpris(inPris);
-                    eventLog.add(new Event("billetpris sat", inPris, inType, 0));
-                    return;
-                }
-            }
-            billeter.add(new Billettype(inType, inPris));
-            eventLog.add(new Event("billetpris sat", inPris, inType, 0));
-        } else {
-            eventLog.add(new Event("manglende tilladelse", 13, "", 0));
-        }
-
-    }
-
-    /**
      * Fjerener en billet fra salgsmulighederne.
-     *
      * @param index i Arraylisten
      */
     public void montoerFjernBillet(int index) {
         billeter.remove(index);
     }
 
+
+    /**
+     * Opdatere en billets navn
+     * @param index Index i arrayet
+     * @param nytNavn nye billetnavn.
+     */
+    public void montoerOpdaterBilletNavn(int index, String nytNavn) {
+        billeter.get(index).setType(nytNavn);
+    }
+    
+
     /**
      * Opdatere en billet.
-     *
      * @param index - Index på Billeten
-     * @param nytNavn - Det nye navn
      * @param nyPris - Den nye pris
      */
-    public void montoerOpdaterBillet(int index, String nytNavn, double nyPris) {
-        billeter.get(index).setType(nytNavn);
+    public void montoerOpdaterBilletPris(int index, double nyPris) {
         billeter.get(index).setBilletpris(nyPris);
-        totalPris = 0;
-        for (int i = 0; i < kurv.size(); i++) {
-            totalPris += kurv.get(i).getPris();
-        }
+//      totalPris = 0;
+//      for (int i = 0; i < kurv.size(); i++) {
+//          totalPris += kurv.get(i).getPris();
+//      }
     }
     
     /**
@@ -343,20 +318,27 @@ public class Billetautomat {
             eventLog.add(new Event("manglende tilladelse", 12, "", 0));
         }
     }
-
+    
+    /**
+     * Printer alle logs hvis man er i montør tilstand
+     */
+    
     public void montoerLog() {
         if (montoertilstand) {
-            System.out.println("Her kommer alle logs:");
-            System.out.println("");
-            eventLog.forEach((Event) -> {
-                Event.printLog();
-            });
+            System.out.println("Her kommer alle logs:\n");
+            for(int i = 0; i < eventLog.size(); i++) {
+                eventLog.get(i).printLog();
+            }
         } else {
             System.out.println("Afvist - log ind først.");
             eventLog.add(new Event("manglende tilladelse", 14, "", 0));
         }
     }
 
+    /**
+     * En søgefunktion der søger på et UUID
+     * @param soeg UUID der søges efter hvis det findes printes den i output.
+     */
     public void montoerFindUUID(String soeg) {
         if (montoertilstand) {
             int count = 0;
@@ -367,7 +349,6 @@ public class Billetautomat {
                     count += 1;
                 }
             }
-
             if (count == 0) {
                 System.out.println("Der var ikke noget UUID med " + soeg);
             }
@@ -377,82 +358,26 @@ public class Billetautomat {
             eventLog.add(new Event("manglende tilladelse", 14, "", 0));
         }
     }
-
-    public void montoerFindTilbageBetalinger(double over, String underOver) {
+    
+    /**
+     * Finder alle indsatte penge i mellem 2 værdier.
+     * @param venstre
+     * @param hoejre 
+     */
+    public void montoerFindIndsattePengeMellem(double venstre, double hoejre) {
         if (montoertilstand) {
             int count = 0;
-            System.out.println("Der ledes efter tilbetalinger " + underOver + " " + over + " kr.\n");
             for (int i = 0; i < eventLog.size(); i++) {
-                if (eventLog.get(i).getVar() >= over && eventLog.get(i).getValg() == 2 && underOver.equals("o") || underOver.equals("O")) {
-                    eventLog.get(i).printLog();
-                    count += 1;
-
-                } else if (eventLog.get(i).getVar() <= over && eventLog.get(i).getValg() == 2 && underOver.equals("u") || underOver.equals("U")) {
-                    eventLog.get(i).printLog();
-                    count += 1;
-                }
-            }
-            if (count == 0 && underOver.equals("o") || underOver.equals("O")) {
-                System.out.println("Der var ingen tilbagebetalinger over " + over + " kr.");
-            }
-            if (count == 0 && underOver.equals("u") || underOver.equals("U")) {
-                System.out.println("Der var ingen tilbagebetalinger under " + over + " kr.");
-            }
-        } else {
-            System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14, "", 0));
-        }
-    }
-
-    public void montoerFindIndsattePenge(double over, String underOver) {
-        if (montoertilstand) {
-            int count = 0;
-            System.out.println("Der ledes efter indbetalinger " + underOver + " " + over + " kr.\n");
-
-            for (int i = 0; i < eventLog.size(); i++) {
-                if (eventLog.get(i).getVar() >= over && eventLog.get(i).getValg() == 1 && underOver.equals("o") || underOver.equals("O")) {
-                    eventLog.get(i).printLog();
-                    count += 1;
-
-                } else if (eventLog.get(i).getVar() <= over && eventLog.get(i).getValg() == 1 && underOver.equals("u") || underOver.equals("U")) {
-                    eventLog.get(i).printLog();
-                    count += 1;
-                }
-            }
-            if (count == 0 && underOver.equals("o") || underOver.equals("O")) {
-                System.out.println("Der var ingen indbagebetalinger over " + over + " kr.");
-            }
-            if (count == 0 && underOver.equals("u") || underOver.equals("U")) {
-                System.out.println("Der var ingen indbagebetalinger under " + over + " kr.");
-            }
-
-        } else {
-            System.out.println("Afvist - log ind først.");
-            eventLog.add(new Event("manglende tilladelse", 14, "", 0));
-        }
-    }
-
-    public void montoerFindIndsattePengeMellem(double venstre, double hoejre, int valg1, int valg2) {
-        if (montoertilstand) {
-            int count = 0;
-            if (venstre < hoejre) {
-                for (int i = 0; i < eventLog.size(); i++) {
-                    if (eventLog.get(i).getVar() >= venstre && eventLog.get(i).getVar() <= hoejre
-                            && eventLog.get(i).getValg() == valg1 || eventLog.get(i).getValg() == valg2) {
+                    if (    eventLog.get(i).getVar()  >= venstre && 
+                            eventLog.get(i).getVar()  <= hoejre  && 
+                            eventLog.get(i).getValg() == 1       ){
+                        
                         eventLog.get(i).printLog();
                         count += 1;
                     }
                 }
-            } else {
-                for (int i = 0; i < eventLog.size(); i++) {
-                    if (eventLog.get(i).getVar() <= venstre && eventLog.get(i).getVar() >= hoejre && eventLog.get(i).getValg() == valg1) {
-                        eventLog.get(i).printLog();
-                        count += 1;
-                    }
-                }
-            }
             if (count == 0) {
-                System.out.println("Intet match på søgning mellem: " + venstre + " og " + hoejre + " kr.");
+                System.out.println("Der er ikke indsat penge i mellem " + venstre + " og " + hoejre + " kr.");
             }
         } else {
             System.out.println("Afvist - log ind først.");
@@ -460,44 +385,88 @@ public class Billetautomat {
         }
     }
 
+    
+    public void montoerFindReturPengeMellem(double venstre, double hoejre) {
+        if (montoertilstand) {
+            int count = 0;
+            for (int i = 0; i < eventLog.size(); i++) {
+                    if (    eventLog.get(i).getVar()  >= venstre && 
+                            eventLog.get(i).getVar()  <= hoejre  && 
+                            eventLog.get(i).getValg() == 2       ){ // Valg 2 er Event "retur"
+                        
+                        eventLog.get(i).printLog();
+                        count += 1;
+                    }
+                }
+            if (count == 0) {
+                System.out.println("Der er ikke returneret penge i mellem " + venstre + " og " + hoejre + " kr.");
+            }
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14, "", 0));
+        }
+    }
+    
+    /**
+     * Printer alle logs der håndtere penge ind og ud af maskinen.
+     * @param venstre
+     * @param hoejre 
+     */
+    public void montoerFindPengeMellem(double venstre, double hoejre) {
+        if (montoertilstand) {
+            int count = 0;
+            for (int i = 0; i < eventLog.size(); i++) {
+                    if (    eventLog.get(i).getVar()  >= venstre && 
+                            eventLog.get(i).getVar()  <= hoejre  && 
+                            eventLog.get(i).getValg() == 1       || // Indsæt penge
+                            eventLog.get(i).getValg() == 2       ){ // Retur  penge
+                        
+                        eventLog.get(i).printLog();
+                        count += 1;
+                    }
+                }
+            if (count == 0) {
+                System.out.println("Der er ikke returneret penge i mellem " + venstre + " og " + hoejre + " kr.");
+            }
+        } else {
+            System.out.println("Afvist - log ind først.");
+            eventLog.add(new Event("manglende tilladelse", 14, "", 0));
+        }
+        
+    }
+    
     /**
      * erMontoer Checker om tilstanden er montoer.
-     *
      * @return montoertilstand
      */
     public boolean erMontoer() {
         return montoertilstand;
     }
 
-    public void udskrivBilletTyper() {
-        for (int i = 0; i < billeter.size(); i++) {
-            System.out.println((i + 1) + ". for en " + billeter.get(i).getType() + " koster " + billeter.get(i).getBilletpris() + " kroner.");
-        }
-    }
-
-    public int soegBilletTyper(String soegType) {
-        for (int i = 0; i < billeter.size(); i++) {
-            if (billeter.get(i).getType().equals(soegType)) {
-                return i; // returnere det index som der har det antal zoner.
-            }
-        }
-        return -1; //Hvis der ikke findes en billet med det antal zoner.
-    }
-
+    /**
+     * Tilføjer en billet til kurven.
+     * @param inAntal Antal billeter
+     * @param inString Billetnavnet
+     * @param inZoner Antal zoner
+     * @param inPris Prisen for de valgt billeter
+     * @param inIndex Indexet i billeterne.
+     */
     public void addtoKurv(int inAntal, String inString, int inZoner, double inPris, int inIndex) {
         kurv.add(new Kurv(inAntal, inString, inZoner, inPris, inIndex));
         totalPris += inPris;
-
     }
 
+    /**
+     * Fjerner et objekt i kurven.
+     * @param index indexet i kurven der ønskes slettet.
+     */
     public void removeItemKurv(int index) {
         totalPris -= kurv.get(index).getPris();
         kurv.remove(index);
     }
 
     /**
-     * Giver en kurv.
-     *
+     * Returner en kruv og sletter den fra arraylisten.
      * @param index - Den plads i arrayListen der ønskes returneret.
      * @return Det kurv objekt der er ønsket.
      */
@@ -508,8 +477,12 @@ public class Billetautomat {
         return tempKurv;
     }
 
-    
-    private int pullBilleter() throws IOException {
+    /**
+     * Downloader Billeter.txt filen fra en FTP server.
+     * @return 1 hvis det er gået godt
+     * @throws IOException 
+     */
+    private void pullBilleter() throws IOException {
         datakommunikation.FtpForbindelse FTP = new datakommunikation.FtpForbindelse();
         
         FTP.forbind("ubuntu4.saluton.dk","oop_jonas","java1234");
@@ -521,9 +494,13 @@ public class Billetautomat {
         PrintWriter ud = new PrintWriter(fil);
         ud.print(indhold);
         ud.close();
-        return 1;
     }
     
+    /**
+     * downloader en ny Billeter.txt fil og ser om billeterne skal opdateres.
+     * @return 1 hvis der er opdateret. ellers 0.
+     * @throws IOException 
+     */
     public int checkForUpdate() throws IOException {
         
         pullBilleter();
@@ -538,10 +515,16 @@ public class Billetautomat {
         return 1;
     }
     
+    /**
+     * Opdatere billeterne ud fra den nye fil.
+     * @throws IOException 
+     */
     private void updateBilleter() throws IOException {
         
         List<String> linjer = Files.readAllLines(Paths.get("src/automat/Billeter.txt"), Charset.defaultCharset());
                 
+        billetVersion = Integer.parseInt(linjer.get(0));
+        
         billeter.clear();
         
         for( int i = 1; i < linjer.size(); i++) {

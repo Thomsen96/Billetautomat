@@ -193,19 +193,19 @@ public class MontoerSoegninger extends javax.swing.JPanel {
     private void btnIndSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIndSearchActionPerformed
         double venstre = (Double)jSpinner_ind_venstre.getValue();
         double hoejre = (Double)jSpinner_ind_h.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, hoejre , 1, 1);
+        ba.montoerFindIndsattePengeMellem(venstre, hoejre);
     }//GEN-LAST:event_btnIndSearchActionPerformed
 
     private void btnReturSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturSearchActionPerformed
         double venstre = (Double)jSpinner_retur_venstre.getValue();
         double hoejre = (Double)jSpinner_retur_h.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, hoejre , 2, 2);
+        ba.montoerFindReturPengeMellem(venstre, hoejre);
     }//GEN-LAST:event_btnReturSearchActionPerformed
 
     private void btnPengeSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengeSearchActionPerformed
         double venstre = (Double)jSpinner_penge_venstre.getValue();
         double hoejre = (Double)jSpinner_penge_h.getValue();
-        ba.montoerFindIndsattePengeMellem(venstre, hoejre , 1, 2);
+        ba.montoerFindPengeMellem(venstre, hoejre);
     }//GEN-LAST:event_btnPengeSearchActionPerformed
 
     private void btnUUIDSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUUIDSearchActionPerformed
