@@ -14,14 +14,16 @@ public class BenytGUI {
         MainGUI mainGUI = new MainGUI();                                       
         JFrame vindue = new JFrame("Billetautomat v.4.232.9960");               
         
+        // Setup GUI'en med værdierne.
         mainGUI.setup(ba);
         
+        // Setup vinduet.
         vindue.add(mainGUI);                                                    // vis panelet i vinduet
         vindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
         vindue.pack();                                                          // set vinduets stoerrelse
         vindue.setVisible(true);
 
-        // åbn vinduet
+        // Luk programmet hvis vinduet lukkes
         while (mainGUI.isShowing()) {
             try {
                 Thread.sleep(10000);

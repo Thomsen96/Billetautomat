@@ -186,7 +186,7 @@ public class Billetautomat {
      */
     public void printBillet(String inType, double inPris, int zoner) {
        
-        eventLog.add(new Event("print billet", inPris, "", zoner));
+        eventLog.add(new Event("print billet", inPris, inType, zoner));
 
         System.out.println("###################B##T###################");
         System.out.println("#          BlueJ Trafikselskab           #");
@@ -368,8 +368,8 @@ public class Billetautomat {
         if (montoertilstand) {
             int count = 0;
             for (int i = 0; i < eventLog.size(); i++) {
-                    if (    eventLog.get(i).getVar()  >= venstre && 
-                            eventLog.get(i).getVar()  <= hoejre  && 
+                    if (    eventLog.get(i).getValue()  >= venstre && 
+                            eventLog.get(i).getValue()  <= hoejre  && 
                             eventLog.get(i).getValg() == 1       ){
                         
                         eventLog.get(i).printLog();
@@ -390,8 +390,8 @@ public class Billetautomat {
         if (montoertilstand) {
             int count = 0;
             for (int i = 0; i < eventLog.size(); i++) {
-                    if (    eventLog.get(i).getVar()  >= venstre && 
-                            eventLog.get(i).getVar()  <= hoejre  && 
+                    if (    eventLog.get(i).getValue()  >= venstre && 
+                            eventLog.get(i).getValue()  <= hoejre  && 
                             eventLog.get(i).getValg() == 2       ){ // Valg 2 er Event "retur"
                         
                         eventLog.get(i).printLog();
@@ -416,8 +416,8 @@ public class Billetautomat {
         if (montoertilstand) {
             int count = 0;
             for (int i = 0; i < eventLog.size(); i++) {
-                    if (    eventLog.get(i).getVar()  >= venstre && 
-                            eventLog.get(i).getVar()  <= hoejre  && 
+                    if (    eventLog.get(i).getValue()  >= venstre && 
+                            eventLog.get(i).getValue()  <= hoejre  && 
                             eventLog.get(i).getValg() == 1       || // Indsæt penge
                             eventLog.get(i).getValg() == 2       ){ // Retur  penge
                         

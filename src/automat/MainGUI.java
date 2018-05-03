@@ -3,7 +3,6 @@ package automat;
 public class MainGUI extends javax.swing.JPanel {
     
     Billetautomat ba;
-    MainGUI ejer = this;
 
     public MainGUI() {
         initComponents(); 
@@ -20,13 +19,14 @@ public class MainGUI extends javax.swing.JPanel {
      * Denne funktion bliver brugt til at oprette GUI vinduet og sikre at alle de
      * forskellige paneler har de rigtige rettigheder og egenskaber.
      * @param ba Instansen af billetautomaten.
+     * this Er denne GUI, og det gør at de alle sammen har mulighed for at tilgå funktionerne i denne fil.
      */
     public void setup(Billetautomat ba) {
         this.ba = ba;
-        koebGUI1.setup(ba, ejer);
-        userGUI1.setup(ba, ejer);
-        montoerLoginGUI1.setup(ba, ejer);
-        montoerGUI1.setup(ba, ejer);
+        koebGUI1.setup(ba, this);
+        userGUI1.setup(ba, this);
+        montoerLoginGUI1.setup(ba, this);
+        montoerGUI1.setup(ba, this);
     }
     
     /**
@@ -38,12 +38,11 @@ public class MainGUI extends javax.swing.JPanel {
         userGUI1.updateBilletValg();
     }
     
-
-
-    
-    
-    
-    
+    /**
+     * Denne funktion bruges til at skifte imellem skærmbilleder.
+     * Og den opdatere alle siderne.
+     * @param index Det index man ønsker at skifte til.
+     */
     public void setTab(int index) {
         jTabbedPane1.setSelectedIndex(index);
         userGUI1.update();

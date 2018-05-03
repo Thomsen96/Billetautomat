@@ -10,32 +10,39 @@ public class Event {
     private Date Dato = new Date();
     private UUID uuid = UUID.randomUUID();
     private String event;
-    private double var1;
-    private String var2;
+    private double penge;
+    private String billetnavn;
     private int zoner;
     private String tekst;
     private int eventType;
     
     
-    
-    public Event(String event, double var, String inString, int zoner) {
+    /**
+     * Konstruktoren opretter en streng med nogle parameter. Ud fra disse parameter
+     * kan man finde specifikke events igen.
+     * @param event      Brues til at bestemme opbygning af steng.
+     * @param penge        Bruges til at holde værdier i forskellige scenarier.
+     * @param billetNavn Bruges til at sige hvilken billet der printes.
+     * @param zoner      Bruges til at skrive hvor mange zoner der printes.
+     */
+    public Event(String event, double penge, String billetNavn, int zoner) {
         this.event = event;
-        this.var1 = var;
-        this.var2 = inString;
+        this.penge = penge;
+        this.billetnavn = billetNavn;
         this.zoner = zoner;
         
         switch(event) {
             case "insert penge" : {
                 eventType = 1;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er indsat " + var +" kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er indsat " + penge +" kr.";
                 break;
             } case "penge retur": {
                 eventType = 2;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er returneret " + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er returneret " + penge + " kr.";
                 break;
             } case "print billet": {
                 eventType = 3;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en" + inString + " billet til " + var + " kr. med " + zoner + " zoner.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en" + billetnavn + " billet til " + penge + " kr. med " + zoner + " zoner.";
                 break;
             } case "admin login": {
                 eventType = 4;
@@ -55,11 +62,11 @@ public class Event {
                 break;
             } case "billetpris sat": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er oprettet en ny type billet: " + inString + " en zone er sat til " + var + " kr.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er oprettet en ny type billet: " + billetNavn + " en zone er sat til " + penge + " kr.";
                 break;
             } case "manglende tilladelse": {
                 eventType = 8;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsøgt at tilgå montoer funktion ID: " + var;
+                tekst = uuid.toString() + " " + Dato.toString() + " Der er forsøgt at tilgå montoer funktion ID: " + penge;
                 break;
             } default: {
                 eventType = 0;
@@ -70,26 +77,50 @@ public class Event {
         }
     }
     
+    /**
+     * Printer denne log.
+     */
     public void printLog() {
         System.out.println(tekst);
     }
     
+    /**
+     * Sammenligner 2 UUID's
+     * @param soeg Det UUID man øsner sammenlignet med denne uuid.
+     * @return Boelean om det var et match.
+     */
     public boolean sammenlignUUID (String soeg) {
-        return uuid.toString().equals(soeg);
+        return soeg.equals(uuid.toString());
     }
     
-    public double getVar() {
-        return var1;
+    /**
+     * Den værdi der er i "penge" i dette objekt.
+     * @return værdi
+     */
+    public double getValue() {
+        return penge;
     }
     
+    /**
+     * Hvilket ID er dette objekt
+     * @return ID på objektet.
+     */
     public int getValg() {
         return eventType;
     }
     
+    /**
+     * 
+     * @return UUID'et for dette objekt.
+     */
     public UUID getUUID() {
         return uuid;
     }
     
+    /**
+     * 
+     * @return Dato fra dette objekt.
+     */
     public Date getDato() {
         return Dato;
     }
