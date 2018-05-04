@@ -19,7 +19,6 @@ public class MontoerGUI extends javax.swing.JPanel {
     this.ejer = ejer;
     montoerGeneralt1.setup(ba);
     montoerSoegninger1.setup(ba);
-    montoerAendreBilleter1.setup(ba, ejer);
     update();
     }
     
@@ -29,7 +28,6 @@ public class MontoerGUI extends javax.swing.JPanel {
     public void update() {
         
         montoerGeneralt1.update();
-        montoerAendreBilleter1.update();
     }
 
      /**
@@ -44,7 +42,6 @@ public class MontoerGUI extends javax.swing.JPanel {
         tabSearch = new javax.swing.JTabbedPane();
         montoerGeneralt1 = new automat.MontoerGeneralt();
         montoerSoegninger1 = new automat.MontoerSoegninger();
-        montoerAendreBilleter1 = new automat.MontoerAendreBilleter();
         jTabbedPane1 = new javax.swing.JTabbedPane();
 
         tabSearch.setMaximumSize(new java.awt.Dimension(358, 287));
@@ -56,7 +53,6 @@ public class MontoerGUI extends javax.swing.JPanel {
         });
         tabSearch.addTab("Generalt", montoerGeneralt1);
         tabSearch.addTab("Søgning", montoerSoegninger1);
-        tabSearch.addTab("Ændre billeter", montoerAendreBilleter1);
         tabSearch.addTab("Log ud", jTabbedPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -72,7 +68,7 @@ public class MontoerGUI extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabSearchStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_tabSearchStateChanged
-        if(this.tabSearch.getSelectedIndex() == 3) {
+        if(this.tabSearch.getSelectedIndex() == 2) {
             ejer.setTab(0);
             this.tabSearch.setSelectedIndex(0);
             ba.montoerLogin("");
@@ -82,7 +78,6 @@ public class MontoerGUI extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPane1;
-    private automat.MontoerAendreBilleter montoerAendreBilleter1;
     private automat.MontoerGeneralt montoerGeneralt1;
     private automat.MontoerSoegninger montoerSoegninger1;
     private javax.swing.JTabbedPane tabSearch;

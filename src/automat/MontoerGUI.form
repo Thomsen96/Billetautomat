@@ -59,15 +59,6 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="automat.MontoerAendreBilleter" name="montoerAendreBilleter1">
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="&#xc6;ndre billeter">
-                <Property name="tabTitle" type="java.lang.String" value="&#xc6;ndre billeter"/>
-              </JTabbedPaneConstraints>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
