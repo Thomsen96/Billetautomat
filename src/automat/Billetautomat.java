@@ -34,49 +34,59 @@ public class Billetautomat {
      */
     public Billetautomat() throws IOException {
         
-        // Henter filen
-        pullBilleter();  
+    
+        
+        setupStation();
+        pullBilleter();
+        updateBilleter();
+        
+        
+    }
+
+    /**
+     * Læser stations navn og ID fra en fil.
+     * @throws IOException 
+     */
+    private void setupStation() throws IOException {
         
         // Læser en fil lokalt der beskriver hvilken station den står på og hvilket ID den har.
         List<String> linjer = Files.readAllLines(Paths.get("src/automat/Automat.txt"), Charset.defaultCharset());
         station = linjer.get(0);
         iD = linjer.get(1);
-        
-        linjer.clear();
-        
-        // oprætter billeter fra filen.
-        linjer = Files.readAllLines(Paths.get("src/automat/Billeter.txt"), Charset.defaultCharset());
-        // BilletVersion er den version af billeter som automaten køre på.
-        billetVersion = Integer.parseInt(linjer.get(0));
-        
-        for( int i = 1; i < linjer.size(); i++) {
-            // Læser billeten ind. og finder karakteren ¤ som opdeler billetnavne fra prisen.
-            String lin = linjer.get(i);
-            int split = lin.indexOf("¤");
-            
-            String billetnavn = lin.substring( 0 , split);
-            double billetpris = Double.parseDouble(lin.substring(split + 1));
-            
-            // Opretter billeten til Arraylisten.
-            billeter.add(new Billettype(billetnavn, billetpris));
-        }
     }
-
     /**
-     *
      * @return - Stationens navn.
      */
-    public String getStation() {
+    public String getStationNavn() {
         return station;
+    }
+    
+    /**
+     * @return - Stationens iD.
+     */
+    public String getStationiD() {
+        return iD;
     }
 
     /**
      * @param nyStation - Nyt stations navn
+     * @param nyiD      - Nyt stations ID
      */
-    public void setStation(String nyStation) {
+    public void setAutomat(String nyStation ,String nyiD) throws IOException {
         station = nyStation;
+        iD = nyiD;
+        FileWriter fil = new FileWriter("src/automat/Automat.txt");
+        PrintWriter ud = new PrintWriter(fil);
+        ud.println(station);
+        ud.print(iD);
+        ud.close();
     }
+    
 
+    
+    
+    
+    
     /**
      * @return Antal solgte billeter i denne kørsel.
      */
@@ -320,10 +330,10 @@ public class Billetautomat {
     }
     
     /**
-     * Printer alle logs hvis man er i montør tilstand
+     * Printer alle logs i output hvis man er i montør tilstand
      */
     
-    public void montoerLog() {
+    public void montoerPrintLogs() {
         if (montoertilstand) {
             System.out.println("Her kommer alle logs:\n");
             for(int i = 0; i < eventLog.size(); i++) {
@@ -426,7 +436,7 @@ public class Billetautomat {
                     }
                 }
             if (count == 0) {
-                System.out.println("Der er ikke returneret penge i mellem " + venstre + " og " + hoejre + " kr.");
+                System.out.println("Der er ikke nogle transaktioner i mellem " + venstre + " og " + hoejre + " kr.");
             }
         } else {
             System.out.println("Afvist - log ind først.");

@@ -1,6 +1,8 @@
 
 package automat;
 
+import java.io.IOException;
+
 public class MontoerGeneralt extends javax.swing.JPanel {
     
     Billetautomat ba;
@@ -11,7 +13,6 @@ public class MontoerGeneralt extends javax.swing.JPanel {
     
     public void setup(Billetautomat ba) {
         this.ba = ba;
-        update();
     }
     
     public void update() {
@@ -19,7 +20,8 @@ public class MontoerGeneralt extends javax.swing.JPanel {
         txtOutputSolgt.setText(String.format("%d", ba.montoerGetAntalBilletterSolgt()));
         txtOutputKunder.setText(String.format("%d", ba.getKunder()));
         txtOutputTjent.setText(String.format("%.2f",ba.montoerGetTotal()));
-        txtStation.setText(ba.getStation());
+        txtStation.setText(ba.getStationNavn());
+        txtStationID.setText(ba.getStationiD());
     }
 
     @SuppressWarnings("unchecked")
@@ -39,6 +41,8 @@ public class MontoerGeneralt extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtStation = new javax.swing.JTextField();
         btnSetStation = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtStationID = new javax.swing.JTextField();
 
         jLabel2.setText("Balancen er:");
 
@@ -56,9 +60,14 @@ public class MontoerGeneralt extends javax.swing.JPanel {
 
         txtOutputSolgt.setEditable(false);
 
-        jLabel1.setText("Udskriv loggen til en fil:");
+        jLabel1.setText("Udskriv loggen output:");
 
         btnPrintLog.setText("Udskriv");
+        btnPrintLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintLogActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Station:");
 
@@ -70,6 +79,8 @@ public class MontoerGeneralt extends javax.swing.JPanel {
                 btnSetStationActionPerformed(evt);
             }
         });
+
+        jLabel7.setText("iD:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -91,36 +102,42 @@ public class MontoerGeneralt extends javax.swing.JPanel {
                     .addComponent(txtOutputKunder)
                     .addComponent(txtOutputTjent))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtStation, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtStation, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtStationID, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSetStation)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtOutputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(txtStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSetStation))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtOutputKunder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtOutputBalance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtStation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtOutputKunder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)
+                            .addComponent(txtStationID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnSetStation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtOutputSolgt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(6, 6, 6))
+                    .addComponent(jLabel4)
                     .addComponent(txtOutputTjent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -131,8 +148,16 @@ public class MontoerGeneralt extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSetStationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetStationActionPerformed
-        ba.setStation(txtStation.getText());
+        try {
+            ba.setAutomat(txtStation.getText(), txtStationID.getText());
+        } catch (IOException ex) {
+            System.out.println("automat.MontoerGeneralt.btnSetStationActionPerformed()");
+        }
     }//GEN-LAST:event_btnSetStationActionPerformed
+
+    private void btnPrintLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintLogActionPerformed
+        ba.montoerPrintLogs();
+    }//GEN-LAST:event_btnPrintLogActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -144,10 +169,12 @@ public class MontoerGeneralt extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtOutputBalance;
     private javax.swing.JTextField txtOutputKunder;
     private javax.swing.JTextField txtOutputSolgt;
     private javax.swing.JTextField txtOutputTjent;
     private javax.swing.JTextField txtStation;
+    private javax.swing.JTextField txtStationID;
     // End of variables declaration//GEN-END:variables
 }

@@ -51,7 +51,7 @@ public class UserGUI extends javax.swing.JPanel {
         double pris = (Integer)billetInput.getValue() * ba.getBilletpris(ba.billeter.get(billetValg.getSelectedIndex()).getType(), (Integer)zoneInput.getValue());
         subTotalOutput.setText(String.format("%.2f kr",pris));
         totalPrisOut.setText(String.format("%.2f kr", ba.getTotalPris()));
-        labStation.setText(ba.getStation());
+        labStation.setText(ba.getStationNavn());
     }
 
     @SuppressWarnings("unchecked")

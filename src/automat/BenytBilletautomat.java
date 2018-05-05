@@ -168,7 +168,7 @@ public class BenytBilletautomat {
                         }
                         switch(tast) {
                             case 1: {
-                                automat.montoerLog();
+                                automat.montoerPrintLogs();
                                 break;
                             } case 2: {
                                 System.out.print("Indtast UUID: ");

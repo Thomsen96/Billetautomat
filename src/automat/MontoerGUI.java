@@ -19,13 +19,13 @@ public class MontoerGUI extends javax.swing.JPanel {
     this.ejer = ejer;
     montoerGeneralt1.setup(ba);
     montoerSoegninger1.setup(ba);
-    update();
+    
     }
     
     
     
     
-    public void update() {
+    public void updateMontoerGUI() {
         
         montoerGeneralt1.update();
     }

@@ -26,7 +26,7 @@ public class BenytGUI {
         // Luk programmet hvis vinduet lukkes
         while (mainGUI.isShowing()) {
             try {
-                Thread.sleep(10000);
+                
                 EventQueue.invokeLater(new Runnable() {
                     @Override
                     public void run() {
@@ -40,7 +40,10 @@ public class BenytGUI {
                         }
                     }
                 });
+                
+                Thread.sleep(60000);
             } catch (InterruptedException ex) {
+                
             }
         }
     }

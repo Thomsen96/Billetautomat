@@ -38,6 +38,10 @@ public class MainGUI extends javax.swing.JPanel {
         userGUI1.updateBilletValg();
     }
     
+    public void updateMontoerGUI() {
+        montoerGUI1.updateMontoerGUI();
+    }
+    
     /**
      * Denne funktion bruges til at skifte imellem skærmbilleder.
      * Og den opdatere alle siderne.
@@ -47,7 +51,6 @@ public class MainGUI extends javax.swing.JPanel {
         jTabbedPane1.setSelectedIndex(index);
         userGUI1.update();
         koebGUI1.update();
-        montoerGUI1.update();
     }
     
 

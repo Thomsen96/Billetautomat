@@ -21,6 +21,7 @@ public class montoerLoginGUI extends javax.swing.JPanel {
         passInput.setText("");
         ba.montoerLogin(kode);
         if(ba.erMontoer()) {
+            ejer.updateMontoerGUI();
             ejer.setTab(3);
         } else {
             ejer.setTab(0);

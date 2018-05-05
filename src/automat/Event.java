@@ -42,7 +42,7 @@ public class Event {
                 break;
             } case "print billet": {
                 eventType = 3;
-                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en" + billetnavn + " billet til " + penge + " kr. med " + zoner + " zoner.";
+                tekst = uuid.toString() + " " + Dato.toString() + " Der printes en " + billetnavn + " billet til " + penge + " kr. med " + zoner + " zoner.";
                 break;
             } case "admin login": {
                 eventType = 4;
