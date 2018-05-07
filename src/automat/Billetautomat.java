@@ -71,15 +71,16 @@ public class Billetautomat {
     /**
      * @param nyStation - Nyt stations navn
      * @param nyiD      - Nyt stations ID
+     * @throws java.io.IOException
      */
     public void setAutomat(String nyStation ,String nyiD) throws IOException {
         station = nyStation;
         iD = nyiD;
         FileWriter fil = new FileWriter("src/automat/Automat.txt");
-        PrintWriter ud = new PrintWriter(fil);
-        ud.println(station);
-        ud.print(iD);
-        ud.close();
+        try (PrintWriter ud = new PrintWriter(fil)) {
+            ud.println(station);
+            ud.print(iD);
+        }
     }
     
 
