@@ -306,7 +306,7 @@ public class UserGUI extends javax.swing.JPanel {
         
         if (kurvList.getSelectedIndex() >= 0) {
             Kurv tempKurv = ba.getkurv(kurvList.getSelectedIndex());
-
+            
             billetValg.select(tempKurv.getIndex());
             zoneInput.setValue(tempKurv.getZoner());
             billetInput.setValue(tempKurv.getAntalBilleter());
@@ -329,44 +329,11 @@ public class UserGUI extends javax.swing.JPanel {
     }//GEN-LAST:event_fjernFraKurvActionPerformed
 
     private void btnOpenMontoerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenMontoerActionPerformed
-        /*
-        MontoerGUI mGUI = new MontoerGUI();
-        JFrame MontoerVindue = new JFrame("Montør");               // opret et vindue på skærmen
-        
-        mGUI.ba = this.ba;
-        mGUI.montoerGUI = MontoerVindue;
-        mGUI.userGUI = this;
-        mGUI.updateBilletValg();
-        ba.montoerLogin("1234");
-        
-        MontoerVindue.add(mGUI);                                                       // vis panelet i vinduet
-        MontoerVindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        MontoerVindue.pack();                                                          // sæt vinduets størrelse
-        MontoerVindue.setVisible(true);                                                // åbn vinduet
-        mGUI.update();
-        */
-        ejer.setTab(2);
-        
+        ejer.setTab(2);    // MontoerLoginGUI
     }//GEN-LAST:event_btnOpenMontoerActionPerformed
 
     private void btnOpenKoebActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpenKoebActionPerformed
-        /*
-        KoebGUI kGUI = new KoebGUI();
-        JFrame KoebVindue = new JFrame("Betaling");               // opret et vindue på skærmen
-        
-        // Sender Egenskaber videre til betalings vinduet.
-        kGUI.ba = this.ba;
-        kGUI.koebGUI = KoebVindue;
-        kGUI.userGUI = this;
-        kGUI.update();
-        
-        // Opsætning af vinduet.
-        KoebVindue.add(kGUI);                                                       // vis panelet i vinduet
-        KoebVindue.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);               // reagér på luk
-        KoebVindue.pack();                                                          // sæt vinduets størrelse
-        KoebVindue.setVisible(true);                                                // åbn vinduet
-        */
-        ejer.setTab(1);
+        ejer.setTab(1);   // KoebGUI
         
     }//GEN-LAST:event_btnOpenKoebActionPerformed
 
