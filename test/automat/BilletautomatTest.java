@@ -89,18 +89,16 @@ public class BilletautomatTest {
         auto.returpenge();
     }
 
-}
-    
-   /* 
     @Test
-    public void test_KoebAfBillet() {
+    public void test_KoebAfBillet() throws IOException {
         // Test på køb af billeter.
         Billetautomat auto = new Billetautomat();
         
         auto.indsaetPenge(100);
-        auto.udskrivBillet(0, 1);
-        assertEquals(88, auto.getBalance(), 0.0001);
-        
+        auto.addtoKurv(1, "Voksen", 1, 10, 0);
+        assertEquals(1, auto.udskrivBilleter());
+        assertEquals(0, auto.getBalance(), 0.0001);
+        /*
         auto.udskrivBillet(1, 1);
         assertEquals(82, auto.getBalance(), 0.0001);
         
@@ -120,8 +118,11 @@ public class BilletautomatTest {
         assertEquals(6, auto.getBalance(), 0.0001);
         
         assertEquals(6, auto.returpenge(), 0.0001);
+        */
     }
     
+}
+    /*
     @Test
     public void test_KoebAfZoneBillet() {
         // Test på køb af billeter.

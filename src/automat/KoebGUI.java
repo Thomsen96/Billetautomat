@@ -293,7 +293,6 @@ public class KoebGUI extends javax.swing.JPanel {
         }
 
         if( ba.udskrivBilleter() > 0) {
-            ba.returpenge();
             ejer.setTab(0);
             ejer.updateUserGUI();
         } else {
@@ -343,7 +342,6 @@ public class KoebGUI extends javax.swing.JPanel {
     private void btnBetalKontantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBetalKontantActionPerformed
         if( ba.getBalance() >= ba.getTotalPris()) {
             if( ba.udskrivBilleter() > 0) {
-                ba.returpenge();
                 ejer.setTab(0);
                 ejer.updateUserGUI();
             } else {

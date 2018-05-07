@@ -180,6 +180,7 @@ public class Billetautomat {
                 }
             }
             balance -= totalPris;
+            returpenge();
             kunderTotal += 1;
             kurv.clear();
             totalPris = 0;

@@ -57,7 +57,7 @@ public class Kurv {
     
     /**
      * 
-     * @return In
+     * @return Index
      */
     public int getIndex() {
         return index;
