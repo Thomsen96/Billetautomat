@@ -2,7 +2,6 @@ package central;
 public class CentralGUI extends javax.swing.JPanel {
     
     Central c;
-    CentralGUI ejer = this;
     
     
     public CentralGUI() {
@@ -11,7 +10,7 @@ public class CentralGUI extends javax.swing.JPanel {
     
     public void setup(Central c) {
         this.c = c;
-        AendreBillerterGUI1.setup(c, ejer);
+        AendreBillerterGUI1.setup(c, this);
     }
 
     @SuppressWarnings("unchecked")

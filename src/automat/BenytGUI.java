@@ -36,7 +36,7 @@ public class BenytGUI {
                                 mainGUI.updateUserGUI(); 
                             }
                         } catch (IOException ex) {
-                            Logger.getLogger(BenytGUI.class.getName()).log(Level.SEVERE, null, ex);
+                            System.err.println("Ingen internet forbindelse, og kan derfor ikke opdatere billeter.");
                         }
                     }
                 });

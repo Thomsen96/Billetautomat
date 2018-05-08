@@ -3,17 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/BenytBilletautomat.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/Billettype.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/MontoerGeneralt.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/central/BenytCental.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/Billetautomat.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/UserGUI.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/MontoerGUI.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/BenytGUI.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/MainGUI.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/MontoerSoegninger.java</file>
-            <file>file:/C:/Users/asbjo/Documents/Objektorienteret%20programmering/Billetautomat/src/automat/Event.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/MontoerGeneralt.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/Event.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/central/Central.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/BenytGUI.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/montoerLoginGUI.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/MainGUI.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/Billetautomat.java</file>
+            <file>file:/C:/Users/Jonas/Documents/GitHub/Billetautomat/src/automat/MontoerGUI.java</file>
         </group>
     </open-files>
 </project-private>
