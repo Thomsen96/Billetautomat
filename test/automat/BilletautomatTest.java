@@ -98,27 +98,7 @@ public class BilletautomatTest {
         auto.addtoKurv(1, "Voksen", 1, 10, 0);
         assertEquals(1, auto.udskrivBilleter());
         assertEquals(0, auto.getBalance(), 0.0001);
-        /*
-        auto.udskrivBillet(1, 1);
-        assertEquals(82, auto.getBalance(), 0.0001);
         
-        auto.udskrivBillet(2, 1);
-        assertEquals(68, auto.getBalance(), 0.0001);
-        
-        auto.udskrivBillet(3, 1);
-        assertEquals(60, auto.getBalance(), 0.0001);
-        
-        auto.udskrivBillet(4, 1);
-        assertEquals(56, auto.getBalance(), 0.0001);
-        
-        auto.udskrivBillet(5, 1);
-        assertEquals(26, auto.getBalance(), 0.0001);
-        
-        auto.udskrivBillet(6, 1);
-        assertEquals(6, auto.getBalance(), 0.0001);
-        
-        assertEquals(6, auto.returpenge(), 0.0001);
-        */
     }
     
 }
