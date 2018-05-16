@@ -2,13 +2,11 @@ package automat;
 
 import java.awt.EventQueue;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class BenytGUI {
 
-    public static void main(String[] arg) throws IOException {
+    public static void main(String[] arg) throws IOException, InterruptedException {
 
         Billetautomat ba = new Billetautomat();
         MainGUI mainGUI = new MainGUI();                                       
@@ -26,25 +24,13 @@ public class BenytGUI {
         // Luk programmet hvis vinduet lukkes
         while (mainGUI.isShowing()) {
             try {
-                
-                EventQueue.invokeLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        
-                        try {
-                            if(ba.checkForUpdate() == 1) {
-                                mainGUI.updateUserGUI(); 
-                            }
-                        } catch (IOException ex) {
-                            System.err.println("Ingen internet forbindelse, og kan derfor ikke opdatere billeter.");
-                        }
-                    }
-                });
-                
-                Thread.sleep(60000);
-            } catch (InterruptedException ex) {
-                
+                if(ba.checkForUpdate() == 1) {
+                    mainGUI.updateUserGUI(); 
+                }
+            } catch (IOException ex) {
+                System.err.println("Ingen internet forbindelse, og kan derfor ikke opdatere billeter.");
             }
+            Thread.sleep(10000);
         }
     }
 }
